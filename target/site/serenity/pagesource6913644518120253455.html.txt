@@ -1,0 +1,959 @@
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml"><!--
+    Product:        PHPTRAVELS
+    Copyright:      2012 - 2018 @ phptravels.com
+    License:        https://phptravels.com/terms-and-conditions/
+    Purchase:       https://phptravels.com/order
+    Demo:           https://phptravels.com/demo
+    --><head>
+    <meta charset="utf-8" />
+    <title>Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="PHPTRAVELS" />
+    <base href="https://www.phptravels.net/" />
+    <script async="" src="https://embed.tawk.to/545f95214ed4e910560000f4/default" charset="UTF-8" crossorigin="*"></script><script>var base_url = 'https://www.phptravels.net/'; </script>
+    <script src="https://www.phptravels.net/assets/include/pace/pace.min.js"></script>
+    <link href="https://www.phptravels.net/assets/include/pace/dataurl.css" rel="stylesheet" />
+    <link rel="shortcut icon" href="https://www.phptravels.net/uploads/global/favicon.png" />
+    <link href="https://www.phptravels.net/assets/include/loading/loading.css" rel="stylesheet" />
+    <link href="https://www.phptravels.net/assets/css/style.css" rel="stylesheet" />
+    <link href="https://www.phptravels.net/assets/css/admin.css" rel="stylesheet" />
+    <link href="https://www.phptravels.net/assets/css/fa.min.css" rel="stylesheet" />
+    <link href="https://www.phptravels.net/assets/css/animate.min.css" rel="stylesheet" />
+    <script src="https://www.phptravels.net/assets/include/ckeditor/ckeditor.js"></script><style>.cke{visibility:hidden;}</style>    <script src="https://www.phptravels.net/assets/js/jquery-1.11.2.js"></script>
+    <link href="https://www.phptravels.net/assets/include/alert/css/alert.css" rel="stylesheet" />
+    <link href="https://www.phptravels.net/assets/include/alert/themes/default/theme.css" rel="stylesheet" />
+    <script src="https://www.phptravels.net/assets/include/alert/js/alert.js"></script>
+    <script src="https://www.phptravels.net/assets/include/jquery-form/jquery.form.min.js"></script>
+    <!--[if lte IE 8]>
+    <script src="https://www.phptravels.net/assets/js/html5shiv.js"></script>
+    <script src="https://www.phptravels.net/assets/js/respond.min.js"></script>
+    <script src="https://www.phptravels.net/assets/js/excanvas.min.js"></script>
+    <![endif]-->
+    <link href="https://www.phptravels.net/assets/include/select2/select2.css" rel="stylesheet" />
+    <link href="https://www.phptravels.net/assets/include/select2/select2-default.css" rel="stylesheet" />
+    <script src="https://www.phptravels.net/assets/include/select2/select2.min.js"></script>
+    <style>.wrapper .main { margin-top: 55px; } @media screen and (max-width: 480px) { .wrapper .main { margin-top: 100px; } }</style>
+    <script src="https://www.phptravels.net/assets/js/bootstrap.min.js"></script>
+    <script src="https://www.phptravels.net/assets/js/bootstrap-hover-dropdown.min.js"></script>
+    <script src="https://www.phptravels.net/assets/js/panels.js"></script>
+    <script src="https://www.phptravels.net/assets/include/highcharts/highcharts.js"></script>
+    </head>
+    <body class="   pace-running"><div class="pace pace-active"><div class="pace-progress" data-progress-text="44%" data-progress="44" style="transform: translate3d(44.0209%, 0px, 0px);">
+  <div class="pace-progress-inner"></div>
+</div>
+<div class="pace-activity"></div></div>
+    <div class="wrapper">
+    <script>
+    (function ($) {
+        // custom css expression for a case-insensitive contains()
+        jQuery.expr[':'].Contains = function(a,i,m){
+                return (a.textContent || a.innerText || "").toUpperCase().indexOf(m[3].toUpperCase())&gt;=0;
+        };
+        function FilterMenu(list) {
+                var input = $(".filtertxt");
+                $(input).change( function () {
+                        var filter = $(this).val();
+                        //console.log(filter);
+                        //If search text box contains some text then apply filter list
+                        if(filter){
+                                //Add open class to parent li item
+                                $(list).parent().addClass('open');
+                                //Add class in and expand the ul item which is nested li of main ul
+                                $(list).addClass('in').prop('aria-expanded', 'true').slideDown();
+
+                                //Check if child list items contain the query text. Them make them active
+                                $(list).find('li:Contains('+filter+')').addClass('active');
+                                //Check if any child list items doesn't contain query text. Remove the active class
+                                //So that they are not more highlighted
+                                $(list).find('li:not(:Contains('+filter+'))').removeClass('active');
+
+                                //Show any ul inside main ul which contains the text.
+                                $(list).find('li:Contains('+filter+')').show();
+                                //Hide any ul inside main ul which doesn't contains the text.
+                                $(list).find('li:not(:Contains('+filter+'))').hide();
+
+                                //Filter top level list items to show and hide them.
+                                $('#social-sidebar-menu').find('li:Contains('+filter+')').show();
+                                $('#social-sidebar-menu').find('li:not(:Contains('+filter+'))').hide();
+
+                        }else{
+                                //On query text = empty reset all classes and styles to default.
+                                $(list).parent().removeClass('open');
+                                $(list).removeClass('in').prop('aria-expanded', 'false').slideUp();
+                                $(list).find('li').removeClass('active');
+                                $('#social-sidebar-menu').find('li').show();
+                        }
+                })
+                .keyup( function () {
+                        $(this).change();
+                });
+        }
+        //ondomready
+        $(function () {
+            FilterMenu($("#social-sidebar-menu ul"));
+        });
+    }(jQuery));
+</script>
+<aside class="social-sidebar">
+    <div class="social-sidebar-content">
+        <div class="menu">
+            <div class="menu-content">
+                <ul id="social-sidebar-menu">
+                    <li><a class="dash" href="https://www.phptravels.net/admin"> <i class="fa fa-home"></i> <strong>Dashboard</strong></a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="row" style="padding: 0 5px;margin-top: -7px;">
+                <div class="col-md-6">
+                    <div class="row">
+                        <a class="btn btn-success btn-sm btn-block" href="https://www.phptravels.net/admin/profile/">Profile</a>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="row">
+                        <a class="btn btn-danger btn-sm btn-block" href="https://www.phptravels.net/admin/logout">Log Out</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="search-sidebar">
+            <form class="search-sidebar-form has-icon filterform" onsubmit="return false;">
+                <label for="sidebar-query" class="fa fa-search"></label>
+                <input id="sidebar-query" type="text" placeholder="Search" class="form-control search-query filtertxt" />
+            </form>
+        </div>
+        <div class="clearfix"></div>
+        <div class="user">
+            <i class="fa-1x glyphicon glyphicon-user"></i>
+            <span>Super Admin Admin</span>
+        </div>
+        <div class="menu">
+            <div class="menu-content">
+                <ul id="social-sidebar-menu">
+                                        <li class="active">
+                        <a href="https://www.phptravels.net/" target="_blank">
+                            <!-- icon--><i class="fa fa-laptop"></i>
+                            <span>Frontend</span>
+                        </a>
+                    </li>
+                    <li> <a href="//phptravels.org/submitticket.php?step=2&amp;deptid=1" target="_blank"><i class="fa fa-life-ring w30"></i> Help</a> </li>
+                                        <li>
+                        <a href="https://www.phptravels.net/admin/updates/"><i class="fa fa-refresh"></i>
+                        <span>Updates</span><span class="pull-right label label-danger" id="updatescount"></span>
+                        </a>
+                    </li>
+                                                            <li>
+                        <a href="#menu-ui" data-toggle="collapse" data-parent="#social-sidebar-menu"><i class="fa fa-cogs w30"></i> General<i class="fa fa-angle-right pull-right menu-icon"></i></a>
+                        <ul id="menu-ui" class="collapse wow fadeIn animated">
+                            <li> <a href="https://www.phptravels.net/admin/settings/">Settings</a> </li>
+                            <li> <a href="https://www.phptravels.net/admin/settings/modules/">Modules</a></li>
+                            <li> <a href="https://www.phptravels.net/admin/settings/currencies/">Currencies</a> </li>
+                            <li> <a href="https://www.phptravels.net/admin/settings/paymentgateways/">Payment Gateways</a></li>
+                            <li> <a href="https://www.phptravels.net/admin/settings/social/">Social Connections</a></li>
+                            <li> <a href="https://www.phptravels.net/admin/settings/widgets/">Widgets</a></li>
+                            <li> <a href="https://www.phptravels.net/admin/settings/sliders/">Sliders</a></li>
+                            <li> <a href="https://www.phptravels.net/admin/templates/email/">Email Templates</a></li>
+                            <li> <a href="https://www.phptravels.net/admin/templates/sms_settings/">SMS API Settings</a></li>
+                            <li> <a href="https://www.phptravels.net/admin/backup/">BackUp</a></li>
+                        </ul>
+                    </li>
+                                        <li>
+                        <a data-toggle="collapse" data-parent="#social-sidebar-menu" href="#ACCOUNTS"><i class="glyphicon glyphicon-user w30"></i> Accounts<i class="fa fa-angle-right pull-right menu-icon"></i>
+                        </a>
+                        <ul id="ACCOUNTS" class="collapse wow fadeIn animated">
+                                                        <li><a href="https://www.phptravels.net/admin/accounts/admins/">Admins</a></li>
+                                                        <li><a href="https://www.phptravels.net/admin/accounts/suppliers/">Suppliers</a></li>
+                            <li><a href="https://www.phptravels.net/admin/accounts/customers/">Customers</a></li>
+                            <li><a href="https://www.phptravels.net/admin/accounts/guest/">GuestCustomers</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#CMS" data-toggle="collapse" data-parent="#social-sidebar-menu"><i style="width:30px" class="fa fa-list-alt w30"></i><span>CMS</span><i class="fa fa-angle-right pull-right menu-icon"></i></a>
+                        <ul id="CMS" class="collapse wow fadeIn animated">
+                            <li><a href="https://www.phptravels.net/admin/cms">Pages</a></li>
+                            <!-- <li><a href="https://www.phptravels.net/admin/cms/menus/manage">Menu</a></li> -->
+                        </ul>
+                    </li>
+                                                                            <li>
+                                        <a href="#Hotels" data-toggle="collapse" data-parent="#social-sidebar-menu"><i class="w30 fa fa-building-o"></i>Hotels <i class="fa fa-angle-right pull-right menu-icon"></i></a>
+                                                                                    <ul id="Hotels" class="collapse wow fadeIn animated">
+                                                                                                    <li><a href="https://www.phptravels.net/admin/hotels">Hotels</a></li>
+                                                                                                    <li><a href="https://www.phptravels.net/admin/hotels/rooms">Rooms</a></li>
+                                                                                                    <li><a href="https://www.phptravels.net/admin/hotels/extras">Extras</a></li>
+                                                                                                    <li><a href="https://www.phptravels.net/admin/hotels/reviews">Reviews</a></li>
+                                                                                                    <li><a href="https://www.phptravels.net/admin/hotels/settings">Hotels Settings</a></li>
+                                                                                            </ul>
+                                                                            </li>
+                                                                        <li>
+                                        <a href="#Flights" data-toggle="collapse" data-parent="#social-sidebar-menu"><i class="w30 fa fa-plane"></i>Flights <i class="fa fa-angle-right pull-right menu-icon"></i></a>
+                                                                                    <ul id="Flights" class="collapse wow fadeIn animated">
+                                                                                                    <li><a href="https://www.phptravels.net/admin/flights/routes">Routes</a></li>
+                                                                                                    <li><a href="https://www.phptravels.net/admin/flights/airports">Airports</a></li>
+                                                                                                    <li><a href="https://www.phptravels.net/admin/flights/settings">Settings</a></li>
+                                                                                                    <li><a href="https://www.phptravels.net/admin/flights/airlines">Airlines</a></li>
+                                                                                                    <li><a href="https://www.phptravels.net/admin/flights/countries">Countries</a></li>
+                                                                                                    <li><a href="https://www.phptravels.net/admin/flights">Flights Slider</a></li>
+                                                                                            </ul>
+                                                                            </li>
+                                                                        <li>
+                                        <a href="#Tours" data-toggle="collapse" data-parent="#social-sidebar-menu"><i class="w30 fa fa-suitcase"></i>Tours <i class="fa fa-angle-right pull-right menu-icon"></i></a>
+                                                                                    <ul id="Tours" class="collapse wow fadeIn animated">
+                                                                                                    <li><a href="https://www.phptravels.net/admin/tours">Tours</a></li>
+                                                                                                    <li><a href="https://www.phptravels.net/admin/tours/add">Add New</a></li>
+                                                                                                    <li><a href="https://www.phptravels.net/admin/tours/extras">Extras</a></li>
+                                                                                                    <li><a href="https://www.phptravels.net/admin/tours/reviews">Reviews</a></li>
+                                                                                                    <li><a href="https://www.phptravels.net/admin/tours/settings">Settings</a></li>
+                                                                                            </ul>
+                                                                            </li>
+                                                                        <li>
+                                        <a href="#Cars" data-toggle="collapse" data-parent="#social-sidebar-menu"><i class="w30 fa fa-car"></i>Cars <i class="fa fa-angle-right pull-right menu-icon"></i></a>
+                                                                                    <ul id="Cars" class="collapse wow fadeIn animated">
+                                                                                                    <li><a href="https://www.phptravels.net/admin/cars">Cars</a></li>
+                                                                                                    <li><a href="https://www.phptravels.net/admin/cars/extras">Extras</a></li>
+                                                                                                    <li><a href="https://www.phptravels.net/admin/cars/settings">Cars Settings</a></li>
+                                                                                            </ul>
+                                                                            </li>
+                                                                        <li>
+                                        <a href="#Ivisa" data-toggle="collapse" data-parent="#social-sidebar-menu"><i class="w30 fa fa-tag"></i>Ivisa <i class="fa fa-angle-right pull-right menu-icon"></i></a>
+                                                                                    <ul id="Ivisa" class="collapse wow fadeIn animated">
+                                                                                                    <li><a href="https://www.phptravels.net/admin/ivisa/settings">Ivisa</a></li>
+                                                                                            </ul>
+                                                                            </li>
+                                                                        <li>
+                                        <a href="#Blog" data-toggle="collapse" data-parent="#social-sidebar-menu" aria-expanded="true"><i class="w30 glyphicon glyphicon-th-large"></i>Blog <i class="fa fa-angle-right pull-right menu-icon"></i></a>
+                                                                                    <ul id="Blog" class="wow fadeIn animated collapse in" aria-expanded="true" style="">
+                                                                                                    <li><a href="https://www.phptravels.net/admin/blog">Posts</a></li>
+                                                                                                    <li><a href="https://www.phptravels.net/admin/blog/category">Blog Categories</a></li>
+                                                                                                    <li><a href="https://www.phptravels.net/admin/blog/settings">Blog Settings</a></li>
+                                                                                            </ul>
+                                                                            </li>
+                                                                        <li>
+                                        <a href="#Locations" data-toggle="collapse" data-parent="#social-sidebar-menu"><i class="w30 fa fa-map-marker"></i>Locations <i class="fa fa-angle-right pull-right menu-icon"></i></a>
+                                                                                    <ul id="Locations" class="collapse wow fadeIn animated">
+                                                                                                    <li><a href="https://www.phptravels.net/supplier/locations">Locations List</a></li>
+                                                                                            </ul>
+                                                                            </li>
+                                                                            <li>
+                        <a data-toggle="collapse" data-parent="#social-sidebar-menu" href="#SPECIAL_OFFERS"><i class="fa fa-gift w30"></i> Offers<i class="fa fa-angle-right pull-right menu-icon"></i></a>
+                        <ul id="SPECIAL_OFFERS" class="collapse  wow fadeIn animated">
+                            <li><a href="https://www.phptravels.net/admin/offers/">Manage Offers</a></li>
+                            <li><a href="https://www.phptravels.net/admin/offers/settings/">Offers Settings</a></li>
+                        </ul>
+                    </li>
+                                        <li>
+                        <a href="https://www.phptravels.net/admin/coupons/"><i class="fa fa-asterisk w30"></i> Coupons</a>
+                    </li>
+                                        <!--
+                                        <li><a href="https://www.phptravels.net/admin/locations"><i class="fa fa-map-marker w30"></i> Locations<span class="pull-right label label-danger" id=""></span></a>
+                    </li>
+                                        -->
+                                                            <li><a href="https://www.phptravels.net/admin/newsletter/"><i class="fa fa-envelope w30"></i> Newsletter <span class="pull-right label label-danger" id=""></span></a>
+                    </li>
+                                                            <li><a href="https://www.phptravels.net/admin/bookings/"><i class="fa fa-list w30"></i> Bookings<span class="pull-right label label-danger" id=""></span></a>
+                    </li>
+                                    </ul>
+            </div>
+        </div>
+        <!-- END MENU SECTION-->
+    </div>
+</aside>
+<!-- END SIDEBAR-->    <div class="main">
+    <div class="container" id="content">
+
+    <script>
+    $(function () {
+    $('[data-toggle="tooltip"]').tooltip() })
+    </script><style>
+.delete_button {right: 0px; top: 44px;}
+</style>
+<div class="row form-group">
+  <!-- BEGIN ICON BUTTONS SET-->
+    <div class="col-xs-6 col-sm-6 col-md-2">
+    <button data-toggle="modal" data-target="#quickbook" class="btn btn-danger btn-block">
+      <div class="h5"><i class="fa fa-dashboard fa-lg"></i> Quick Booking</div>
+    </button>
+  </div>
+    <div class="col-xs-6 col-sm-6 col-md-2">
+    <form action="https://www.phptravels.net/admin/bookings/" method="post">
+      <button type="submit" class="btn btn-primary btn-block">
+        <div class="h5"><i class="fa fa-bar-chart-o fa-lg"></i> Bookings</div>
+      </button>
+    </form>
+  </div>
+    <div class="col-xs-6 col-sm-6 col-md-2">
+    <form action="https://www.phptravels.net/admin/cms/" method="post">
+      <button type="submit" class="btn btn-info btn-block">
+        <div class="h5"><i class="fa fa-list-alt fa-lg"></i>   CMS Pages</div>
+      </button>
+    </form>
+  </div>
+    <div class="col-xs-6 col-sm-6 col-md-2">
+    <form action="https://www.phptravels.net/admin/blog/" method="post">
+      <button type="submit" class="btn btn-success btn-block">
+        <div class="h5"><i class="glyphicon glyphicon-th-large fa-lg"></i> Blog</div>
+      </button>
+    </form>
+  </div>
+    <div class="col-xs-6 col-sm-6 col-md-2">
+    <form action="https://www.phptravels.net/admin/newsletter/" method="post">
+      <button type="submit" role="button" class="btn btn-warning btn-block">
+        <div class="h5"><i class="fa fa-envelope fa-lg"></i> Send Newsletter</div>
+      </button>
+    </form>
+  </div>
+    <div class="col-xs-6 col-sm-6 col-md-2">
+    <form action="https://www.phptravels.net/admin/backup/" method="post">
+      <button type="submit" role="button" class="btn btn-default btn-block">
+        <div class="h5"><i class="fa fa-inbox fa-lg"></i> Backup Databse</div>
+      </button>
+    </form>
+  </div>
+    <!-- END ICON BUTTONS SET-->
+</div>
+
+<!-- Reports section -->
+
+
+    <div class="panel panel-default">
+      <div class="panel-heading">Booking Summary </div>
+      <div class="panel-body">
+        <div class="row">
+        <div class="col-md-4">
+        <div class="block">
+          <div class="pad8 rev-bg">
+            <div class="col-md-5 row col-sm-5">
+              <div class="tempStatBox" style="margin-left:-10px;">
+                <div class="tempStat" style="border-color: rgb(0, 204, 51);">0</div>
+              </div>
+            </div>
+            <div class="col-md-7 col-sm-7">
+              <div class="text-left">
+                <h4><strong>Today's Booking</strong></h4>
+                <p>Yesterday's : 0</p>
+                <hr class="mtb04" />
+                <span class="text-success"><strong>Paid :</strong> 0</span>
+                <div class="clearfix"></div>
+                <span class="text-danger"><strong>Unpaid :</strong> 0</span>
+              </div>
+            </div>
+            <div class="clearfix"></div>
+          </div>
+        </div>
+        </div>
+        <div class="col-md-4">
+        <div class="block">
+          <div class="pad8 rev-bg">
+            <div class="col-md-5 row col-sm-5">
+              <div class="tempStatBox" style="margin-left:-10px;">
+                <div class="tempStat" style="border-color: rgb(255, 153, 51);">0</div>
+              </div>
+            </div>
+            <div class="col-md-7 col-sm-7">
+              <div class="text-left">
+                <h4><strong>Last 30 Day's</strong></h4>
+                <p>Last 60 Day's : 0</p>
+                <hr class="mtb04" />
+                <span class="text-success"><strong>Paid :</strong> 0</span>
+                <div class="clearfix"></div>
+                <span class="text-danger"><strong>Unpaid :</strong> 0</span>
+              </div>
+            </div>
+            <div class="clearfix"></div>
+          </div>
+        </div>
+        </div>
+        <div class="col-md-4">
+        <div class="block hidden-md hiddin-sm hidden-xs">
+          <div class="pad8 rev-bg">
+            <div class="col-md-5 row col-sm-5">
+              <div class="tempStatBox" style="margin-left:-10px;">
+                <div class="tempStat" style="border-color: rgb(204, 0, 51);">0</div>
+              </div>
+            </div>
+            <div class="col-md-7 col-sm-7">
+              <div class="text-left">
+                <h4><strong>Last 90 Day's</strong></h4>
+                <p>Last 180 Day's : 0</p>
+                <hr class="mtb04" />
+                <span class="text-success"><strong>Paid :</strong> 0</span>
+                <div class="clearfix"></div>
+                <span class="text-danger"><strong>Unpaid :</strong> 0</span>
+              </div>
+            </div>
+            <div class="clearfix"></div>
+          </div>
+        </div>
+        </div>
+        </div>
+        <div class="clearfix"></div>
+      </div>
+    </div>
+
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="panel panel-default">
+      <div class="panel-heading">Revenue Chart</div>
+      <div class="panel-body">
+        <style>
+          td span {width: 100%;font-weight: bold;}
+          .rev-but { padding: 8px 16px; background-color:#f7f7f7; }
+          .rev-bg { border: 1px solid #eee;background-color:#f9f9f9;border-radius:5px }
+          .pad8 { padding: 8px; }
+          .pad8 h4 { margin-bottom: 5px; }
+          .pad8 p { color: #8e8e8e }
+          .mlr0 { padding-right: 0px; padding-left: 0px; }
+          .mtb10 { margin-top: 15px;margin-bottom: 15px; }
+          .mtb04 { margin-top: 0px;margin-bottom: 5px; }
+          .mb0 { margin-bottom: 0px; }
+          .tempStatBox { width: 120px; -webkit-box-sizing: content-box; -moz-box-sizing: content-box; box-sizing: content-box; margin: 0 auto; }
+          .tempStatBox .tempStat { position: relative; font-size: 27px; line-height: 80px; -webkit-border-radius: 50em; -moz-border-radius: 50em; border-radius: 50em; border: 10px solid #FFF; background: #f9f9f9; height: 80px; width: 80px; text-align: center; margin: 0 auto; -webkit-box-sizing: content-box; -moz-box-sizing: content-box; box-sizing: content-box; }
+          .tempStatBox .tempStat:before { content: ""; top: -10px; left: -10px; height: 100px; width: 100px; position: absolute; -webkit-border-radius: 50em; -moz-border-radius: 50em; border-radius: 50em; background: transparent; -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.3),0px 1px 0 #fff; -moz-box-shadow: inset 0 1px 1px rgba(0,0,0,0.3),0px 1px 0 #fff; box-shadow: inset 0 1px 1px rgba(0,0,0,0.3),0px 1px 0 #fff; -webkit-box-sizing: content-box; -moz-box-sizing: content-box; box-sizing: content-box;}
+        </style>
+        <div class="row">
+          <div class="col-md-12">
+            <div id="container" style="min-width: 310px; height: 335px; margin: 0 auto" data-highcharts-chart="0"><div class="highcharts-container" id="highcharts-0" style="position: relative; overflow: hidden; width: 742px; height: 335px; text-align: left; line-height: normal; z-index: 0; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);"><svg version="1.1" style="font-family:&quot;Lucida Grande&quot;, &quot;Lucida Sans Unicode&quot;, Arial, Helvetica, sans-serif;font-size:12px;" xmlns="http://www.w3.org/2000/svg" width="742" height="335"><desc>Created with Highcharts 4.0.3</desc><defs><clipPath id="highcharts-1"><rect x="0" y="0" width="584" height="242"/></clipPath></defs><rect x="0" y="0" width="742" height="335" strokeWidth="0" fill="#FFFFFF" class=" highcharts-background"/><path fill="none" d="M 60 174.5 L 644 174.5" stroke="#808080" stroke-width="1"/><g class="highcharts-grid" zIndex="1"/><g class="highcharts-grid" zIndex="1"><path fill="none" d="M 60 174.5 L 644 174.5" stroke="#C0C0C0" stroke-width="1" zIndex="1" opacity="1"/></g><g class="highcharts-axis" zIndex="2"><path fill="none" d="M 98.5 295 L 98.5 305" stroke="#C0D0E0" stroke-width="1" opacity="1"/><path fill="none" d="M 117.5 295 L 117.5 305" stroke="#C0D0E0" stroke-width="1" opacity="1"/><path fill="none" d="M 137.5 295 L 137.5 305" stroke="#C0D0E0" stroke-width="1" opacity="1"/><path fill="none" d="M 156.5 295 L 156.5 305" stroke="#C0D0E0" stroke-width="1" opacity="1"/><path fill="none" d="M 176.5 295 L 176.5 305" stroke="#C0D0E0" stroke-width="1" opacity="1"/><path fill="none" d="M 195.5 295 L 195.5 305" stroke="#C0D0E0" stroke-width="1" opacity="1"/><path fill="none" d="M 215.5 295 L 215.5 305" stroke="#C0D0E0" stroke-width="1" opacity="1"/><path fill="none" d="M 234.5 295 L 234.5 305" stroke="#C0D0E0" stroke-width="1" opacity="1"/><path fill="none" d="M 254.5 295 L 254.5 305" stroke="#C0D0E0" stroke-width="1" opacity="1"/><path fill="none" d="M 273.5 295 L 273.5 305" stroke="#C0D0E0" stroke-width="1" opacity="1"/><path fill="none" d="M 293.5 295 L 293.5 305" stroke="#C0D0E0" stroke-width="1" opacity="1"/><path fill="none" d="M 312.5 295 L 312.5 305" stroke="#C0D0E0" stroke-width="1" opacity="1"/><path fill="none" d="M 332.5 295 L 332.5 305" stroke="#C0D0E0" stroke-width="1" opacity="1"/><path fill="none" d="M 351.5 295 L 351.5 305" stroke="#C0D0E0" stroke-width="1" opacity="1"/><path fill="none" d="M 370.5 295 L 370.5 305" stroke="#C0D0E0" stroke-width="1" opacity="1"/><path fill="none" d="M 390.5 295 L 390.5 305" stroke="#C0D0E0" stroke-width="1" opacity="1"/><path fill="none" d="M 409.5 295 L 409.5 305" stroke="#C0D0E0" stroke-width="1" opacity="1"/><path fill="none" d="M 429.5 295 L 429.5 305" stroke="#C0D0E0" stroke-width="1" opacity="1"/><path fill="none" d="M 448.5 295 L 448.5 305" stroke="#C0D0E0" stroke-width="1" opacity="1"/><path fill="none" d="M 468.5 295 L 468.5 305" stroke="#C0D0E0" stroke-width="1" opacity="1"/><path fill="none" d="M 487.5 295 L 487.5 305" stroke="#C0D0E0" stroke-width="1" opacity="1"/><path fill="none" d="M 507.5 295 L 507.5 305" stroke="#C0D0E0" stroke-width="1" opacity="1"/><path fill="none" d="M 526.5 295 L 526.5 305" stroke="#C0D0E0" stroke-width="1" opacity="1"/><path fill="none" d="M 546.5 295 L 546.5 305" stroke="#C0D0E0" stroke-width="1" opacity="1"/><path fill="none" d="M 565.5 295 L 565.5 305" stroke="#C0D0E0" stroke-width="1" opacity="1"/><path fill="none" d="M 585.5 295 L 585.5 305" stroke="#C0D0E0" stroke-width="1" opacity="1"/><path fill="none" d="M 604.5 295 L 604.5 305" stroke="#C0D0E0" stroke-width="1" opacity="1"/><path fill="none" d="M 624.5 295 L 624.5 305" stroke="#C0D0E0" stroke-width="1" opacity="1"/><path fill="none" d="M 644.5 295 L 644.5 305" stroke="#C0D0E0" stroke-width="1" opacity="1"/><path fill="none" d="M 78.5 295 L 78.5 305" stroke="#C0D0E0" stroke-width="1" opacity="1"/><path fill="none" d="M 59.5 295 L 59.5 305" stroke="#C0D0E0" stroke-width="1" opacity="1"/><path fill="none" d="M 60 295.5 L 644 295.5" stroke="#C0D0E0" stroke-width="1" zIndex="7" visibility="visible"/></g><g class="highcharts-axis" zIndex="2"><text x="28" zIndex="7" text-anchor="middle" transform="translate(0,0) rotate(270 28 174)" class=" highcharts-yaxis-title" style="color:#707070;fill:#707070;" visibility="visible" y="174"><tspan>Booking Amount</tspan></text></g><g class="highcharts-series-group" zIndex="3"><g class="highcharts-series" visibility="visible" zIndex="0.1" transform="translate(60,53) scale(1 1)" clip-path="url(https://www.phptravels.net/admin#highcharts-1)"><path fill="none" d="M 9.733333333333333 121 L 29.199999999999996 121 L 48.666666666666664 121 L 68.13333333333333 121 L 87.6 121 L 107.06666666666666 121 L 126.53333333333332 121 L 145.99999999999997 121 L 165.46666666666664 121 L 184.9333333333333 121 L 204.39999999999998 121 L 223.86666666666665 121 L 243.3333333333333 121 L 262.79999999999995 121 L 282.26666666666665 121 L 301.73333333333335 121 L 321.2 121 L 340.66666666666663 121 L 360.1333333333333 121 L 379.59999999999997 121 L 399.06666666666666 121 L 418.5333333333333 121 L 438 121 L 457.46666666666664 121 L 476.9333333333333 121 L 496.4 121 L 515.8666666666666 121 L 535.3333333333333 121 L 554.8 121 L 574.2666666666667 121" stroke="#7cb5ec" stroke-width="2" zIndex="1" stroke-linejoin="round" stroke-linecap="round"/><path fill="none" d="M -0.2666666666666675 121 L 9.733333333333333 121 L 29.199999999999996 121 L 48.666666666666664 121 L 68.13333333333333 121 L 87.6 121 L 107.06666666666666 121 L 126.53333333333332 121 L 145.99999999999997 121 L 165.46666666666664 121 L 184.9333333333333 121 L 204.39999999999998 121 L 223.86666666666665 121 L 243.3333333333333 121 L 262.79999999999995 121 L 282.26666666666665 121 L 301.73333333333335 121 L 321.2 121 L 340.66666666666663 121 L 360.1333333333333 121 L 379.59999999999997 121 L 399.06666666666666 121 L 418.5333333333333 121 L 438 121 L 457.46666666666664 121 L 476.9333333333333 121 L 496.4 121 L 515.8666666666666 121 L 535.3333333333333 121 L 554.8 121 L 574.2666666666667 121 L 584.2666666666667 121" stroke-linejoin="round" visibility="visible" stroke="rgba(192,192,192,0.0001)" stroke-width="22" zIndex="2" class=" highcharts-tracker" style=""/></g><g class="highcharts-markers highcharts-tracker" visibility="visible" zIndex="0.1" transform="translate(60,53) scale(1 1)" clip-path="none" style=""><path fill="#7cb5ec" d="M 574 117 C 579.328 117 579.328 125 574 125 C 568.672 125 568.672 117 574 117 Z"/><path fill="#7cb5ec" d="M 554 117 C 559.328 117 559.328 125 554 125 C 548.672 125 548.672 117 554 117 Z"/><path fill="#7cb5ec" d="M 535 117 C 540.328 117 540.328 125 535 125 C 529.672 125 529.672 117 535 117 Z"/><path fill="#7cb5ec" d="M 515 117 C 520.328 117 520.328 125 515 125 C 509.672 125 509.672 117 515 117 Z"/><path fill="#7cb5ec" d="M 496 117 C 501.328 117 501.328 125 496 125 C 490.672 125 490.672 117 496 117 Z"/><path fill="#7cb5ec" d="M 476 117 C 481.328 117 481.328 125 476 125 C 470.672 125 470.672 117 476 117 Z"/><path fill="#7cb5ec" d="M 457 117 C 462.328 117 462.328 125 457 125 C 451.672 125 451.672 117 457 117 Z"/><path fill="#7cb5ec" d="M 438 117 C 443.328 117 443.328 125 438 125 C 432.672 125 432.672 117 438 117 Z"/><path fill="#7cb5ec" d="M 418 117 C 423.328 117 423.328 125 418 125 C 412.672 125 412.672 117 418 117 Z"/><path fill="#7cb5ec" d="M 399 117 C 404.328 117 404.328 125 399 125 C 393.672 125 393.672 117 399 117 Z"/><path fill="#7cb5ec" d="M 379 117 C 384.328 117 384.328 125 379 125 C 373.672 125 373.672 117 379 117 Z"/><path fill="#7cb5ec" d="M 360 117 C 365.328 117 365.328 125 360 125 C 354.672 125 354.672 117 360 117 Z"/><path fill="#7cb5ec" d="M 340 117 C 345.328 117 345.328 125 340 125 C 334.672 125 334.672 117 340 117 Z"/><path fill="#7cb5ec" d="M 321 117 C 326.328 117 326.328 125 321 125 C 315.672 125 315.672 117 321 117 Z"/><path fill="#7cb5ec" d="M 301 117 C 306.328 117 306.328 125 301 125 C 295.672 125 295.672 117 301 117 Z"/><path fill="#7cb5ec" d="M 282 117 C 287.328 117 287.328 125 282 125 C 276.672 125 276.672 117 282 117 Z"/><path fill="#7cb5ec" d="M 262 117 C 267.328 117 267.328 125 262 125 C 256.672 125 256.672 117 262 117 Z"/><path fill="#7cb5ec" d="M 243 117 C 248.328 117 248.328 125 243 125 C 237.672 125 237.672 117 243 117 Z"/><path fill="#7cb5ec" d="M 223 117 C 228.328 117 228.328 125 223 125 C 217.672 125 217.672 117 223 117 Z"/><path fill="#7cb5ec" d="M 204 117 C 209.328 117 209.328 125 204 125 C 198.672 125 198.672 117 204 117 Z"/><path fill="#7cb5ec" d="M 184 117 C 189.328 117 189.328 125 184 125 C 178.672 125 178.672 117 184 117 Z"/><path fill="#7cb5ec" d="M 165 117 C 170.328 117 170.328 125 165 125 C 159.672 125 159.672 117 165 117 Z"/><path fill="#7cb5ec" d="M 145 117 C 150.328 117 150.328 125 145 125 C 139.672 125 139.672 117 145 117 Z"/><path fill="#7cb5ec" d="M 126 117 C 131.328 117 131.328 125 126 125 C 120.672 125 120.672 117 126 117 Z"/><path fill="#7cb5ec" d="M 107 117 C 112.328 117 112.328 125 107 125 C 101.672 125 101.672 117 107 117 Z"/><path fill="#7cb5ec" d="M 87 117 C 92.328 117 92.328 125 87 125 C 81.672 125 81.672 117 87 117 Z"/><path fill="#7cb5ec" d="M 68 117 C 73.328 117 73.328 125 68 125 C 62.672 125 62.672 117 68 117 Z"/><path fill="#7cb5ec" d="M 48 117 C 53.328 117 53.328 125 48 125 C 42.672 125 42.672 117 48 117 Z"/><path fill="#7cb5ec" d="M 29 117 C 34.328 117 34.328 125 29 125 C 23.672 125 23.672 117 29 117 Z"/><path fill="#7cb5ec" d="M 9 117 C 14.328 117 14.328 125 9 125 C 3.6719999999999997 125 3.6719999999999997 117 9 117 Z"/></g><g class="highcharts-series" visibility="visible" zIndex="0.1" transform="translate(60,53) scale(1 1)" clip-path="url(https://www.phptravels.net/admin#highcharts-1)"><path fill="none" d="M 9.733333333333333 121 L 29.199999999999996 121 L 48.666666666666664 121 L 68.13333333333333 121 L 87.6 121 L 107.06666666666666 121 L 126.53333333333332 121 L 145.99999999999997 121 L 165.46666666666664 121 L 184.9333333333333 121 L 204.39999999999998 121 L 223.86666666666665 121 L 243.3333333333333 121 L 262.79999999999995 121 L 282.26666666666665 121 L 301.73333333333335 121 L 321.2 121 L 340.66666666666663 121 L 360.1333333333333 121 L 379.59999999999997 121 L 399.06666666666666 121 L 418.5333333333333 121 L 438 121 L 457.46666666666664 121 L 476.9333333333333 121 L 496.4 121 L 515.8666666666666 121 L 535.3333333333333 121 L 554.8 121 L 574.2666666666667 121" stroke="#434348" stroke-width="2" zIndex="1" stroke-linejoin="round" stroke-linecap="round"/><path fill="none" d="M -0.2666666666666675 121 L 9.733333333333333 121 L 29.199999999999996 121 L 48.666666666666664 121 L 68.13333333333333 121 L 87.6 121 L 107.06666666666666 121 L 126.53333333333332 121 L 145.99999999999997 121 L 165.46666666666664 121 L 184.9333333333333 121 L 204.39999999999998 121 L 223.86666666666665 121 L 243.3333333333333 121 L 262.79999999999995 121 L 282.26666666666665 121 L 301.73333333333335 121 L 321.2 121 L 340.66666666666663 121 L 360.1333333333333 121 L 379.59999999999997 121 L 399.06666666666666 121 L 418.5333333333333 121 L 438 121 L 457.46666666666664 121 L 476.9333333333333 121 L 496.4 121 L 515.8666666666666 121 L 535.3333333333333 121 L 554.8 121 L 574.2666666666667 121 L 584.2666666666667 121" stroke-linejoin="round" visibility="visible" stroke="rgba(192,192,192,0.0001)" stroke-width="22" zIndex="2" class=" highcharts-tracker" style=""/></g><g class="highcharts-markers highcharts-tracker" visibility="visible" zIndex="0.1" transform="translate(60,53) scale(1 1)" clip-path="none" style=""><path fill="#434348" d="M 574 117 L 578 121 574 125 570 121 Z"/><path fill="#434348" d="M 554 117 L 558 121 554 125 550 121 Z"/><path fill="#434348" d="M 535 117 L 539 121 535 125 531 121 Z"/><path fill="#434348" d="M 515 117 L 519 121 515 125 511 121 Z"/><path fill="#434348" d="M 496 117 L 500 121 496 125 492 121 Z"/><path fill="#434348" d="M 476 117 L 480 121 476 125 472 121 Z"/><path fill="#434348" d="M 457 117 L 461 121 457 125 453 121 Z"/><path fill="#434348" d="M 438 117 L 442 121 438 125 434 121 Z"/><path fill="#434348" d="M 418 117 L 422 121 418 125 414 121 Z"/><path fill="#434348" d="M 399 117 L 403 121 399 125 395 121 Z"/><path fill="#434348" d="M 379 117 L 383 121 379 125 375 121 Z"/><path fill="#434348" d="M 360 117 L 364 121 360 125 356 121 Z"/><path fill="#434348" d="M 340 117 L 344 121 340 125 336 121 Z"/><path fill="#434348" d="M 321 117 L 325 121 321 125 317 121 Z"/><path fill="#434348" d="M 301 117 L 305 121 301 125 297 121 Z"/><path fill="#434348" d="M 282 117 L 286 121 282 125 278 121 Z"/><path fill="#434348" d="M 262 117 L 266 121 262 125 258 121 Z"/><path fill="#434348" d="M 243 117 L 247 121 243 125 239 121 Z"/><path fill="#434348" d="M 223 117 L 227 121 223 125 219 121 Z"/><path fill="#434348" d="M 204 117 L 208 121 204 125 200 121 Z"/><path fill="#434348" d="M 184 117 L 188 121 184 125 180 121 Z"/><path fill="#434348" d="M 165 117 L 169 121 165 125 161 121 Z"/><path fill="#434348" d="M 145 117 L 149 121 145 125 141 121 Z"/><path fill="#434348" d="M 126 117 L 130 121 126 125 122 121 Z"/><path fill="#434348" d="M 107 117 L 111 121 107 125 103 121 Z"/><path fill="#434348" d="M 87 117 L 91 121 87 125 83 121 Z"/><path fill="#434348" d="M 68 117 L 72 121 68 125 64 121 Z"/><path fill="#434348" d="M 48 117 L 52 121 48 125 44 121 Z"/><path fill="#434348" d="M 29 117 L 33 121 29 125 25 121 Z"/><path fill="#434348" d="M 9 117 L 13 121 9 125 5 121 Z"/></g><g class="highcharts-series" visibility="visible" zIndex="0.1" transform="translate(60,53) scale(1 1)" clip-path="url(https://www.phptravels.net/admin#highcharts-1)"><path fill="none" d="M 9.733333333333333 121 L 29.199999999999996 121 L 48.666666666666664 121 L 68.13333333333333 121 L 87.6 121 L 107.06666666666666 121 L 126.53333333333332 121 L 145.99999999999997 121 L 165.46666666666664 121 L 184.9333333333333 121 L 204.39999999999998 121 L 223.86666666666665 121 L 243.3333333333333 121 L 262.79999999999995 121 L 282.26666666666665 121 L 301.73333333333335 121 L 321.2 121 L 340.66666666666663 121 L 360.1333333333333 121 L 379.59999999999997 121 L 399.06666666666666 121 L 418.5333333333333 121 L 438 121 L 457.46666666666664 121 L 476.9333333333333 121 L 496.4 121 L 515.8666666666666 121 L 535.3333333333333 121 L 554.8 121 L 574.2666666666667 121" stroke="#90ed7d" stroke-width="2" zIndex="1" stroke-linejoin="round" stroke-linecap="round"/><path fill="none" d="M -0.2666666666666675 121 L 9.733333333333333 121 L 29.199999999999996 121 L 48.666666666666664 121 L 68.13333333333333 121 L 87.6 121 L 107.06666666666666 121 L 126.53333333333332 121 L 145.99999999999997 121 L 165.46666666666664 121 L 184.9333333333333 121 L 204.39999999999998 121 L 223.86666666666665 121 L 243.3333333333333 121 L 262.79999999999995 121 L 282.26666666666665 121 L 301.73333333333335 121 L 321.2 121 L 340.66666666666663 121 L 360.1333333333333 121 L 379.59999999999997 121 L 399.06666666666666 121 L 418.5333333333333 121 L 438 121 L 457.46666666666664 121 L 476.9333333333333 121 L 496.4 121 L 515.8666666666666 121 L 535.3333333333333 121 L 554.8 121 L 574.2666666666667 121 L 584.2666666666667 121" stroke-linejoin="round" visibility="visible" stroke="rgba(192,192,192,0.0001)" stroke-width="22" zIndex="2" class=" highcharts-tracker" style=""/></g><g class="highcharts-markers highcharts-tracker" visibility="visible" zIndex="0.1" transform="translate(60,53) scale(1 1)" clip-path="none" style=""><path fill="#90ed7d" d="M 570 117 L 578 117 578 125 570 125 Z"/><path fill="#90ed7d" d="M 550 117 L 558 117 558 125 550 125 Z"/><path fill="#90ed7d" d="M 531 117 L 539 117 539 125 531 125 Z"/><path fill="#90ed7d" d="M 511 117 L 519 117 519 125 511 125 Z"/><path fill="#90ed7d" d="M 492 117 L 500 117 500 125 492 125 Z"/><path fill="#90ed7d" d="M 472 117 L 480 117 480 125 472 125 Z"/><path fill="#90ed7d" d="M 453 117 L 461 117 461 125 453 125 Z"/><path fill="#90ed7d" d="M 434 117 L 442 117 442 125 434 125 Z"/><path fill="#90ed7d" d="M 414 117 L 422 117 422 125 414 125 Z"/><path fill="#90ed7d" d="M 395 117 L 403 117 403 125 395 125 Z"/><path fill="#90ed7d" d="M 375 117 L 383 117 383 125 375 125 Z"/><path fill="#90ed7d" d="M 356 117 L 364 117 364 125 356 125 Z"/><path fill="#90ed7d" d="M 336 117 L 344 117 344 125 336 125 Z"/><path fill="#90ed7d" d="M 317 117 L 325 117 325 125 317 125 Z"/><path fill="#90ed7d" d="M 297 117 L 305 117 305 125 297 125 Z"/><path fill="#90ed7d" d="M 278 117 L 286 117 286 125 278 125 Z"/><path fill="#90ed7d" d="M 258 117 L 266 117 266 125 258 125 Z"/><path fill="#90ed7d" d="M 239 117 L 247 117 247 125 239 125 Z"/><path fill="#90ed7d" d="M 219 117 L 227 117 227 125 219 125 Z"/><path fill="#90ed7d" d="M 200 117 L 208 117 208 125 200 125 Z"/><path fill="#90ed7d" d="M 180 117 L 188 117 188 125 180 125 Z"/><path fill="#90ed7d" d="M 161 117 L 169 117 169 125 161 125 Z"/><path fill="#90ed7d" d="M 141 117 L 149 117 149 125 141 125 Z"/><path fill="#90ed7d" d="M 122 117 L 130 117 130 125 122 125 Z"/><path fill="#90ed7d" d="M 103 117 L 111 117 111 125 103 125 Z"/><path fill="#90ed7d" d="M 83 117 L 91 117 91 125 83 125 Z"/><path fill="#90ed7d" d="M 64 117 L 72 117 72 125 64 125 Z"/><path fill="#90ed7d" d="M 44 117 L 52 117 52 125 44 125 Z"/><path fill="#90ed7d" d="M 25 117 L 33 117 33 125 25 125 Z"/><path fill="#90ed7d" d="M 5 117 L 13 117 13 125 5 125 Z"/></g></g><text x="351" text-anchor="middle" class="highcharts-title" zIndex="4" style="color:#333333;font-size:18px;fill:#333333;width:678px;" y="25"><tspan>Last 30 Days Bookings Report</tspan></text><g class="highcharts-legend" zIndex="7" transform="translate(664,137)"><g zIndex="1"><g><g class="highcharts-legend-item" zIndex="1" transform="translate(8,3)"><path fill="none" d="M 0 11 L 16 11" stroke="#7cb5ec" stroke-width="2"/><path fill="#7cb5ec" d="M 8 7 C 13.328 7 13.328 15 8 15 C 2.6719999999999997 15 2.6719999999999997 7 8 7 Z"/><text x="21" style="color:#333333;font-size:12px;font-weight:bold;cursor:pointer;fill:#333333;" text-anchor="start" zIndex="2" y="15">Hotels</text></g><g class="highcharts-legend-item" zIndex="1" transform="translate(8,21)"><path fill="none" d="M 0 11 L 16 11" stroke="#434348" stroke-width="2"/><path fill="#434348" d="M 8 7 L 12 11 8 15 4 11 Z"/><text x="21" y="15" style="color:#333333;font-size:12px;font-weight:bold;cursor:pointer;fill:#333333;" text-anchor="start" zIndex="2">Tours</text></g><g class="highcharts-legend-item" zIndex="1" transform="translate(8,39)"><path fill="none" d="M 0 11 L 16 11" stroke="#90ed7d" stroke-width="2"/><path fill="#90ed7d" d="M 4 7 L 12 7 12 15 4 15 Z"/><text x="21" y="15" style="color:#333333;font-size:12px;font-weight:bold;cursor:pointer;fill:#333333;" text-anchor="start" zIndex="2">Cars</text></g></g></g></g><g class="highcharts-axis-labels highcharts-xaxis-labels" zIndex="7"><text x="69.73333333333333" text-anchor="middle" style="width:1px;color:#606060;cursor:default;font-size:11px;fill:#606060;" y="315" opacity="1">08</text><text x="89.2" text-anchor="middle" style="width:1px;color:#606060;cursor:default;font-size:11px;fill:#606060;" y="315" opacity="1">09</text><text x="108.66666666666667" text-anchor="middle" style="width:1px;color:#606060;cursor:default;font-size:11px;fill:#606060;" y="315" opacity="1">10</text><text x="128.13333333333335" text-anchor="middle" style="width:1px;color:#606060;cursor:default;font-size:11px;fill:#606060;" y="315" opacity="1">11</text><text x="147.6" text-anchor="middle" style="width:1px;color:#606060;cursor:default;font-size:11px;fill:#606060;" y="315" opacity="1">12</text><text x="167.0666666666667" text-anchor="middle" style="width:1px;color:#606060;cursor:default;font-size:11px;fill:#606060;" y="315" opacity="1">13</text><text x="186.53333333333333" text-anchor="middle" style="width:1px;color:#606060;cursor:default;font-size:11px;fill:#606060;" y="315" opacity="1">14</text><text x="206" text-anchor="middle" style="width:1px;color:#606060;cursor:default;font-size:11px;fill:#606060;" y="315" opacity="1">15</text><text x="225.46666666666664" text-anchor="middle" style="width:1px;color:#606060;cursor:default;font-size:11px;fill:#606060;" y="315" opacity="1">16</text><text x="244.9333333333333" text-anchor="middle" style="width:1px;color:#606060;cursor:default;font-size:11px;fill:#606060;" y="315" opacity="1">17</text><text x="264.4" text-anchor="middle" style="width:1px;color:#606060;cursor:default;font-size:11px;fill:#606060;" y="315" opacity="1">18</text><text x="283.8666666666666" text-anchor="middle" style="width:1px;color:#606060;cursor:default;font-size:11px;fill:#606060;" y="315" opacity="1">19</text><text x="303.33333333333326" text-anchor="middle" style="width:1px;color:#606060;cursor:default;font-size:11px;fill:#606060;" y="315" opacity="1">20</text><text x="322.79999999999995" text-anchor="middle" style="width:1px;color:#606060;cursor:default;font-size:11px;fill:#606060;" y="315" opacity="1">21</text><text x="342.26666666666665" text-anchor="middle" style="width:1px;color:#606060;cursor:default;font-size:11px;fill:#606060;" y="315" opacity="1">22</text><text x="361.7333333333333" text-anchor="middle" style="width:1px;color:#606060;cursor:default;font-size:11px;fill:#606060;" y="315" opacity="1">23</text><text x="381.2" text-anchor="middle" style="width:1px;color:#606060;cursor:default;font-size:11px;fill:#606060;" y="315" opacity="1">24</text><text x="400.66666666666663" text-anchor="middle" style="width:1px;color:#606060;cursor:default;font-size:11px;fill:#606060;" y="315" opacity="1">25</text><text x="420.1333333333333" text-anchor="middle" style="width:1px;color:#606060;cursor:default;font-size:11px;fill:#606060;" y="315" opacity="1">26</text><text x="439.59999999999997" text-anchor="middle" style="width:1px;color:#606060;cursor:default;font-size:11px;fill:#606060;" y="315" opacity="1">27</text><text x="459.0666666666666" text-anchor="middle" style="width:1px;color:#606060;cursor:default;font-size:11px;fill:#606060;" y="315" opacity="1">28</text><text x="478.5333333333333" text-anchor="middle" style="width:1px;color:#606060;cursor:default;font-size:11px;fill:#606060;" y="315" opacity="1">29</text><text x="497.99999999999994" text-anchor="middle" style="width:1px;color:#606060;cursor:default;font-size:11px;fill:#606060;" y="315" opacity="1">30</text><text x="517.4666666666667" text-anchor="middle" style="width:1px;color:#606060;cursor:default;font-size:11px;fill:#606060;" y="315" opacity="1">31</text><text x="536.9333333333333" text-anchor="middle" style="width:1px;color:#606060;cursor:default;font-size:11px;fill:#606060;" y="315" opacity="1">01</text><text x="556.4" text-anchor="middle" style="width:1px;color:#606060;cursor:default;font-size:11px;fill:#606060;" y="315" opacity="1">02</text><text x="575.8666666666667" text-anchor="middle" style="width:1px;color:#606060;cursor:default;font-size:11px;fill:#606060;" y="315" opacity="1">03</text><text x="595.3333333333333" text-anchor="middle" style="width:1px;color:#606060;cursor:default;font-size:11px;fill:#606060;" y="315" opacity="1">04</text><text x="614.8" text-anchor="middle" style="width:1px;color:#606060;cursor:default;font-size:11px;fill:#606060;" y="315" opacity="1">05</text><text x="634.2666666666667" text-anchor="middle" style="width:1px;color:#606060;cursor:default;font-size:11px;fill:#606060;" y="315" opacity="1">06</text></g><g class="highcharts-axis-labels highcharts-yaxis-labels" zIndex="7"><text x="45" text-anchor="end" style="width:225px;color:#606060;cursor:default;font-size:11px;fill:#606060;" y="177.5" opacity="1">0</text></g><g class="highcharts-tooltip" zIndex="8" style="cursor:default;padding:0;white-space:nowrap;" transform="translate(0,-9999)"><path fill="none" d="M 3 0 L 13 0 C 16 0 16 0 16 3 L 16 13 C 16 16 16 16 13 16 L 3 16 C 0 16 0 16 0 13 L 0 3 C 0 0 0 0 3 0" isShadow="true" stroke="black" stroke-opacity="0.049999999999999996" stroke-width="5" transform="translate(1, 1)"/><path fill="none" d="M 3 0 L 13 0 C 16 0 16 0 16 3 L 16 13 C 16 16 16 16 13 16 L 3 16 C 0 16 0 16 0 13 L 0 3 C 0 0 0 0 3 0" isShadow="true" stroke="black" stroke-opacity="0.09999999999999999" stroke-width="3" transform="translate(1, 1)"/><path fill="none" d="M 3 0 L 13 0 C 16 0 16 0 16 3 L 16 13 C 16 16 16 16 13 16 L 3 16 C 0 16 0 16 0 13 L 0 3 C 0 0 0 0 3 0" isShadow="true" stroke="black" stroke-opacity="0.15" stroke-width="1" transform="translate(1, 1)"/><path fill="rgba(249, 249, 249, .85)" d="M 3 0 L 13 0 C 16 0 16 0 16 3 L 16 13 C 16 16 16 16 13 16 L 3 16 C 0 16 0 16 0 13 L 0 3 C 0 0 0 0 3 0"/><text x="8" zIndex="1" style="font-size:12px;color:#333333;fill:#333333;" y="21"></text></g><text x="732" text-anchor="end" zIndex="8" style="cursor:pointer;color:#909090;font-size:9px;fill:#909090;" y="330"/></svg></div></div>
+          </div>
+          <!-- Line Chart JS -->
+          <script type="text/javascript">
+            $(function () {
+                $('#container').highcharts({
+                    title: {
+                        text: 'Last 30 Days Bookings Report',
+                        x: -20 //center
+                    },
+                    xAxis: {
+                        categories: ["08","09","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","01","02","03","04","05","06"]                    },
+                    yAxis: {
+                        title: {
+                            text: 'Booking Amount'
+                        },
+                        min: 0,
+                        plotLines: [{value: 0, width: 1, color: '#808080'}]
+                    },
+                    tooltip: {
+                        valueSuffix: ' USD'
+                    },
+                    legend: {
+                        layout: 'vertical',
+                        align: 'right',
+                        verticalAlign: 'middle',
+                        borderWidth: 0
+                    },
+                    series: [{"name":"Hotels","data":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]},{"name":"Tours","data":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]},{"name":"Cars","data":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]}]                });
+            });
+          </script>
+          <!-- End Line Chart JS -->
+          <div class="col-md-4">
+            <div class="block">
+              <div class="panel panel-default mb0">
+                <div class="pad8">
+                  <button class="btn btn-default btn-block rev-but">
+                  Today
+                  </button>
+                  <div class="pad8 text-center">
+                    <h4><strong>USD 0</strong></h4>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="block">
+              <div class="panel panel-default mb0">
+                <div class="pad8">
+                  <button class="btn btn-default btn-block rev-but">
+                  Last 30 Days
+                  </button>
+                  <div class="pad8 text-center">
+                    <h4><strong>USD 0</strong></h4>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="block">
+              <div class="panel panel-default mb0">
+                <div class="pad8">
+                  <button class="btn btn-default btn-block rev-but">
+                  Last 90 Days
+                  </button>
+                  <div class="pad8 text-center">
+                    <h4><strong>USD 0</strong></h4>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr />
+</div>
+
+<!-- Reports section -->
+
+
+<!-- Recent Bookings -->
+<style>
+  td span {width: 100%;font-weight: bold;}
+</style>
+
+<div class="panel panel-default">
+  <div class="panel-heading">Recent Bookings</div>
+     <div class="panel-body">
+     <link href="https://www.phptravels.net/assets/xcrud/plugins/jquery-ui/jquery-ui.min.css" rel="stylesheet" type="text/css" /><link href="https://www.phptravels.net/assets/xcrud/plugins/jcrop/jquery.Jcrop.min.css" rel="stylesheet" type="text/css" /><link href="https://www.phptravels.net/assets/xcrud/plugins/timepicker/jquery-ui-timepicker-addon.css" rel="stylesheet" type="text/css" /><link href="https://www.phptravels.net/assets/xcrud/themes/bootstrap/xcrud.css" rel="stylesheet" type="text/css" /><div class="xcrud">
+        <div class="xcrud-container">
+        <div class="xcrud-ajax">
+            <input type="hidden" class="xcrud-data" name="key" value="b2949bbefa7ccc185bcd63333145b5cef5ca45d0" /><input type="hidden" class="xcrud-data" name="orderby" value="pt_bookings.booking_id" /><input type="hidden" class="xcrud-data" name="order" value="desc" /><input type="hidden" class="xcrud-data" name="start" value="0" /><input type="hidden" class="xcrud-data" name="limit" value="10" /><input type="hidden" class="xcrud-data" name="instance" value="a8d5e9c6bf0fe88d35a51478f01bfb1526d3a642" /><input type="hidden" class="xcrud-data" name="task" value="list" />
+<div class="xcrud-top-actions">
+    <div class="btn-group pull-right">
+
+            </div>
+        <div class="clearfix"></div>
+            <a href="javascript: multiDelfunc('https://www.phptravels.net/admin/bookings/delMultipleBookings', 'checkboxcls')" class="delete_button btn btn-danger btn-xs"><i class="glyphicon glyphicon-remove"></i> Delete Selected</a>
+    </div>
+
+<div class="xcrud-list-container">
+    <table class="xcrud-list table table-striped table-hover">
+        <thead>
+        <tr class="xcrud-th"><th><div class="icheckbox_square-grey" style="position: relative;"><input class="all" type="checkbox" value="" id="select_all" style="position: absolute; opacity: 0;" /><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div> </th><th class="xcrud-num">#</th><th data-order="asc" data-orderby="pt_bookings.booking_id" class="xcrud-column xcrud-action xcrud-current xcrud-desc">↓ ID</th><th data-order="desc" data-orderby="pt_bookings.booking_ref_no" class="xcrud-column xcrud-action">Ref No.</th><th data-order="desc" data-orderby="pt_accounts.ai_first_name" class="xcrud-column xcrud-action">Customer</th><th data-order="desc" data-orderby="pt_bookings.booking_type" class="xcrud-column xcrud-action">Module</th><th data-order="desc" data-orderby="pt_bookings.booking_date" class="xcrud-column xcrud-action">Date</th><th data-order="desc" data-orderby="pt_bookings.booking_total" class="xcrud-column xcrud-action">Total</th><th data-order="desc" data-orderby="pt_bookings.booking_amount_paid" class="xcrud-column xcrud-action">Paid</th><th data-order="desc" data-orderby="pt_bookings.booking_remaining" class="xcrud-column xcrud-action">Remaining</th><th data-order="desc" data-orderby="pt_bookings.booking_status" class="xcrud-column xcrud-action">Status</th><th class="xcrud-actions"> </th></tr>        </thead>
+        <tbody>
+        <tr class="xcrud-row xcrud-row-0"><td><div class="icheckbox_square-grey" style="position: relative;"><input class="checkboxcls" type="checkbox" value="113" style="position: absolute; opacity: 0;" /><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div></td><td class="xcrud-current xcrud-num">1</td><td class="xcrud-current">113</td><td>6194</td><td>Demo</td><td>hotels</td><td>15/01/2018</td><td>165</td><td>0</td><td>165</td><td><span class="btn btn-xs btn-info">Unpaid</span></td><td class="xcrud-current xcrud-actions xcrud-fix"><span class="btn-group"><a class="btn btn-default btn-xcrud btn btn-primary" href="https://www.phptravels.net/invoice/?id=113&amp;sessid=6194" title="View Invoice" target="_blank"><i class="fa fa-search-plus"></i></a><a class="btn btn-default btn-xcrud btn btn-warning" href="https://www.phptravels.net/admin/bookings/edit/hotels/113" title="Edit" target="_self"><i class="fa fa-edit"></i></a><a class="btn btn-default btn-xcrud btn-danger" href="javascript: delfunc('113','https://www.phptravels.net/admin/bookings/delBooking')" title="DELETE" target="_self" id="113"><i class="fa fa-times"></i></a></span></td></tr><tr class="xcrud-row xcrud-row-1"><td><div class="icheckbox_square-grey" style="position: relative;"><input class="checkboxcls" type="checkbox" value="110" style="position: absolute; opacity: 0;" /><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div></td><td class="xcrud-current xcrud-num">2</td><td class="xcrud-current">110</td><td>0875</td><td>Johny</td><td>hotels</td><td>14/01/2018</td><td>209</td><td>0</td><td>209</td><td><span class="btn btn-xs btn-info">Unpaid</span></td><td class="xcrud-current xcrud-actions xcrud-fix"><span class="btn-group"><a class="btn btn-default btn-xcrud btn btn-primary" href="https://www.phptravels.net/invoice/?id=110&amp;sessid=0875" title="View Invoice" target="_blank"><i class="fa fa-search-plus"></i></a><a class="btn btn-default btn-xcrud btn btn-warning" href="https://www.phptravels.net/admin/bookings/edit/hotels/110" title="Edit" target="_self"><i class="fa fa-edit"></i></a><a class="btn btn-default btn-xcrud btn-danger" href="javascript: delfunc('110','https://www.phptravels.net/admin/bookings/delBooking')" title="DELETE" target="_self" id="110"><i class="fa fa-times"></i></a></span></td></tr><tr class="xcrud-row xcrud-row-0"><td><div class="icheckbox_square-grey" style="position: relative;"><input class="checkboxcls" type="checkbox" value="109" style="position: absolute; opacity: 0;" /><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div></td><td class="xcrud-current xcrud-num">3</td><td class="xcrud-current">109</td><td>9842</td><td>Johny</td><td>tours</td><td>14/01/2018</td><td>1296.9</td><td>0</td><td>1296.9</td><td><span class="btn btn-xs btn-info">Unpaid</span></td><td class="xcrud-current xcrud-actions xcrud-fix"><span class="btn-group"><a class="btn btn-default btn-xcrud btn btn-primary" href="https://www.phptravels.net/invoice/?id=109&amp;sessid=9842" title="View Invoice" target="_blank"><i class="fa fa-search-plus"></i></a><a class="btn btn-default btn-xcrud btn btn-warning" href="https://www.phptravels.net/admin/bookings/edit/tours/109" title="Edit" target="_self"><i class="fa fa-edit"></i></a><a class="btn btn-default btn-xcrud btn-danger" href="javascript: delfunc('109','https://www.phptravels.net/admin/bookings/delBooking')" title="DELETE" target="_self" id="109"><i class="fa fa-times"></i></a></span></td></tr><tr class="xcrud-row xcrud-row-1"><td><div class="icheckbox_square-grey" style="position: relative;"><input class="checkboxcls" type="checkbox" value="108" style="position: absolute; opacity: 0;" /><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div></td><td class="xcrud-current xcrud-num">4</td><td class="xcrud-current">108</td><td>4063</td><td>Johny</td><td>tours</td><td>14/01/2018</td><td>572</td><td>0</td><td>572</td><td><span class="btn btn-xs btn-info">Unpaid</span></td><td class="xcrud-current xcrud-actions xcrud-fix"><span class="btn-group"><a class="btn btn-default btn-xcrud btn btn-primary" href="https://www.phptravels.net/invoice/?id=108&amp;sessid=4063" title="View Invoice" target="_blank"><i class="fa fa-search-plus"></i></a><a class="btn btn-default btn-xcrud btn btn-warning" href="https://www.phptravels.net/admin/bookings/edit/tours/108" title="Edit" target="_self"><i class="fa fa-edit"></i></a><a class="btn btn-default btn-xcrud btn-danger" href="javascript: delfunc('108','https://www.phptravels.net/admin/bookings/delBooking')" title="DELETE" target="_self" id="108"><i class="fa fa-times"></i></a></span></td></tr><tr class="xcrud-row xcrud-row-0"><td><div class="icheckbox_square-grey" style="position: relative;"><input class="checkboxcls" type="checkbox" value="107" style="position: absolute; opacity: 0;" /><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div></td><td class="xcrud-current xcrud-num">5</td><td class="xcrud-current">107</td><td>1905</td><td>Johny</td><td>hotels</td><td>14/01/2018</td><td>165</td><td>0</td><td>165</td><td><span class="btn btn-xs btn-info">Unpaid</span></td><td class="xcrud-current xcrud-actions xcrud-fix"><span class="btn-group"><a class="btn btn-default btn-xcrud btn btn-primary" href="https://www.phptravels.net/invoice/?id=107&amp;sessid=1905" title="View Invoice" target="_blank"><i class="fa fa-search-plus"></i></a><a class="btn btn-default btn-xcrud btn btn-warning" href="https://www.phptravels.net/admin/bookings/edit/hotels/107" title="Edit" target="_self"><i class="fa fa-edit"></i></a><a class="btn btn-default btn-xcrud btn-danger" href="javascript: delfunc('107','https://www.phptravels.net/admin/bookings/delBooking')" title="DELETE" target="_self" id="107"><i class="fa fa-times"></i></a></span></td></tr><tr class="xcrud-row xcrud-row-1"><td><div class="icheckbox_square-grey" style="position: relative;"><input class="checkboxcls" type="checkbox" value="105" style="position: absolute; opacity: 0;" /><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div></td><td class="xcrud-current xcrud-num">6</td><td class="xcrud-current">105</td><td>9561</td><td>Johny</td><td>hotels</td><td>13/01/2018</td><td>165</td><td>0</td><td>165</td><td><span class="btn btn-xs btn-info">Unpaid</span></td><td class="xcrud-current xcrud-actions xcrud-fix"><span class="btn-group"><a class="btn btn-default btn-xcrud btn btn-primary" href="https://www.phptravels.net/invoice/?id=105&amp;sessid=9561" title="View Invoice" target="_blank"><i class="fa fa-search-plus"></i></a><a class="btn btn-default btn-xcrud btn btn-warning" href="https://www.phptravels.net/admin/bookings/edit/hotels/105" title="Edit" target="_self"><i class="fa fa-edit"></i></a><a class="btn btn-default btn-xcrud btn-danger" href="javascript: delfunc('105','https://www.phptravels.net/admin/bookings/delBooking')" title="DELETE" target="_self" id="105"><i class="fa fa-times"></i></a></span></td></tr><tr class="xcrud-row xcrud-row-0"><td><div class="icheckbox_square-grey" style="position: relative;"><input class="checkboxcls" type="checkbox" value="101" style="position: absolute; opacity: 0;" /><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div></td><td class="xcrud-current xcrud-num">7</td><td class="xcrud-current">101</td><td>5614</td><td>Johny</td><td>tours</td><td>12/01/2018</td><td>165</td><td>0</td><td>165</td><td><span class="btn btn-xs btn-info">Unpaid</span></td><td class="xcrud-current xcrud-actions xcrud-fix"><span class="btn-group"><a class="btn btn-default btn-xcrud btn btn-primary" href="https://www.phptravels.net/invoice/?id=101&amp;sessid=5614" title="View Invoice" target="_blank"><i class="fa fa-search-plus"></i></a><a class="btn btn-default btn-xcrud btn btn-warning" href="https://www.phptravels.net/admin/bookings/edit/tours/101" title="Edit" target="_self"><i class="fa fa-edit"></i></a><a class="btn btn-default btn-xcrud btn-danger" href="javascript: delfunc('101','https://www.phptravels.net/admin/bookings/delBooking')" title="DELETE" target="_self" id="101"><i class="fa fa-times"></i></a></span></td></tr><tr class="xcrud-row xcrud-row-1"><td><div class="icheckbox_square-grey" style="position: relative;"><input class="checkboxcls" type="checkbox" value="98" style="position: absolute; opacity: 0;" /><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div></td><td class="xcrud-current xcrud-num">8</td><td class="xcrud-current">98</td><td>4305</td><td>Johny</td><td>hotels</td><td>12/01/2018</td><td>204</td><td>0</td><td>204</td><td><span class="btn btn-xs btn-info">Unpaid</span></td><td class="xcrud-current xcrud-actions xcrud-fix"><span class="btn-group"><a class="btn btn-default btn-xcrud btn btn-primary" href="https://www.phptravels.net/invoice/?id=98&amp;sessid=4305" title="View Invoice" target="_blank"><i class="fa fa-search-plus"></i></a><a class="btn btn-default btn-xcrud btn btn-warning" href="https://www.phptravels.net/admin/bookings/edit/hotels/98" title="Edit" target="_self"><i class="fa fa-edit"></i></a><a class="btn btn-default btn-xcrud btn-danger" href="javascript: delfunc('98','https://www.phptravels.net/admin/bookings/delBooking')" title="DELETE" target="_self" id="98"><i class="fa fa-times"></i></a></span></td></tr><tr class="xcrud-row xcrud-row-0"><td><div class="icheckbox_square-grey" style="position: relative;"><input class="checkboxcls" type="checkbox" value="87" style="position: absolute; opacity: 0;" /><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div></td><td class="xcrud-current xcrud-num">9</td><td class="xcrud-current">87</td><td>3279</td><td>Johny</td><td>hotels</td><td>19/09/2017</td><td>110</td><td>0</td><td>110</td><td><span class="btn btn-xs btn-info">Unpaid</span></td><td class="xcrud-current xcrud-actions xcrud-fix"><span class="btn-group"><a class="btn btn-default btn-xcrud btn btn-primary" href="https://www.phptravels.net/invoice/?id=87&amp;sessid=3279" title="View Invoice" target="_blank"><i class="fa fa-search-plus"></i></a><a class="btn btn-default btn-xcrud btn btn-warning" href="https://www.phptravels.net/admin/bookings/edit/hotels/87" title="Edit" target="_self"><i class="fa fa-edit"></i></a><a class="btn btn-default btn-xcrud btn-danger" href="javascript: delfunc('87','https://www.phptravels.net/admin/bookings/delBooking')" title="DELETE" target="_self" id="87"><i class="fa fa-times"></i></a></span></td></tr><tr class="xcrud-row xcrud-row-1"><td><div class="icheckbox_square-grey" style="position: relative;"><input class="checkboxcls" type="checkbox" value="86" style="position: absolute; opacity: 0;" /><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div></td><td class="xcrud-current xcrud-num">10</td><td class="xcrud-current">86</td><td>3479</td><td>Johny</td><td>hotels</td><td>19/09/2017</td><td>99</td><td>0</td><td>99</td><td><span class="btn btn-xs btn-info">Unpaid</span></td><td class="xcrud-current xcrud-actions xcrud-fix"><span class="btn-group"><a class="btn btn-default btn-xcrud btn btn-primary" href="https://www.phptravels.net/invoice/?id=86&amp;sessid=3479" title="View Invoice" target="_blank"><i class="fa fa-search-plus"></i></a><a class="btn btn-default btn-xcrud btn btn-warning" href="https://www.phptravels.net/admin/bookings/edit/hotels/86" title="Edit" target="_self"><i class="fa fa-edit"></i></a><a class="btn btn-default btn-xcrud btn-danger" href="javascript: delfunc('86','https://www.phptravels.net/admin/bookings/delBooking')" title="DELETE" target="_self" id="86"><i class="fa fa-times"></i></a></span></td></tr>        </tbody>
+        <tfoot>
+                </tfoot>
+    </table>
+</div>
+<div class="xcrud-nav">
+    <div class="btn-group xcrud-limit-buttons" data-toggle="buttons-radio"><button type="button" class="btn btn-default active xcrud-action" data-limit="10">10</button><button type="button" class="btn btn-default xcrud-action" data-limit="25">25</button><button type="button" class="btn btn-default xcrud-action" data-limit="50">50</button><button type="button" class="btn btn-default xcrud-action" data-limit="100">100</button><button type="button" class="btn btn-default xcrud-action" data-limit="all">All</button></div>    <ul class="pagination"><li class="active"><span>1</span></li><li class=""><a href="javascript:;" class="xcrud-action" data-start="10">2</a></li><li class=""><a href="javascript:;" class="xcrud-action" data-start="20">3</a></li><li class=""><a href="javascript:;" class="xcrud-action" data-start="30">4</a></li><li class=""><a href="javascript:;" class="xcrud-action" data-start="40">5</a></li><li class=""><a href="javascript:;" class="xcrud-action" data-start="50">6</a></li><li class=""><a href="javascript:;" class="xcrud-action" data-start="60">7</a></li><li class=""><a href="javascript:;" class="xcrud-action" data-start="70">8</a></li></ul>    <a class="xcrud-search-toggle btn btn-default" href="javascript:;">Search</a><span class="xcrud-search form-inline" style="display:none;"><input class="xcrud-searchdata xcrud-search-active input-small form-control" name="phrase" data-type="text" style="" data-fieldtype="default" type="text" value="" /><select class="xcrud-data xcrud-columns-select input-small form-control" name="column"><option value="">All fields</option><option value="pt_bookings.booking_id" data-type="int">ID</option><option value="pt_bookings.booking_ref_no" data-type="text">Ref No.</option><option value="pt_accounts.ai_first_name" data-type="text">Customer</option><option value="pt_bookings.booking_type" data-type="text">Module</option><option value="pt_bookings.booking_status" data-type="text">Status</option></select><span class="btn-group"><a class="xcrud-action btn btn-primary" href="javascript:;" data-search="1">Go</a></span></span>    <span class="xcrud-benchmark"><span>Execution time: 0.010 s</span><span>Memory usage: 0.31 MB</span></span></div>        </div>
+        <div class="xcrud-overlay" style="display: none;"></div>
+    </div>
+</div><script src="https://www.phptravels.net/assets/xcrud/plugins/jquery-ui/jquery-ui.min.js"></script><script src="https://www.phptravels.net/assets/xcrud/plugins/jcrop/jquery.Jcrop.min.js"></script><script src="https://www.phptravels.net/assets/xcrud/plugins/timepicker/jquery-ui-timepicker-addon.js"></script><script src="https://www.phptravels.net/assets/xcrud/plugins/xcrud.js"></script>
+            <script type="text/javascript">
+            &lt;!--
+            
+           	var xcrud_config = {"url":"https:\/\/www.phptravels.net\/xcrud_ajax","editor_url":false,"editor_init_url":false,"force_editor":false,"date_first_day":1,"date_format":"dd.mm.yy","time_format":"HH:mm:ss","lang":{"add":"Add","edit":"Edit","view":"View","remove":"Remove","duplicate":"Duplicate","print":"Print","export_csv":"Export into CSV","search":"Search","go":"Go","reset":"Reset","save":"Save","save_return":"Save &amp; Return","save_new":"Save &amp; New","save_edit":"Save &amp; Edit","return":"Return","modal_dismiss":"Close","add_image":"Add image","add_file":"Add file","exec_time":"Execution time:","memory_usage":"Memory usage:","bool_on":"Yes","bool_off":"No","no_file":"no file","no_image":"no image","null_option":"- none -","total_entries":"Total entries:","table_empty":"Entries not found.","all":"All","deleting_confirm":"Do you really want remove this entry?","undefined_error":"It looks like something went wrong...","validation_error":"Some fields are likely to contain errors. Fix errors and try again.","image_type_error":"This image type is not supported.","unique_error":"Some fields are not unique.","your_position":"Your position","search_here":"Search here...","all_fields":"All fields","choose_range":"- choose range -","next_year":"Next year","next_month":"Next month","today":"Today","this_week_today":"This week up to today","this_week_full":"This full week","last_week":"Last week","last_2weeks":"Last two weeks","this_month":"This month","last_month":"Last month","last_3months":"Last 3 months","last_6months":"Last 6 months","this_year":"This year","last_year":"Last year"},"rtl":0};
+                            
+            --&gt;
+            </script>   </div>
+ </div><!--Recent Bookings -->
+
+<!-- Expedia Recent Bookings -->
+
+
+
+<!--Expedia Recent Bookings -->
+<div class="row">
+  <div class="col-md-12">
+        <div class="panel panel-default">
+      <div class="panel-heading">
+       <div class="pull-left"> <span class="fa fa-bar-chart-o"></span> Visit Statistics of August</div>
+       <div class="pull-right btn btn-xs btn-danger resetChart"> <span class="fa fa-bar-chart-o"></span> Reset Chart </div>
+      <div class="clearfix"></div>
+     </div>
+
+      <div class="panel-body">
+        <br />
+        <!-- <canvas id="canvasbar" height="237" width="750"></canvas>-->
+        <div id="resgraph" style="min-width: 310px; height: 250px; margin: 0 auto" data-highcharts-chart="1"><div class="highcharts-container" id="highcharts-4" style="position: relative; overflow: hidden; width: 742px; height: 250px; text-align: left; line-height: normal; z-index: 0; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); touch-action: none;"><svg version="1.1" style="font-family:&quot;Lucida Grande&quot;, &quot;Lucida Sans Unicode&quot;, Arial, Helvetica, sans-serif;font-size:12px;" xmlns="http://www.w3.org/2000/svg" width="742" height="250"><desc>Created with Highcharts 4.0.3</desc><defs><clipPath id="highcharts-5"><rect x="0" y="0" width="658" height="177"/></clipPath></defs><rect x="0" y="0" width="742" height="250" strokeWidth="0" fill="#FFFFFF" class=" highcharts-background"/><g class="highcharts-grid" zIndex="1"/><g class="highcharts-grid" zIndex="1"><path fill="none" d="M 74 9.5 L 732 9.5" stroke="#C0C0C0" stroke-width="1" zIndex="1" opacity="1"/><path fill="none" d="M 74 54.5 L 732 54.5" stroke="#C0C0C0" stroke-width="1" zIndex="1" opacity="1"/><path fill="none" d="M 74 99.5 L 732 99.5" stroke="#C0C0C0" stroke-width="1" zIndex="1" opacity="1"/><path fill="none" d="M 74 143.5 L 732 143.5" stroke="#C0C0C0" stroke-width="1" zIndex="1" opacity="1"/><path fill="none" d="M 74 187.5 L 732 187.5" stroke="#C0C0C0" stroke-width="1" zIndex="1" opacity="1"/></g><g class="highcharts-axis" zIndex="2"><path fill="none" d="M 261.5 187 L 261.5 197" stroke="#C0D0E0" stroke-width="1" opacity="1"/><path fill="none" d="M 355.5 187 L 355.5 197" stroke="#C0D0E0" stroke-width="1" opacity="1"/><path fill="none" d="M 449.5 187 L 449.5 197" stroke="#C0D0E0" stroke-width="1" opacity="1"/><path fill="none" d="M 543.5 187 L 543.5 197" stroke="#C0D0E0" stroke-width="1" opacity="1"/><path fill="none" d="M 637.5 187 L 637.5 197" stroke="#C0D0E0" stroke-width="1" opacity="1"/><path fill="none" d="M 732.5 187 L 732.5 197" stroke="#C0D0E0" stroke-width="1" opacity="1"/><path fill="none" d="M 167.5 187 L 167.5 197" stroke="#C0D0E0" stroke-width="1" opacity="1"/><path fill="none" d="M 73.5 187 L 73.5 197" stroke="#C0D0E0" stroke-width="1" opacity="1"/><text x="403" zIndex="7" text-anchor="middle" transform="translate(0,0)" class=" highcharts-xaxis-title" style="color:#707070;fill:#707070;" visibility="visible" y="229">August</text><path fill="none" d="M 74 187.5 L 732 187.5" stroke="#C0D0E0" stroke-width="1" zIndex="7" visibility="visible"/></g><g class="highcharts-axis" zIndex="2"><text x="28.09375" zIndex="7" text-anchor="middle" transform="translate(0,0) rotate(270 28.09375 98.5)" class=" highcharts-yaxis-title" style="color:#707070;fill:#707070;" visibility="visible" y="98.5">Visits</text></g><g class="highcharts-series-group" zIndex="3"><g class="highcharts-series highcharts-tracker" visibility="visible" zIndex="0.1" transform="translate(74,10) scale(1 1)" style="" clip-path="url(https://www.phptravels.net/admin#highcharts-5)"><rect x="21.5" y="177.5" width="23" height="0" fill="#7cb5ec" rx="0" ry="0" stroke="#FFFFFF" stroke-width="1"/><rect x="115.5" y="177.5" width="23" height="0" fill="#7cb5ec" rx="0" ry="0" stroke="#FFFFFF" stroke-width="1"/><rect x="209.5" y="177.5" width="23" height="0" fill="#7cb5ec" rx="0" ry="0" stroke="#FFFFFF" stroke-width="1"/><rect x="303.5" y="177.5" width="23" height="0" fill="#7cb5ec" rx="0" ry="0" stroke="#FFFFFF" stroke-width="1"/><rect x="397.5" y="177.5" width="23" height="0" fill="#7cb5ec" rx="0" ry="0" stroke="#FFFFFF" stroke-width="1"/><rect x="491.5" y="177.5" width="23" height="0" fill="#7cb5ec" rx="0" ry="0" stroke="#FFFFFF" stroke-width="1"/><rect x="585.5" y="162.5" width="23" height="15" fill="#7cb5ec" rx="0" ry="0" stroke="#FFFFFF" stroke-width="1"/></g><g class="highcharts-markers" visibility="visible" zIndex="0.1" transform="translate(74,10) scale(1 1)" clip-path="none"/><g class="highcharts-series highcharts-tracker" visibility="visible" zIndex="0.1" transform="translate(74,10) scale(1 1)" style="" clip-path="url(https://www.phptravels.net/admin#highcharts-5)"><rect x="49.5" y="177.5" width="23" height="0" fill="#434348" rx="0" ry="0" stroke="#FFFFFF" stroke-width="1"/><rect x="143.5" y="177.5" width="23" height="0" fill="#434348" rx="0" ry="0" stroke="#FFFFFF" stroke-width="1"/><rect x="237.5" y="177.5" width="23" height="0" fill="#434348" rx="0" ry="0" stroke="#FFFFFF" stroke-width="1"/><rect x="331.5" y="177.5" width="23" height="0" fill="#434348" rx="0" ry="0" stroke="#FFFFFF" stroke-width="1"/><rect x="425.5" y="177.5" width="23" height="0" fill="#434348" rx="0" ry="0" stroke="#FFFFFF" stroke-width="1"/><rect x="519.5" y="177.5" width="23" height="0" fill="#434348" rx="0" ry="0" stroke="#FFFFFF" stroke-width="1"/><rect x="613.5" y="48.5" width="23" height="129" fill="#434348" rx="0" ry="0" stroke="#FFFFFF" stroke-width="1"/></g><g class="highcharts-markers" visibility="visible" zIndex="0.1" transform="translate(74,10) scale(1 1)" clip-path="none"/></g><g class="highcharts-stack-labels" visibility="visible" zIndex="6" transform="translate(74,10)"><text x="61" style="color:gray;cursor:default;font-size:11px;font-weight:bold;fill:gray;" text-anchor="middle" transform="translate(0,0)" y="171">0</text><text x="155" style="color:gray;cursor:default;font-size:11px;font-weight:bold;fill:gray;" text-anchor="middle" transform="translate(0,0)" y="171">0</text><text x="249" style="color:gray;cursor:default;font-size:11px;font-weight:bold;fill:gray;" text-anchor="middle" transform="translate(0,0)" y="171">0</text><text x="343" style="color:gray;cursor:default;font-size:11px;font-weight:bold;fill:gray;" text-anchor="middle" transform="translate(0,0)" y="171">0</text><text x="437" style="color:gray;cursor:default;font-size:11px;font-weight:bold;fill:gray;" text-anchor="middle" transform="translate(0,0)" y="171">0</text><text x="531" style="color:gray;cursor:default;font-size:11px;font-weight:bold;fill:gray;" text-anchor="middle" transform="translate(0,0)" y="171">0</text><text x="625" style="color:gray;cursor:default;font-size:11px;font-weight:bold;fill:gray;" text-anchor="middle" transform="translate(0,0)" y="42">146</text><text x="33" style="color:gray;cursor:default;font-size:11px;font-weight:bold;fill:gray;" text-anchor="middle" transform="translate(0,0)" y="171">0</text><text x="127" style="color:gray;cursor:default;font-size:11px;font-weight:bold;fill:gray;" text-anchor="middle" transform="translate(0,0)" y="171">0</text><text x="221" style="color:gray;cursor:default;font-size:11px;font-weight:bold;fill:gray;" text-anchor="middle" transform="translate(0,0)" y="171">0</text><text x="315" style="color:gray;cursor:default;font-size:11px;font-weight:bold;fill:gray;" text-anchor="middle" transform="translate(0,0)" y="171">0</text><text x="409" style="color:gray;cursor:default;font-size:11px;font-weight:bold;fill:gray;" text-anchor="middle" transform="translate(0,0)" y="171">0</text><text x="503" style="color:gray;cursor:default;font-size:11px;font-weight:bold;fill:gray;" text-anchor="middle" transform="translate(0,0)" y="171">0</text><text x="597" style="color:gray;cursor:default;font-size:11px;font-weight:bold;fill:gray;" text-anchor="middle" transform="translate(0,0)" y="156">17</text></g><g class="highcharts-legend" zIndex="7" transform="translate(481,30)"><rect x="0.5" y="0.5" width="180" height="28" strokeWidth="1" stroke="#CCC" stroke-width="1" fill="white" visibility="visible"/><g zIndex="1"><g><g class="highcharts-legend-item" zIndex="1" transform="translate(8,3)"><text x="21" style="color:#333333;font-size:12px;font-weight:bold;cursor:pointer;fill:#333333;" text-anchor="start" zIndex="2" y="15">Unique</text><rect x="0" y="4" width="16" height="12" zIndex="3" fill="#7cb5ec"/></g><g class="highcharts-legend-item" zIndex="1" transform="translate(92.421875,3)"><text x="21" y="15" style="color:#333333;font-size:12px;font-weight:bold;cursor:pointer;fill:#333333;" text-anchor="start" zIndex="2"><tspan>Total Hits</tspan></text><rect x="0" y="4" width="16" height="12" zIndex="3" fill="#434348"/></g></g></g></g><g class="highcharts-axis-labels highcharts-xaxis-labels" zIndex="7"><text x="121" text-anchor="middle" style="width:74px;color:#606060;cursor:default;font-size:11px;fill:#606060;" y="207" opacity="1">1</text><text x="215" text-anchor="middle" style="width:74px;color:#606060;cursor:default;font-size:11px;fill:#606060;" y="207" opacity="1">2</text><text x="309" text-anchor="middle" style="width:74px;color:#606060;cursor:default;font-size:11px;fill:#606060;" y="207" opacity="1">3</text><text x="403" text-anchor="middle" style="width:74px;color:#606060;cursor:default;font-size:11px;fill:#606060;" y="207" opacity="1">4</text><text x="497" text-anchor="middle" style="width:74px;color:#606060;cursor:default;font-size:11px;fill:#606060;" y="207" opacity="1">5</text><text x="591" text-anchor="middle" style="width:74px;color:#606060;cursor:default;font-size:11px;fill:#606060;" y="207" opacity="1">6</text><text x="685" text-anchor="middle" style="width:74px;color:#606060;cursor:default;font-size:11px;fill:#606060;" y="207" opacity="1">7</text></g><g class="highcharts-axis-labels highcharts-yaxis-labels" zIndex="7"><text x="59" text-anchor="end" style="width:225px;color:#606060;cursor:default;font-size:11px;fill:#606060;" y="190.5" opacity="1">0</text><text x="59" text-anchor="end" style="width:225px;color:#606060;cursor:default;font-size:11px;fill:#606060;" y="146.25" opacity="1">50</text><text x="59" text-anchor="end" style="width:225px;color:#606060;cursor:default;font-size:11px;fill:#606060;" y="102" opacity="1">100</text><text x="59" text-anchor="end" style="width:225px;color:#606060;cursor:default;font-size:11px;fill:#606060;" y="57.75" opacity="1">150</text><text x="59" text-anchor="end" style="width:225px;color:#606060;cursor:default;font-size:11px;fill:#606060;" y="13.5" opacity="1">200</text></g><g class="highcharts-tooltip" zIndex="8" style="cursor:default;padding:0;white-space:nowrap;" transform="translate(0,-9999)"><path fill="none" d="M 3 0 L 13 0 C 16 0 16 0 16 3 L 16 13 C 16 16 16 16 13 16 L 3 16 C 0 16 0 16 0 13 L 0 3 C 0 0 0 0 3 0" isShadow="true" stroke="black" stroke-opacity="0.049999999999999996" stroke-width="5" transform="translate(1, 1)"/><path fill="none" d="M 3 0 L 13 0 C 16 0 16 0 16 3 L 16 13 C 16 16 16 16 13 16 L 3 16 C 0 16 0 16 0 13 L 0 3 C 0 0 0 0 3 0" isShadow="true" stroke="black" stroke-opacity="0.09999999999999999" stroke-width="3" transform="translate(1, 1)"/><path fill="none" d="M 3 0 L 13 0 C 16 0 16 0 16 3 L 16 13 C 16 16 16 16 13 16 L 3 16 C 0 16 0 16 0 13 L 0 3 C 0 0 0 0 3 0" isShadow="true" stroke="black" stroke-opacity="0.15" stroke-width="1" transform="translate(1, 1)"/><path fill="rgba(249, 249, 249, .85)" d="M 3 0 L 13 0 C 16 0 16 0 16 3 L 16 13 C 16 16 16 16 13 16 L 3 16 C 0 16 0 16 0 13 L 0 3 C 0 0 0 0 3 0"/><text x="8" zIndex="1" style="font-size:12px;color:#333333;fill:#333333;" y="21"></text></g><text x="732" text-anchor="end" zIndex="8" style="cursor:pointer;color:#909090;font-size:9px;fill:#909090;" y="245"/></svg></div></div>
+      </div>
+    </div>
+      </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(".resetChart").on("click",function() {
+            $.alert.open('confirm', 'Are you sure you want to reset visits data?', function(answer) {
+                if(answer == 'yes') {
+                    $.post("https://www.phptravels.net/admin/resetVisits",{isAjax: "yes"},function(resp){
+                        location.reload();
+                    });
+                } else {
+                    return false;
+                }
+            });
+        });
+
+        $('#resgraph').highcharts({
+            chart: {
+                type: 'column',
+                zoomType: 'x'
+            },
+            title: {
+                text: ''
+            },
+            xAxis: {
+                title: {
+                    text: "August"
+                },
+                categories: [1,2,3,4,5,6,7,]
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: 'Visits'
+                },
+                stackLabels: {
+                    enabled: true,
+                    style: {
+                        fontWeight: 'bold',
+                        color: (Highcharts.theme &amp;&amp; Highcharts.theme.textColor) || 'gray'
+                    }
+                }
+            },
+            legend: {
+                align: 'right',
+                x: -70,
+                verticalAlign: 'top',
+                y: 20,
+                floating: true,
+                backgroundColor: (Highcharts.theme &amp;&amp; Highcharts.theme.background2) || 'white',
+                borderColor: '#CCC',
+                borderWidth: 1,
+                shadow: false
+            },
+            tooltip: {
+                formatter: function () {
+                    return '&lt;b&gt;' + this.x + '&lt;/b&gt;&lt;br/&gt;' +
+                        this.series.name + ': ' + this.y + '&lt;br/&gt;' +
+                        'Total: ' + this.point.stackTotal;
+                }
+            },
+            plotOptions: {
+                column: {
+                    stacking: 'normal',
+                    dataLabels: {
+                        enabled: false,
+                        color: (Highcharts.theme &amp;&amp; Highcharts.theme.dataLabelsColor) || 'white',
+                        style: {
+                            textShadow: '0 0 3px black, 0 0 3px black'
+                        }
+                    }
+                }
+            },
+            series: [{
+                name: 'Unique',
+                data: [0,0,0,0,0,0,17],
+                stack: 'male'
+            }, {
+                name: 'Total Hits',
+                data: [0,0,0,0,0,0,146],
+                stack: 'female'
+            }]
+        });
+    });
+</script>
+
+<!---quick booking modal-->
+<div class="modal fade" id="quickbook" tabindex="-1" role="dialog" aria-labelledby="ADD_BLOG_CAT" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form action="https://www.phptravels.net/admin/quickbooking/" method="GET">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span></button>
+          <h4 class="modal-title">Quick Booking</h4>
+        </div>
+        <div class="modal-body form-horizontal">
+          <div class="form-group">
+            <label class="col-md-3 control-label">Apply Tax</label>
+            <div class="col-md-4">
+              <select name="applytax" class="form-control" id="apply">
+                <option value="yes">Yes</option>
+                <option value="no">No</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-3 control-label" id="service">Service</label>
+            <div class="col-md-4">
+              <select required="" name="service" data-placeholder="Select" class="form-control" id="servicetype" tabindex="1">
+                <option value="">Select</option>
+                <option value="Hotels">Hotels</option>
+                <option value="Flights">Flights</option>
+                <option value="Tours">Tours</option>
+                <option value="Cars">Cars</option>
+                <option value="Ivisa">Ivisa</option>
+                <option value="Offers">Offers</option>
+                <option value="Blog">Blog</option>
+                <option value="Newsletter">Newsletter</option>
+                <option value="Reviews">Reviews</option>
+                <option value="Locations">Locations</option>
+                <option value="Coupons">Coupons</option>
+                              </select>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary">Next</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<!-- end modal -->
+</div>
+</div>
+</div>
+
+<script src="https://www.phptravels.net/assets/js/sidebar.js"></script>
+
+<!-- icheck -->
+<script src="https://www.phptravels.net/assets/include/icheck/icheck.min.js"></script>
+<link href="https://www.phptravels.net/assets/include/icheck/square/grey.css" rel="stylesheet" />
+<script>
+var cb, optionSet1;
+
+$(function () {
+    var checkAll = $('input.all');
+    var checkboxes = $('input.checkboxcls');
+
+    $('input').iCheck({
+      checkboxClass: "icheckbox_square-grey",
+    });
+
+    checkAll.on('ifChecked ifUnchecked', function(event) {
+        if (event.type == 'ifChecked') {
+            checkboxes.iCheck('check');
+        } else {
+            checkboxes.iCheck('uncheck');
+        }
+    });
+
+    checkboxes.on('ifChanged', function(event){
+        if(checkboxes.filter(':checked').length == checkboxes.length) {
+            checkAll.prop('checked', 'checked');
+        } else {
+            checkAll.removeProp('checked');
+        }
+        checkAll.iCheck('update');
+    });
+});
+
+$(".radio").iCheck({
+checkboxClass: "icheckbox_square-grey",
+radioClass: "iradio_square-grey"
+});
+</script>
+
+<!-- datepicker -->
+<script src="https://www.phptravels.net/assets/include/datepicker/datepicker.js"></script>
+<link rel="stylesheet" href="https://www.phptravels.net/assets/include/datepicker/datepicker.css" />
+
+
+
+<script>
+    var fmt = "dd/mm/yyyy";
+    if (top.location != location) { top.location.href = document.location.href ; }
+    $(function(){ window.prettyPrint &amp;&amp; prettyPrint(); $('.dob').datepicker({format: fmt,autoclose: true}).on('changeDate', function (ev) {
+        $(this).datepicker('hide'); });
+        $('#dp1').datepicker();
+        $('#dp2').datepicker();
+        $('#dp3').datepicker();
+        $('#dp5').datepicker();
+
+
+
+// disabling dates
+        var nowTemp = new Date();
+        var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
+
+        var date = $('.dpd3').datepicker({
+            format: fmt,
+            onRender: function(date) {
+                return date.valueOf() &lt; now.valueOf() ? 'disabled' : '';
+            }
+        })
+            .on('changeDate', function(ev) {
+                date.hide();
+            })
+            .data('datepicker');
+
+        var date12 = $('.dpd5').datepicker({
+            format: fmt,
+            onRender: function(date) {
+                return date.valueOf() &lt; now.valueOf() ? 'disabled' : '';
+            }
+        })
+            .on('changeDate', function(ev) {
+                date12.hide();
+            })
+            .data('datepicker');
+        var date13 = $('.dpd6').datepicker({
+            format: fmt,
+            onRender: function(date) {
+                return date.valueOf() &lt; now.valueOf() ? 'disabled' : '';
+            }
+        })
+            .on('changeDate', function(ev) {
+                date13.hide();
+            })
+            .data('datepicker');
+
+        var checkin = $('.dpd1').datepicker({
+            format: fmt,
+            onRender: function(date) {
+                return date.valueOf() &lt; now.valueOf() ? 'disabled' : '';
+            }
+        })
+            .on('changeDate', function(ev) {
+                if (ev.date.valueOf() &gt; checkout.date.valueOf()) {
+                    var newDate = new Date(ev.date)
+                    newDate.setDate(newDate.getDate() + 1); checkout.setValue(newDate);
+                }
+                checkin.hide();
+                $('.dpd2')[0].focus();
+            })
+            .data('datepicker');
+        var checkout = $('.dpd2').datepicker({
+            format: fmt,
+            onRender: function(date) {
+                return date.valueOf() &lt;= checkin.date.valueOf() ? 'disabled' : '';
+            }
+        })
+            .on('changeDate', function(ev) {
+                checkout.hide();
+            })
+            .data('datepicker');
+
+    });
+</script>
+<!-- timepicker -->
+<script src="https://www.phptravels.net/assets/include/timepicker/timepicker.js"></script>
+<link rel="stylesheet" href="https://www.phptravels.net/assets/include/timepicker/timepicker.css" />
+<script>
+$(function(){
+$('.timepicker').clockface(); });
+</script>
+
+<!-- dronzone -->
+<link href="https://www.phptravels.net/assets/include/dropzone/dropzone.css" type="text/css" rel="stylesheet" />
+<script src="https://www.phptravels.net/assets/include/dropzone/dropzone.min.js"></script>
+
+<!----Custom functions file---->
+<script src="https://www.phptravels.net/assets/js/funcs.js"></script>
+<!----Custom functions file---->
+
+<!-- pnotify -->
+<script src="https://www.phptravels.net/assets/include/pnotify/pnotify.custom.min.js"></script>
+<link href="https://www.phptravels.net/assets/include/pnotify/pnotify.custom.css" rel="stylesheet" />
+
+
+<script>
+$(function() {
+$(document).ready(function() {
+    $('.chosen-select').select2( { width:'100%', maximumSelectionSize: 1 } );
+    $(".chosen-multi-select").select2( { width:'100%', } ); }); }); function slideout(){ setTimeout(function(){
+    $(".alert-success").fadeOut("slow", function () { });
+    $(".alert-danger").fadeOut("slow", function () { }); }, 4000);}
+</script>
+
+<script>
+window.jQuery.ui || document.write('&lt;script src="https://www.phptravels.net/assets/js/jquery.slimscroll.min.js"&gt;&lt;\/script&gt;')
+</script>
+<script src="https://www.phptravels.net/assets/js/wow.min.js"></script>
+<script>
+/*&lt;![CDATA[*/
+$(function() {
+$('.main').panels();
+});
+/*]]&gt;*/
+
+    $("#btnSendSms").click(function() {
+        var payload = {
+            recepient: $('[name=recepient]').val(),
+            message: $('[name=message]').val()
+        };
+        $.post('https://www.phptravels.net/admin/templates/sms_test', payload, function(response) {
+            console.log(response);
+            if(response.status == 'success') {
+                $('#testSmsModalBox #alertBox').html('&lt;div class="alert alert-success"&gt;'+response.message+'&lt;/div&gt;');
+                setTimeout(function() {
+                    $('#testSmsModalBox').modal('hide');
+                }, 1000);
+            } else {
+                $('#testSmsModalBox #alertBox').html('&lt;div class="alert alert-danger"&gt;'+response.message+'&lt;/div&gt;');
+            }
+        });
+    });
+
+    var currentObjElement;
+    function editModelBtn(elem) {
+        currentObjElement = elem;
+        var templateObj = $(elem).data('content');
+        $('#modelEdit #modalTitle').text(templateObj.name);
+        $('#modelEdit #modalShortCode').text(templateObj.shortcode);
+        $('#modelEdit #modalBody').val(templateObj.body);
+        $('#modelEdit [name="objectId"]').val(templateObj.id);
+
+        $('#modelEdit #alertBox').empty();
+        $('#modelEdit').modal('show');
+    }
+
+    function testModelBtn(elem) {
+        currentObjElement = elem;
+        var templateObj = $(elem).data('content');
+        $('#modelTest #modalTitle').text(templateObj.name);
+        $('#modelTest #modalBody').val(templateObj.body);
+
+        $('#modelTest #alertBox').empty();
+        $('#modelTest').modal('show');
+    }
+
+    $('#modelEdit #btnSave').click(function() {
+        $.post('https://www.phptravels.net/admin/templates/updateSmsTemplate', {
+            id: $('#modelEdit [name="objectId"]').val(),
+            name: $('#modelEdit #modalTitle').text(),
+            shortcode: $('#modelEdit #modalShortCode').text(),
+            body: $('#modelEdit #modalBody').val()
+        }, function(response) {
+            if(response.status == 'success') {
+                $(currentObjElement).data('content', response.updatedObject);
+                $('#modelEdit #alertBox').html('&lt;div class="alert alert-success"&gt;Document updated&lt;/div&gt;');
+                setTimeout(function() {
+                    $('#modelEdit').modal('hide');
+                }, 1000);
+            } else {
+                $('#modelEdit #alertBox').html('&lt;div class="alert alert-danger"&gt;Unable to update document&lt;/div&gt;');
+            }
+        });
+    });
+
+    $('#modelTest #btnSend').click(function() {
+        $.post('https://www.phptravels.net/admin/templates/sms_test', {
+            recepient: $('#modelTest [name="recepient"]').val(),
+            message: $('#modelTest #modalBody').val()
+        }, function(response) {
+            if(response.status == 'success') {
+                $('#modelTest #alertBox').html('&lt;div class="alert alert-success"&gt;'+response.message+'&lt;/div&gt;');
+                setTimeout(function() {
+                    $('#modelTest').modal('hide');
+                }, 1000);
+            } else {
+                $('#modelTest #alertBox').html('&lt;div class="alert alert-danger"&gt;'+response.message+'&lt;/div&gt;');
+            }
+        });
+    });
+</script>
+
+<!--Start of Tawk.to Script-->
+<script type="text/javascript">
+var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+(function(){
+var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+s1.async=true;
+s1.src='https://embed.tawk.to/545f95214ed4e910560000f4/default';
+s1.charset='UTF-8';
+s1.setAttribute('crossorigin','*');
+s0.parentNode.insertBefore(s1,s0);
+})();
+</script>
+<!--End of Tawk.to Script-->
+
+
+<div id="bUrCxLY-1533672974091" class="" style="outline: none !important; visibility: visible !important; resize: none !important; box-shadow: none !important; overflow: visible !important; background: none transparent !important; opacity: 1 !important; top: auto !important; position: fixed !important; border: 0px !important; min-height: 0px !important; min-width: 0px !important; max-height: none !important; max-width: none !important; padding: 0px !important; margin: 0px !important; transition-property: none !important; transform: none !important; width: auto !important; height: auto !important; z-index: 2000000000 !important; cursor: auto !important; float: none !important; bottom: 0px !important; right: 0px !important; left: auto !important; display: block;"><iframe id="XNVsQ1w-1533672974094" src="about:blank" frameborder="0" scrolling="no" title="chat widget" class="" style="outline: none !important; visibility: visible !important; resize: none !important; box-shadow: none !important; overflow: visible !important; background: none transparent !important; opacity: 1 !important; top: auto !important; right: auto !important; bottom: auto !important; left: auto !important; position: static !important; border: 0px !important; min-height: auto !important; min-width: auto !important; max-height: none !important; max-width: none !important; padding: 0px !important; margin: 0px !important; transition-property: none !important; transform: none !important; width: 320px !important; height: 400px !important; z-index: 999999 !important; cursor: auto !important; float: none !important; display: none !important;"></iframe><iframe id="ArUN9mq-1533672974095" src="about:blank" frameborder="0" scrolling="no" title="chat widget" class="" style="outline: none !important; visibility: visible !important; resize: none !important; box-shadow: none !important; overflow: visible !important; background: none transparent !important; opacity: 1 !important; position: fixed !important; border: 0px !important; padding: 0px !important; transition-property: none !important; z-index: 1000001 !important; cursor: auto !important; float: none !important; height: 40px !important; min-height: 40px !important; max-height: 40px !important; width: 320px !important; min-width: 320px !important; max-width: 320px !important; transform: rotate(0deg) translateZ(0px) !important; transform-origin: 0px center 0px !important; margin: 0px !important; top: auto !important; bottom: 0px !important; right: 10px !important; left: auto !important; display: block !important;"></iframe><iframe id="cgn2B5e-1533672974095" src="about:blank" frameborder="0" scrolling="no" title="chat widget" class="" style="outline: none !important; visibility: visible !important; resize: none !important; box-shadow: none !important; overflow: visible !important; background: none transparent !important; opacity: 1 !important; position: fixed !important; border: 0px !important; padding: 0px !important; margin: 0px !important; transition-property: none !important; transform: none !important; display: none !important; z-index: 1000003 !important; cursor: auto !important; float: none !important; top: auto !important; bottom: 40px !important; right: 10px !important; left: auto !important; width: 320px !important; max-width: 320px !important; min-width: 320px !important; height: 37px !important; max-height: 37px !important; min-height: 37px !important;"></iframe><div id="IAvZE5A-1533672974091" class="" style="outline: none !important; visibility: visible !important; resize: none !important; box-shadow: none !important; overflow: visible !important; background: none rgb(255, 255, 255) !important; opacity: 0 !important; top: 1px !important; bottom: auto !important; position: absolute !important; border: 0px !important; min-height: auto !important; min-width: auto !important; max-height: none !important; max-width: none !important; padding: 0px !important; margin: 0px !important; transition-property: none !important; transform: none !important; width: auto !important; height: 45px !important; display: block !important; z-index: 999997 !important; cursor: move !important; float: none !important; left: 0px !important; right: 96px !important;"></div><div id="V7dlqKU-1533672974091" class="" style="outline: none !important; visibility: visible !important; resize: none !important; box-shadow: none !important; overflow: visible !important; background: none transparent !important; opacity: 1 !important; top: 0px !important; right: 96px !important; bottom: auto !important; left: 0px !important; position: absolute !important; border: 0px !important; min-height: auto !important; min-width: auto !important; max-height: none !important; max-width: none !important; padding: 0px !important; margin: 0px !important; transition-property: none !important; transform: none !important; width: 6px !important; height: 100% !important; display: block !important; z-index: 999998 !important; cursor: w-resize !important; float: none !important;"></div><div id="y5UGuHg-1533672974091" class="" style="outline: none !important; visibility: visible !important; resize: none !important; box-shadow: none !important; overflow: visible !important; background: none transparent !important; opacity: 1 !important; top: 0px !important; right: 0px !important; bottom: auto !important; left: auto !important; position: absolute !important; border: 0px !important; min-height: auto !important; min-width: auto !important; max-height: none !important; max-width: none !important; padding: 0px !important; margin: 0px !important; transition-property: none !important; transform: none !important; width: 6px !important; height: 100% !important; display: block !important; z-index: 999998 !important; cursor: e-resize !important; float: none !important;"></div><div id="RL6kI6W-1533672974091" class="" style="outline: none !important; visibility: visible !important; resize: none !important; box-shadow: none !important; overflow: visible !important; background: none transparent !important; opacity: 1 !important; top: 0px !important; right: 0px !important; bottom: auto !important; left: auto !important; position: absolute !important; border: 0px !important; min-height: auto !important; min-width: auto !important; max-height: none !important; max-width: none !important; padding: 0px !important; margin: 0px !important; transition-property: none !important; transform: none !important; width: 100% !important; height: 6px !important; display: block !important; z-index: 999998 !important; cursor: n-resize !important; float: none !important;"></div><div id="nlbcaIt-1533672974091" class="" style="outline: none !important; visibility: visible !important; resize: none !important; box-shadow: none !important; overflow: visible !important; background: none transparent !important; opacity: 1 !important; top: auto !important; right: 0px !important; bottom: 0px !important; left: auto !important; position: absolute !important; border: 0px !important; min-height: auto !important; min-width: auto !important; max-height: none !important; max-width: none !important; padding: 0px !important; margin: 0px !important; transition-property: none !important; transform: none !important; width: 100% !important; height: 6px !important; display: block !important; z-index: 999998 !important; cursor: s-resize !important; float: none !important;"></div><div id="rZy7wwZ-1533672974091" class="" style="outline: none !important; visibility: visible !important; resize: none !important; box-shadow: none !important; overflow: visible !important; background: none transparent !important; opacity: 1 !important; top: 0px !important; right: auto !important; bottom: auto !important; left: 0px !important; position: absolute !important; border: 0px !important; min-height: auto !important; min-width: auto !important; max-height: none !important; max-width: none !important; padding: 0px !important; margin: 0px !important; transition-property: none !important; transform: none !important; width: 12px !important; height: 12px !important; display: block !important; z-index: 999998 !important; cursor: nw-resize !important; float: none !important;"></div><div id="biYOk14-1533672974091" class="" style="outline: none !important; visibility: visible !important; resize: none !important; box-shadow: none !important; overflow: visible !important; background: none transparent !important; opacity: 1 !important; top: 0px !important; right: 0px !important; bottom: auto !important; left: auto !important; position: absolute !important; border: 0px !important; min-height: auto !important; min-width: auto !important; max-height: none !important; max-width: none !important; padding: 0px !important; margin: 0px !important; transition-property: none !important; transform: none !important; width: 12px !important; height: 12px !important; display: block !important; z-index: 999998 !important; cursor: ne-resize !important; float: none !important;"></div><div id="p0bYGTC-1533672974091" class="" style="outline: none !important; visibility: visible !important; resize: none !important; box-shadow: none !important; overflow: visible !important; background: none transparent !important; opacity: 1 !important; top: auto !important; right: auto !important; bottom: 0px !important; left: 0px !important; position: absolute !important; border: 0px !important; min-height: auto !important; min-width: auto !important; max-height: none !important; max-width: none !important; padding: 0px !important; margin: 0px !important; transition-property: none !important; transform: none !important; width: 12px !important; height: 12px !important; display: block !important; z-index: 999998 !important; cursor: sw-resize !important; float: none !important;"></div><div id="zL5PkSU-1533672974091" class="" style="outline: none !important; visibility: visible !important; resize: none !important; box-shadow: none !important; overflow: visible !important; background: none transparent !important; opacity: 1 !important; top: auto !important; right: 0px !important; bottom: 0px !important; left: auto !important; position: absolute !important; border: 0px !important; min-height: auto !important; min-width: auto !important; max-height: none !important; max-width: none !important; padding: 0px !important; margin: 0px !important; transition-property: none !important; transform: none !important; width: 12px !important; height: 12px !important; display: block !important; z-index: 999999 !important; cursor: se-resize !important; float: none !important;"></div><div class="" style="outline: none !important; visibility: visible !important; resize: none !important; box-shadow: none !important; overflow: visible !important; background: none transparent !important; opacity: 1 !important; top: 0px !important; right: auto !important; bottom: auto !important; left: 0px !important; position: absolute !important; border: 0px !important; min-height: auto !important; min-width: auto !important; max-height: none !important; max-width: none !important; padding: 0px !important; margin: 0px !important; transition-property: none !important; transform: none !important; width: 100% !important; height: 100% !important; display: none !important; z-index: 1000001 !important; cursor: move !important; float: left !important;"></div></div></body></html>

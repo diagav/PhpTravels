@@ -1,0 +1,1052 @@
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml"><!--
+    Product:        PHPTRAVELS
+    Copyright:      2012 - 2018 @ phptravels.com
+    License:        https://phptravels.com/terms-and-conditions/
+    Purchase:       https://phptravels.com/order
+    Demo:           https://phptravels.com/demo
+    --><head>
+    <meta charset="utf-8" />
+    <title>Blog Categories</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="PHPTRAVELS" />
+    <base href="https://www.phptravels.net/" />
+    <script async="" src="https://embed.tawk.to/545f95214ed4e910560000f4/default" charset="UTF-8" crossorigin="*"></script><script>var base_url = 'https://www.phptravels.net/'; </script>
+    <script src="https://www.phptravels.net/assets/include/pace/pace.min.js"></script>
+    <link href="https://www.phptravels.net/assets/include/pace/dataurl.css" rel="stylesheet" />
+    <link rel="shortcut icon" href="https://www.phptravels.net/uploads/global/favicon.png" />
+    <link href="https://www.phptravels.net/assets/include/loading/loading.css" rel="stylesheet" />
+    <link href="https://www.phptravels.net/assets/css/style.css" rel="stylesheet" />
+    <link href="https://www.phptravels.net/assets/css/admin.css" rel="stylesheet" />
+    <link href="https://www.phptravels.net/assets/css/fa.min.css" rel="stylesheet" />
+    <link href="https://www.phptravels.net/assets/css/animate.min.css" rel="stylesheet" />
+    <script src="https://www.phptravels.net/assets/include/ckeditor/ckeditor.js"></script><style>.cke{visibility:hidden;}</style>    <script src="https://www.phptravels.net/assets/js/jquery-1.11.2.js"></script>
+    <link href="https://www.phptravels.net/assets/include/alert/css/alert.css" rel="stylesheet" />
+    <link href="https://www.phptravels.net/assets/include/alert/themes/default/theme.css" rel="stylesheet" />
+    <script src="https://www.phptravels.net/assets/include/alert/js/alert.js"></script>
+    <script src="https://www.phptravels.net/assets/include/jquery-form/jquery.form.min.js"></script>
+    <!--[if lte IE 8]>
+    <script src="https://www.phptravels.net/assets/js/html5shiv.js"></script>
+    <script src="https://www.phptravels.net/assets/js/respond.min.js"></script>
+    <script src="https://www.phptravels.net/assets/js/excanvas.min.js"></script>
+    <![endif]-->
+    <link href="https://www.phptravels.net/assets/include/select2/select2.css" rel="stylesheet" />
+    <link href="https://www.phptravels.net/assets/include/select2/select2-default.css" rel="stylesheet" />
+    <script src="https://www.phptravels.net/assets/include/select2/select2.min.js"></script>
+    <style>.wrapper .main { margin-top: 55px; } @media screen and (max-width: 480px) { .wrapper .main { margin-top: 100px; } }</style>
+    <script src="https://www.phptravels.net/assets/js/bootstrap.min.js"></script>
+    <script src="https://www.phptravels.net/assets/js/bootstrap-hover-dropdown.min.js"></script>
+    <script src="https://www.phptravels.net/assets/js/panels.js"></script>
+    <script src="https://www.phptravels.net/assets/include/highcharts/highcharts.js"></script>
+    </head>
+    <body class="  pace-done"><div class="pace  pace-inactive"><div class="pace-progress" data-progress-text="100%" data-progress="99" style="transform: translate3d(100%, 0px, 0px);">
+  <div class="pace-progress-inner"></div>
+</div>
+<div class="pace-activity"></div></div>
+    <div class="wrapper">
+    <script>
+    (function ($) {
+        // custom css expression for a case-insensitive contains()
+        jQuery.expr[':'].Contains = function(a,i,m){
+                return (a.textContent || a.innerText || "").toUpperCase().indexOf(m[3].toUpperCase())&gt;=0;
+        };
+        function FilterMenu(list) {
+                var input = $(".filtertxt");
+                $(input).change( function () {
+                        var filter = $(this).val();
+                        //console.log(filter);
+                        //If search text box contains some text then apply filter list
+                        if(filter){
+                                //Add open class to parent li item
+                                $(list).parent().addClass('open');
+                                //Add class in and expand the ul item which is nested li of main ul
+                                $(list).addClass('in').prop('aria-expanded', 'true').slideDown();
+
+                                //Check if child list items contain the query text. Them make them active
+                                $(list).find('li:Contains('+filter+')').addClass('active');
+                                //Check if any child list items doesn't contain query text. Remove the active class
+                                //So that they are not more highlighted
+                                $(list).find('li:not(:Contains('+filter+'))').removeClass('active');
+
+                                //Show any ul inside main ul which contains the text.
+                                $(list).find('li:Contains('+filter+')').show();
+                                //Hide any ul inside main ul which doesn't contains the text.
+                                $(list).find('li:not(:Contains('+filter+'))').hide();
+
+                                //Filter top level list items to show and hide them.
+                                $('#social-sidebar-menu').find('li:Contains('+filter+')').show();
+                                $('#social-sidebar-menu').find('li:not(:Contains('+filter+'))').hide();
+
+                        }else{
+                                //On query text = empty reset all classes and styles to default.
+                                $(list).parent().removeClass('open');
+                                $(list).removeClass('in').prop('aria-expanded', 'false').slideUp();
+                                $(list).find('li').removeClass('active');
+                                $('#social-sidebar-menu').find('li').show();
+                        }
+                })
+                .keyup( function () {
+                        $(this).change();
+                });
+        }
+        //ondomready
+        $(function () {
+            FilterMenu($("#social-sidebar-menu ul"));
+        });
+    }(jQuery));
+</script>
+<aside class="social-sidebar">
+    <div class="social-sidebar-content">
+        <div class="menu">
+            <div class="menu-content">
+                <ul id="social-sidebar-menu">
+                    <li><a class="dash" href="https://www.phptravels.net/admin"> <i class="fa fa-home"></i> <strong>Dashboard</strong></a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="row" style="padding: 0 5px;margin-top: -7px;">
+                <div class="col-md-6">
+                    <div class="row">
+                        <a class="btn btn-success btn-sm btn-block" href="https://www.phptravels.net/admin/profile/">Profile</a>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="row">
+                        <a class="btn btn-danger btn-sm btn-block" href="https://www.phptravels.net/admin/logout">Log Out</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="search-sidebar">
+            <form class="search-sidebar-form has-icon filterform" onsubmit="return false;">
+                <label for="sidebar-query" class="fa fa-search"></label>
+                <input id="sidebar-query" type="text" placeholder="Search" class="form-control search-query filtertxt" />
+            </form>
+        </div>
+        <div class="clearfix"></div>
+        <div class="user">
+            <i class="fa-1x glyphicon glyphicon-user"></i>
+            <span>Super Admin Admin</span>
+        </div>
+        <div class="menu">
+            <div class="menu-content">
+                <ul id="social-sidebar-menu">
+                                        <li class="active">
+                        <a href="https://www.phptravels.net/" target="_blank">
+                            <!-- icon--><i class="fa fa-laptop"></i>
+                            <span>Frontend</span>
+                        </a>
+                    </li>
+                    <li> <a href="//phptravels.org/submitticket.php?step=2&amp;deptid=1" target="_blank"><i class="fa fa-life-ring w30"></i> Help</a> </li>
+                                        <li>
+                        <a href="https://www.phptravels.net/admin/updates/"><i class="fa fa-refresh"></i>
+                        <span>Updates</span><span class="pull-right label label-danger" id="updatescount"></span>
+                        </a>
+                    </li>
+                                                            <li>
+                        <a href="#menu-ui" data-toggle="collapse" data-parent="#social-sidebar-menu"><i class="fa fa-cogs w30"></i> General<i class="fa fa-angle-right pull-right menu-icon"></i></a>
+                        <ul id="menu-ui" class="collapse wow fadeIn animated">
+                            <li> <a href="https://www.phptravels.net/admin/settings/">Settings</a> </li>
+                            <li> <a href="https://www.phptravels.net/admin/settings/modules/">Modules</a></li>
+                            <li> <a href="https://www.phptravels.net/admin/settings/currencies/">Currencies</a> </li>
+                            <li> <a href="https://www.phptravels.net/admin/settings/paymentgateways/">Payment Gateways</a></li>
+                            <li> <a href="https://www.phptravels.net/admin/settings/social/">Social Connections</a></li>
+                            <li> <a href="https://www.phptravels.net/admin/settings/widgets/">Widgets</a></li>
+                            <li> <a href="https://www.phptravels.net/admin/settings/sliders/">Sliders</a></li>
+                            <li> <a href="https://www.phptravels.net/admin/templates/email/">Email Templates</a></li>
+                            <li> <a href="https://www.phptravels.net/admin/templates/sms_settings/">SMS API Settings</a></li>
+                            <li> <a href="https://www.phptravels.net/admin/backup/">BackUp</a></li>
+                        </ul>
+                    </li>
+                                        <li>
+                        <a data-toggle="collapse" data-parent="#social-sidebar-menu" href="#ACCOUNTS"><i class="glyphicon glyphicon-user w30"></i> Accounts<i class="fa fa-angle-right pull-right menu-icon"></i>
+                        </a>
+                        <ul id="ACCOUNTS" class="collapse wow fadeIn animated">
+                                                        <li><a href="https://www.phptravels.net/admin/accounts/admins/">Admins</a></li>
+                                                        <li><a href="https://www.phptravels.net/admin/accounts/suppliers/">Suppliers</a></li>
+                            <li><a href="https://www.phptravels.net/admin/accounts/customers/">Customers</a></li>
+                            <li><a href="https://www.phptravels.net/admin/accounts/guest/">GuestCustomers</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#CMS" data-toggle="collapse" data-parent="#social-sidebar-menu"><i style="width:30px" class="fa fa-list-alt w30"></i><span>CMS</span><i class="fa fa-angle-right pull-right menu-icon"></i></a>
+                        <ul id="CMS" class="collapse wow fadeIn animated">
+                            <li><a href="https://www.phptravels.net/admin/cms">Pages</a></li>
+                            <!-- <li><a href="https://www.phptravels.net/admin/cms/menus/manage">Menu</a></li> -->
+                        </ul>
+                    </li>
+                                                                            <li>
+                                        <a href="#Hotels" data-toggle="collapse" data-parent="#social-sidebar-menu"><i class="w30 fa fa-building-o"></i>Hotels <i class="fa fa-angle-right pull-right menu-icon"></i></a>
+                                                                                    <ul id="Hotels" class="collapse wow fadeIn animated">
+                                                                                                    <li><a href="https://www.phptravels.net/admin/hotels">Hotels</a></li>
+                                                                                                    <li><a href="https://www.phptravels.net/admin/hotels/rooms">Rooms</a></li>
+                                                                                                    <li><a href="https://www.phptravels.net/admin/hotels/extras">Extras</a></li>
+                                                                                                    <li><a href="https://www.phptravels.net/admin/hotels/reviews">Reviews</a></li>
+                                                                                                    <li><a href="https://www.phptravels.net/admin/hotels/settings">Hotels Settings</a></li>
+                                                                                            </ul>
+                                                                            </li>
+                                                                        <li>
+                                        <a href="#Flights" data-toggle="collapse" data-parent="#social-sidebar-menu"><i class="w30 fa fa-plane"></i>Flights <i class="fa fa-angle-right pull-right menu-icon"></i></a>
+                                                                                    <ul id="Flights" class="collapse wow fadeIn animated">
+                                                                                                    <li><a href="https://www.phptravels.net/admin/flights/routes">Routes</a></li>
+                                                                                                    <li><a href="https://www.phptravels.net/admin/flights/airports">Airports</a></li>
+                                                                                                    <li><a href="https://www.phptravels.net/admin/flights/settings">Settings</a></li>
+                                                                                                    <li><a href="https://www.phptravels.net/admin/flights/airlines">Airlines</a></li>
+                                                                                                    <li><a href="https://www.phptravels.net/admin/flights/countries">Countries</a></li>
+                                                                                                    <li><a href="https://www.phptravels.net/admin/flights">Flights Slider</a></li>
+                                                                                            </ul>
+                                                                            </li>
+                                                                        <li>
+                                        <a href="#Tours" data-toggle="collapse" data-parent="#social-sidebar-menu"><i class="w30 fa fa-suitcase"></i>Tours <i class="fa fa-angle-right pull-right menu-icon"></i></a>
+                                                                                    <ul id="Tours" class="collapse wow fadeIn animated">
+                                                                                                    <li><a href="https://www.phptravels.net/admin/tours">Tours</a></li>
+                                                                                                    <li><a href="https://www.phptravels.net/admin/tours/add">Add New</a></li>
+                                                                                                    <li><a href="https://www.phptravels.net/admin/tours/extras">Extras</a></li>
+                                                                                                    <li><a href="https://www.phptravels.net/admin/tours/reviews">Reviews</a></li>
+                                                                                                    <li><a href="https://www.phptravels.net/admin/tours/settings">Settings</a></li>
+                                                                                            </ul>
+                                                                            </li>
+                                                                        <li>
+                                        <a href="#Cars" data-toggle="collapse" data-parent="#social-sidebar-menu"><i class="w30 fa fa-car"></i>Cars <i class="fa fa-angle-right pull-right menu-icon"></i></a>
+                                                                                    <ul id="Cars" class="collapse wow fadeIn animated">
+                                                                                                    <li><a href="https://www.phptravels.net/admin/cars">Cars</a></li>
+                                                                                                    <li><a href="https://www.phptravels.net/admin/cars/extras">Extras</a></li>
+                                                                                                    <li><a href="https://www.phptravels.net/admin/cars/settings">Cars Settings</a></li>
+                                                                                            </ul>
+                                                                            </li>
+                                                                        <li>
+                                        <a href="#Ivisa" data-toggle="collapse" data-parent="#social-sidebar-menu"><i class="w30 fa fa-tag"></i>Ivisa <i class="fa fa-angle-right pull-right menu-icon"></i></a>
+                                                                                    <ul id="Ivisa" class="collapse wow fadeIn animated">
+                                                                                                    <li><a href="https://www.phptravels.net/admin/ivisa/settings">Ivisa</a></li>
+                                                                                            </ul>
+                                                                            </li>
+                                                                        <li>
+                                        <a href="#Blog" data-toggle="collapse" data-parent="#social-sidebar-menu"><i class="w30 glyphicon glyphicon-th-large"></i>Blog <i class="fa fa-angle-right pull-right menu-icon"></i></a>
+                                                                                    <ul id="Blog" class="collapse wow fadeIn animated">
+                                                                                                    <li><a href="https://www.phptravels.net/admin/blog">Posts</a></li>
+                                                                                                    <li><a href="https://www.phptravels.net/admin/blog/category">Blog Categories</a></li>
+                                                                                                    <li><a href="https://www.phptravels.net/admin/blog/settings">Blog Settings</a></li>
+                                                                                            </ul>
+                                                                            </li>
+                                                                        <li>
+                                        <a href="#Locations" data-toggle="collapse" data-parent="#social-sidebar-menu"><i class="w30 fa fa-map-marker"></i>Locations <i class="fa fa-angle-right pull-right menu-icon"></i></a>
+                                                                                    <ul id="Locations" class="collapse wow fadeIn animated">
+                                                                                                    <li><a href="https://www.phptravels.net/supplier/locations">Locations List</a></li>
+                                                                                            </ul>
+                                                                            </li>
+                                                                            <li>
+                        <a data-toggle="collapse" data-parent="#social-sidebar-menu" href="#SPECIAL_OFFERS"><i class="fa fa-gift w30"></i> Offers<i class="fa fa-angle-right pull-right menu-icon"></i></a>
+                        <ul id="SPECIAL_OFFERS" class="collapse  wow fadeIn animated">
+                            <li><a href="https://www.phptravels.net/admin/offers/">Manage Offers</a></li>
+                            <li><a href="https://www.phptravels.net/admin/offers/settings/">Offers Settings</a></li>
+                        </ul>
+                    </li>
+                                        <li>
+                        <a href="https://www.phptravels.net/admin/coupons/"><i class="fa fa-asterisk w30"></i> Coupons</a>
+                    </li>
+                                        <!--
+                                        <li><a href="https://www.phptravels.net/admin/locations"><i class="fa fa-map-marker w30"></i> Locations<span class="pull-right label label-danger" id=""></span></a>
+                    </li>
+                                        -->
+                                                            <li><a href="https://www.phptravels.net/admin/newsletter/"><i class="fa fa-envelope w30"></i> Newsletter <span class="pull-right label label-danger" id=""></span></a>
+                    </li>
+                                                            <li><a href="https://www.phptravels.net/admin/bookings/"><i class="fa fa-list w30"></i> Bookings<span class="pull-right label label-danger" id=""></span></a>
+                    </li>
+                                    </ul>
+            </div>
+        </div>
+        <!-- END MENU SECTION-->
+    </div>
+</aside>
+<!-- END SIDEBAR-->    <div class="main">
+    <div class="container" id="content">
+
+    <script>
+    $(function () {
+    $('[data-toggle="tooltip"]').tooltip() })
+    </script><div class="panel panel-default">
+  <div class="panel-heading">Blog Categories</div>
+
+   <div class="panel-body">
+   <div class="add_button_modal"> <button type="button" data-toggle="modal" data-target="#ADD_BLOG_CAT" class="btn btn-success"><i class="glyphicon glyphicon-plus-sign"></i> Add</button></div>
+     <link href="https://www.phptravels.net/assets/xcrud/plugins/jquery-ui/jquery-ui.min.css" rel="stylesheet" type="text/css" /><link href="https://www.phptravels.net/assets/xcrud/plugins/jcrop/jquery.Jcrop.min.css" rel="stylesheet" type="text/css" /><link href="https://www.phptravels.net/assets/xcrud/plugins/timepicker/jquery-ui-timepicker-addon.css" rel="stylesheet" type="text/css" /><link href="https://www.phptravels.net/assets/xcrud/themes/bootstrap/xcrud.css" rel="stylesheet" type="text/css" /><div class="xcrud">
+        <div class="xcrud-container">
+        <div class="xcrud-ajax">
+            <input type="hidden" class="xcrud-data" name="key" value="be3e487e106dbb9a67f8d5e2c10881092098d165" /><input type="hidden" class="xcrud-data" name="orderby" value="pt_blog_categories.cat_id" /><input type="hidden" class="xcrud-data" name="order" value="desc" /><input type="hidden" class="xcrud-data" name="start" value="0" /><input type="hidden" class="xcrud-data" name="limit" value="10" /><input type="hidden" class="xcrud-data" name="instance" value="6c6312947946017f184514fa94a04366939532cd" /><input type="hidden" class="xcrud-data" name="task" value="list" />
+<div class="xcrud-top-actions">
+    <div class="btn-group pull-right">
+
+                    <a href="javascript:;" data-task="print" class="btn btn-default xcrud-in-new-window xcrud-action"><i class="glyphicon glyphicon-print"></i> Print</a><a href="javascript:;" data-task="csv" class="btn btn-default xcrud-in-new-window xcrud-action"><i class="glyphicon glyphicon-file"></i> Export into CSV</a>    </div>
+        <div class="clearfix"></div>
+            <a href="javascript: multiDelfunc('https://www.phptravels.net/blog/blogajaxcalls/delMultipleCategories', 'checkboxcls')" class="delete_button btn btn-danger btn-xs"><i class="glyphicon glyphicon-remove"></i> Delete Selected</a>
+    </div>
+
+<div class="xcrud-list-container">
+    <table class="xcrud-list table table-striped table-hover">
+        <thead>
+        <tr class="xcrud-th"><th><div class="icheckbox_square-grey" style="position: relative;"><input class="all" type="checkbox" value="" id="select_all" style="position: absolute; opacity: 0;" /><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div> </th><th class="xcrud-num">#</th><th data-order="desc" data-orderby="pt_blog_categories.cat_name" class="xcrud-column xcrud-action">Name</th><th data-order="desc" data-orderby="pt_blog_categories.cat_slug" class="xcrud-column xcrud-action">Slug</th><th data-order="desc" data-orderby="pt_blog_categories.cat_status" class="xcrud-column xcrud-action">Status</th><th class="xcrud-actions"> </th></tr>        </thead>
+        <tbody>
+        <tr class="xcrud-row xcrud-row-0"><td><div class="icheckbox_square-grey" style="position: relative;"><input class="checkboxcls" type="checkbox" value="21" style="position: absolute; opacity: 0;" /><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div></td><td class="xcrud-current xcrud-num">1</td><td>SportDeanne</td><td>SportDeanne</td><td>Yes</td><td class="xcrud-current xcrud-actions xcrud-fix"><span class="btn-group"><a class="btn btn-default btn-xcrud btn btn-warning" href="#cat21" title="Edit" data-toggle="modal"><i class="fa fa-edit"></i></a><a class="btn btn-default btn-xcrud btn-danger" href="javascript: delfunc('21','https://www.phptravels.net/admin/ajaxcalls/delBlogCat')" title="DELETE" target="_self"><i class="fa fa-times"></i></a></span></td></tr><tr class="xcrud-row xcrud-row-1"><td><div class="icheckbox_square-grey" style="position: relative;"><input class="checkboxcls" type="checkbox" value="20" style="position: absolute; opacity: 0;" /><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div></td><td class="xcrud-current xcrud-num">2</td><td>lunalunera</td><td>lunalunera</td><td>Yes</td><td class="xcrud-current xcrud-actions xcrud-fix"><span class="btn-group"><a class="btn btn-default btn-xcrud btn btn-warning" href="#cat20" title="Edit" data-toggle="modal"><i class="fa fa-edit"></i></a><a class="btn btn-default btn-xcrud btn-danger" href="javascript: delfunc('20','https://www.phptravels.net/admin/ajaxcalls/delBlogCat')" title="DELETE" target="_self"><i class="fa fa-times"></i></a></span></td></tr><tr class="xcrud-row xcrud-row-0"><td><div class="icheckbox_square-grey" style="position: relative;"><input class="checkboxcls" type="checkbox" value="18" style="position: absolute; opacity: 0;" /><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div></td><td class="xcrud-current xcrud-num">3</td><td>Things to do</td><td>Things-to-do</td><td>Yes</td><td class="xcrud-current xcrud-actions xcrud-fix"><span class="btn-group"><a class="btn btn-default btn-xcrud btn btn-warning" href="#cat18" title="Edit" data-toggle="modal"><i class="fa fa-edit"></i></a><a class="btn btn-default btn-xcrud btn-danger" href="javascript: delfunc('18','https://www.phptravels.net/admin/ajaxcalls/delBlogCat')" title="DELETE" target="_self"><i class="fa fa-times"></i></a></span></td></tr><tr class="xcrud-row xcrud-row-1"><td><div class="icheckbox_square-grey" style="position: relative;"><input class="checkboxcls" type="checkbox" value="17" style="position: absolute; opacity: 0;" /><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div></td><td class="xcrud-current xcrud-num">4</td><td>Shopping and Fashion</td><td>Shopping-and-Fashion</td><td>Yes</td><td class="xcrud-current xcrud-actions xcrud-fix"><span class="btn-group"><a class="btn btn-default btn-xcrud btn btn-warning" href="#cat17" title="Edit" data-toggle="modal"><i class="fa fa-edit"></i></a><a class="btn btn-default btn-xcrud btn-danger" href="javascript: delfunc('17','https://www.phptravels.net/admin/ajaxcalls/delBlogCat')" title="DELETE" target="_self"><i class="fa fa-times"></i></a></span></td></tr><tr class="xcrud-row xcrud-row-0"><td><div class="icheckbox_square-grey" style="position: relative;"><input class="checkboxcls" type="checkbox" value="16" style="position: absolute; opacity: 0;" /><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div></td><td class="xcrud-current xcrud-num">5</td><td>Adventure</td><td>Adventure</td><td>Yes</td><td class="xcrud-current xcrud-actions xcrud-fix"><span class="btn-group"><a class="btn btn-default btn-xcrud btn btn-warning" href="#cat16" title="Edit" data-toggle="modal"><i class="fa fa-edit"></i></a><a class="btn btn-default btn-xcrud btn-danger" href="javascript: delfunc('16','https://www.phptravels.net/admin/ajaxcalls/delBlogCat')" title="DELETE" target="_self"><i class="fa fa-times"></i></a></span></td></tr><tr class="xcrud-row xcrud-row-1"><td><div class="icheckbox_square-grey" style="position: relative;"><input class="checkboxcls" type="checkbox" value="15" style="position: absolute; opacity: 0;" /><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div></td><td class="xcrud-current xcrud-num">6</td><td>Travel and Foods</td><td>Travel-and-Foods</td><td>Yes</td><td class="xcrud-current xcrud-actions xcrud-fix"><span class="btn-group"><a class="btn btn-default btn-xcrud btn btn-warning" href="#cat15" title="Edit" data-toggle="modal"><i class="fa fa-edit"></i></a><a class="btn btn-default btn-xcrud btn-danger" href="javascript: delfunc('15','https://www.phptravels.net/admin/ajaxcalls/delBlogCat')" title="DELETE" target="_self"><i class="fa fa-times"></i></a></span></td></tr>        </tbody>
+        <tfoot>
+                </tfoot>
+    </table>
+</div>
+<div class="xcrud-nav">
+    <div class="btn-group xcrud-limit-buttons" data-toggle="buttons-radio"><button type="button" class="btn btn-default active xcrud-action" data-limit="10">10</button><button type="button" class="btn btn-default xcrud-action" data-limit="25">25</button><button type="button" class="btn btn-default xcrud-action" data-limit="50">50</button><button type="button" class="btn btn-default xcrud-action" data-limit="100">100</button><button type="button" class="btn btn-default xcrud-action" data-limit="all">All</button></div>        <a class="xcrud-search-toggle btn btn-default" href="javascript:;">Search</a><span class="xcrud-search form-inline" style="display:none;"><input class="xcrud-searchdata xcrud-search-active input-small form-control" name="phrase" data-type="text" style="" data-fieldtype="default" type="text" value="" /><select class="xcrud-searchdata  input-small form-control" name="phrase" style="display:none" data-type="select" data-fieldtype="dropdown" data-fieldname="pt_blog_categories.cat_status"><option value="Yes">Yes</option><option value="No">No</option></select><select class="xcrud-data xcrud-columns-select input-small form-control" name="column"><option value="">All fields</option><option value="pt_blog_categories.cat_name" data-type="text">Name</option><option value="pt_blog_categories.cat_slug" data-type="text">Slug</option><option value="pt_blog_categories.cat_status" data-type="select">Status</option></select><span class="btn-group"><a class="xcrud-action btn btn-primary" href="javascript:;" data-search="1">Go</a></span></span>    <span class="xcrud-benchmark"><span>Execution time: 0.003 s</span><span>Memory usage: 0.07 MB</span></span></div>        </div>
+        <div class="xcrud-overlay" style="display: none;"></div>
+    </div>
+</div><script src="https://www.phptravels.net/assets/xcrud/plugins/jquery-ui/jquery-ui.min.js"></script><script src="https://www.phptravels.net/assets/xcrud/plugins/jcrop/jquery.Jcrop.min.js"></script><script src="https://www.phptravels.net/assets/xcrud/plugins/timepicker/jquery-ui-timepicker-addon.js"></script><script src="https://www.phptravels.net/assets/xcrud/plugins/xcrud.js"></script>
+            <script type="text/javascript">
+            &lt;!--
+            
+           	var xcrud_config = {"url":"https:\/\/www.phptravels.net\/xcrud_ajax","editor_url":false,"editor_init_url":false,"force_editor":false,"date_first_day":1,"date_format":"dd.mm.yy","time_format":"HH:mm:ss","lang":{"add":"Add","edit":"Edit","view":"View","remove":"Remove","duplicate":"Duplicate","print":"Print","export_csv":"Export into CSV","search":"Search","go":"Go","reset":"Reset","save":"Save","save_return":"Save &amp; Return","save_new":"Save &amp; New","save_edit":"Save &amp; Edit","return":"Return","modal_dismiss":"Close","add_image":"Add image","add_file":"Add file","exec_time":"Execution time:","memory_usage":"Memory usage:","bool_on":"Yes","bool_off":"No","no_file":"no file","no_image":"no image","null_option":"- none -","total_entries":"Total entries:","table_empty":"Entries not found.","all":"All","deleting_confirm":"Do you really want remove this entry?","undefined_error":"It looks like something went wrong...","validation_error":"Some fields are likely to contain errors. Fix errors and try again.","image_type_error":"This image type is not supported.","unique_error":"Some fields are not unique.","your_position":"Your position","search_here":"Search here...","all_fields":"All fields","choose_range":"- choose range -","next_year":"Next year","next_month":"Next month","today":"Today","this_week_today":"This week up to today","this_week_full":"This full week","last_week":"Last week","last_2weeks":"Last two weeks","this_month":"This month","last_month":"Last month","last_3months":"Last 3 months","last_6months":"Last 6 months","this_year":"This year","last_year":"Last year"},"rtl":0};
+                            
+            --&gt;
+            </script>   </div>
+ </div>
+
+
+ <!--Add blog category Modal -->
+<div class="modal fade" id="ADD_BLOG_CAT" tabindex="-1" role="dialog" aria-labelledby="ADD_BLOG_CAT" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+    <form action="" method="POST">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span></button>
+        <h4 class="modal-title">Add Blog Category Type</h4>
+      </div>
+      <div class="modal-body form-horizontal">
+
+      <div class="row form-group">
+<label class="col-md-3 control-label text-left">Category Name</label>
+<div class="col-md-8">
+<input type="text" name="name" class="form-control" placeholder="Name" value="" required="" />
+</div>
+</div>
+
+<div class="row form-group">
+<label class="col-md-3 control-label text-left">Status</label>
+<div class="col-md-8">
+<select name="status" class="form-control" id="">
+<option value="Yes">Enable</option>
+<option value="No">Disable</option>
+</select></div>
+</div>
+<div class="row form-group">
+<label class="col-md-3 control-label text-left"> Name in <img src="https://www.phptravels.net/uploads/images/language/ar.png" height="20" alt="" /> Arabic</label>
+<div class="col-md-8">
+<input type="text" name="translated[ar][name]" class="form-control" placeholder="Name" value="" />
+</div>
+</div>
+<div class="row form-group">
+<label class="col-md-3 control-label text-left"> Name in <img src="https://www.phptravels.net/uploads/images/language/tr.png" height="20" alt="" /> Turkish</label>
+<div class="col-md-8">
+<input type="text" name="translated[tr][name]" class="form-control" placeholder="Name" value="" />
+</div>
+</div>
+<div class="row form-group">
+<label class="col-md-3 control-label text-left"> Name in <img src="https://www.phptravels.net/uploads/images/language/fr.png" height="20" alt="" /> French</label>
+<div class="col-md-8">
+<input type="text" name="translated[fr][name]" class="form-control" placeholder="Name" value="" />
+</div>
+</div>
+<div class="row form-group">
+<label class="col-md-3 control-label text-left"> Name in <img src="https://www.phptravels.net/uploads/images/language/es.png" height="20" alt="" /> Spanish</label>
+<div class="col-md-8">
+<input type="text" name="translated[es][name]" class="form-control" placeholder="Name" value="" />
+</div>
+</div>
+<div class="row form-group">
+<label class="col-md-3 control-label text-left"> Name in <img src="https://www.phptravels.net/uploads/images/language/ru.png" height="20" alt="" /> Russian</label>
+<div class="col-md-8">
+<input type="text" name="translated[ru][name]" class="form-control" placeholder="Name" value="" />
+</div>
+</div>
+
+      </div>
+      <div class="modal-footer">
+      <input type="hidden" name="addcat" value="1" />
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary">Add</button>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
+<!-----end add category modal------>
+
+ <!-- edit Modal -->
+ <div class="modal fade" id="cat21" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+    <form action="" method="POST">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span></button>
+        <h4 class="modal-title">Update</h4>
+      </div>
+      <div class="modal-body form-horizontal">
+
+      <div class="row form-group">
+<label class="col-md-3 control-label text-left">Category Name</label>
+<div class="col-md-8">
+<input type="text" name="name" class="form-control" placeholder="Name" value="SportDeanne" required="" />
+</div>
+</div>
+
+<div class="row form-group">
+<label class="col-md-3 control-label text-left">Status</label>
+<div class="col-md-8">
+<select name="status" class="form-control" id="">
+<option value="Yes" selected="">Enabled</option>
+<option value="No">Disable</option>
+</select></div>
+</div>
+
+<div class="row form-group">
+<label class="col-md-3 control-label text-left"> Name in <img src="https://www.phptravels.net/uploads/images/language/ar.png" height="20" alt="" /> Arabic</label>
+<div class="col-md-8">
+<input type="text" name="translated[ar][name]" class="form-control" placeholder="Name" value="" />
+</div>
+</div>
+<div class="row form-group">
+<label class="col-md-3 control-label text-left"> Name in <img src="https://www.phptravels.net/uploads/images/language/tr.png" height="20" alt="" /> Turkish</label>
+<div class="col-md-8">
+<input type="text" name="translated[tr][name]" class="form-control" placeholder="Name" value="" />
+</div>
+</div>
+<div class="row form-group">
+<label class="col-md-3 control-label text-left"> Name in <img src="https://www.phptravels.net/uploads/images/language/fr.png" height="20" alt="" /> French</label>
+<div class="col-md-8">
+<input type="text" name="translated[fr][name]" class="form-control" placeholder="Name" value="" />
+</div>
+</div>
+<div class="row form-group">
+<label class="col-md-3 control-label text-left"> Name in <img src="https://www.phptravels.net/uploads/images/language/es.png" height="20" alt="" /> Spanish</label>
+<div class="col-md-8">
+<input type="text" name="translated[es][name]" class="form-control" placeholder="Name" value="" />
+</div>
+</div>
+<div class="row form-group">
+<label class="col-md-3 control-label text-left"> Name in <img src="https://www.phptravels.net/uploads/images/language/ru.png" height="20" alt="" /> Russian</label>
+<div class="col-md-8">
+<input type="text" name="translated[ru][name]" class="form-control" placeholder="Name" value="" />
+</div>
+</div>
+
+      </div>
+      <div class="modal-footer">
+      <input type="hidden" name="updatecat" value="1" />
+      <input type="hidden" name="categoryid" value="21" />
+      <input type="hidden" name="slug" value="SportDeanne" />
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary">Update</button>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="cat20" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+    <form action="" method="POST">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span></button>
+        <h4 class="modal-title">Update</h4>
+      </div>
+      <div class="modal-body form-horizontal">
+
+      <div class="row form-group">
+<label class="col-md-3 control-label text-left">Category Name</label>
+<div class="col-md-8">
+<input type="text" name="name" class="form-control" placeholder="Name" value="lunalunera" required="" />
+</div>
+</div>
+
+<div class="row form-group">
+<label class="col-md-3 control-label text-left">Status</label>
+<div class="col-md-8">
+<select name="status" class="form-control" id="">
+<option value="Yes" selected="">Enabled</option>
+<option value="No">Disable</option>
+</select></div>
+</div>
+
+<div class="row form-group">
+<label class="col-md-3 control-label text-left"> Name in <img src="https://www.phptravels.net/uploads/images/language/ar.png" height="20" alt="" /> Arabic</label>
+<div class="col-md-8">
+<input type="text" name="translated[ar][name]" class="form-control" placeholder="Name" value="" />
+</div>
+</div>
+<div class="row form-group">
+<label class="col-md-3 control-label text-left"> Name in <img src="https://www.phptravels.net/uploads/images/language/tr.png" height="20" alt="" /> Turkish</label>
+<div class="col-md-8">
+<input type="text" name="translated[tr][name]" class="form-control" placeholder="Name" value="" />
+</div>
+</div>
+<div class="row form-group">
+<label class="col-md-3 control-label text-left"> Name in <img src="https://www.phptravels.net/uploads/images/language/fr.png" height="20" alt="" /> French</label>
+<div class="col-md-8">
+<input type="text" name="translated[fr][name]" class="form-control" placeholder="Name" value="" />
+</div>
+</div>
+<div class="row form-group">
+<label class="col-md-3 control-label text-left"> Name in <img src="https://www.phptravels.net/uploads/images/language/es.png" height="20" alt="" /> Spanish</label>
+<div class="col-md-8">
+<input type="text" name="translated[es][name]" class="form-control" placeholder="Name" value="" />
+</div>
+</div>
+<div class="row form-group">
+<label class="col-md-3 control-label text-left"> Name in <img src="https://www.phptravels.net/uploads/images/language/ru.png" height="20" alt="" /> Russian</label>
+<div class="col-md-8">
+<input type="text" name="translated[ru][name]" class="form-control" placeholder="Name" value="" />
+</div>
+</div>
+
+      </div>
+      <div class="modal-footer">
+      <input type="hidden" name="updatecat" value="1" />
+      <input type="hidden" name="categoryid" value="20" />
+      <input type="hidden" name="slug" value="lunalunera" />
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary">Update</button>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="cat18" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+    <form action="" method="POST">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span></button>
+        <h4 class="modal-title">Update</h4>
+      </div>
+      <div class="modal-body form-horizontal">
+
+      <div class="row form-group">
+<label class="col-md-3 control-label text-left">Category Name</label>
+<div class="col-md-8">
+<input type="text" name="name" class="form-control" placeholder="Name" value="Things to do" required="" />
+</div>
+</div>
+
+<div class="row form-group">
+<label class="col-md-3 control-label text-left">Status</label>
+<div class="col-md-8">
+<select name="status" class="form-control" id="">
+<option value="Yes" selected="">Enabled</option>
+<option value="No">Disable</option>
+</select></div>
+</div>
+
+<div class="row form-group">
+<label class="col-md-3 control-label text-left"> Name in <img src="https://www.phptravels.net/uploads/images/language/ar.png" height="20" alt="" /> Arabic</label>
+<div class="col-md-8">
+<input type="text" name="translated[ar][name]" class="form-control" placeholder="Name" value="" />
+</div>
+</div>
+<div class="row form-group">
+<label class="col-md-3 control-label text-left"> Name in <img src="https://www.phptravels.net/uploads/images/language/tr.png" height="20" alt="" /> Turkish</label>
+<div class="col-md-8">
+<input type="text" name="translated[tr][name]" class="form-control" placeholder="Name" value="" />
+</div>
+</div>
+<div class="row form-group">
+<label class="col-md-3 control-label text-left"> Name in <img src="https://www.phptravels.net/uploads/images/language/fr.png" height="20" alt="" /> French</label>
+<div class="col-md-8">
+<input type="text" name="translated[fr][name]" class="form-control" placeholder="Name" value="" />
+</div>
+</div>
+<div class="row form-group">
+<label class="col-md-3 control-label text-left"> Name in <img src="https://www.phptravels.net/uploads/images/language/es.png" height="20" alt="" /> Spanish</label>
+<div class="col-md-8">
+<input type="text" name="translated[es][name]" class="form-control" placeholder="Name" value="" />
+</div>
+</div>
+<div class="row form-group">
+<label class="col-md-3 control-label text-left"> Name in <img src="https://www.phptravels.net/uploads/images/language/ru.png" height="20" alt="" /> Russian</label>
+<div class="col-md-8">
+<input type="text" name="translated[ru][name]" class="form-control" placeholder="Name" value="" />
+</div>
+</div>
+
+      </div>
+      <div class="modal-footer">
+      <input type="hidden" name="updatecat" value="1" />
+      <input type="hidden" name="categoryid" value="18" />
+      <input type="hidden" name="slug" value="Things-to-do" />
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary">Update</button>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="cat17" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+    <form action="" method="POST">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span></button>
+        <h4 class="modal-title">Update</h4>
+      </div>
+      <div class="modal-body form-horizontal">
+
+      <div class="row form-group">
+<label class="col-md-3 control-label text-left">Category Name</label>
+<div class="col-md-8">
+<input type="text" name="name" class="form-control" placeholder="Name" value="Shopping and Fashion" required="" />
+</div>
+</div>
+
+<div class="row form-group">
+<label class="col-md-3 control-label text-left">Status</label>
+<div class="col-md-8">
+<select name="status" class="form-control" id="">
+<option value="Yes" selected="">Enabled</option>
+<option value="No">Disable</option>
+</select></div>
+</div>
+
+<div class="row form-group">
+<label class="col-md-3 control-label text-left"> Name in <img src="https://www.phptravels.net/uploads/images/language/ar.png" height="20" alt="" /> Arabic</label>
+<div class="col-md-8">
+<input type="text" name="translated[ar][name]" class="form-control" placeholder="Name" value="" />
+</div>
+</div>
+<div class="row form-group">
+<label class="col-md-3 control-label text-left"> Name in <img src="https://www.phptravels.net/uploads/images/language/tr.png" height="20" alt="" /> Turkish</label>
+<div class="col-md-8">
+<input type="text" name="translated[tr][name]" class="form-control" placeholder="Name" value="" />
+</div>
+</div>
+<div class="row form-group">
+<label class="col-md-3 control-label text-left"> Name in <img src="https://www.phptravels.net/uploads/images/language/fr.png" height="20" alt="" /> French</label>
+<div class="col-md-8">
+<input type="text" name="translated[fr][name]" class="form-control" placeholder="Name" value="" />
+</div>
+</div>
+<div class="row form-group">
+<label class="col-md-3 control-label text-left"> Name in <img src="https://www.phptravels.net/uploads/images/language/es.png" height="20" alt="" /> Spanish</label>
+<div class="col-md-8">
+<input type="text" name="translated[es][name]" class="form-control" placeholder="Name" value="" />
+</div>
+</div>
+<div class="row form-group">
+<label class="col-md-3 control-label text-left"> Name in <img src="https://www.phptravels.net/uploads/images/language/ru.png" height="20" alt="" /> Russian</label>
+<div class="col-md-8">
+<input type="text" name="translated[ru][name]" class="form-control" placeholder="Name" value="" />
+</div>
+</div>
+
+      </div>
+      <div class="modal-footer">
+      <input type="hidden" name="updatecat" value="1" />
+      <input type="hidden" name="categoryid" value="17" />
+      <input type="hidden" name="slug" value="Shopping-and-Fashion" />
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary">Update</button>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="cat16" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+    <form action="" method="POST">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span></button>
+        <h4 class="modal-title">Update</h4>
+      </div>
+      <div class="modal-body form-horizontal">
+
+      <div class="row form-group">
+<label class="col-md-3 control-label text-left">Category Name</label>
+<div class="col-md-8">
+<input type="text" name="name" class="form-control" placeholder="Name" value="Adventure" required="" />
+</div>
+</div>
+
+<div class="row form-group">
+<label class="col-md-3 control-label text-left">Status</label>
+<div class="col-md-8">
+<select name="status" class="form-control" id="">
+<option value="Yes" selected="">Enabled</option>
+<option value="No">Disable</option>
+</select></div>
+</div>
+
+<div class="row form-group">
+<label class="col-md-3 control-label text-left"> Name in <img src="https://www.phptravels.net/uploads/images/language/ar.png" height="20" alt="" /> Arabic</label>
+<div class="col-md-8">
+<input type="text" name="translated[ar][name]" class="form-control" placeholder="Name" value="" />
+</div>
+</div>
+<div class="row form-group">
+<label class="col-md-3 control-label text-left"> Name in <img src="https://www.phptravels.net/uploads/images/language/tr.png" height="20" alt="" /> Turkish</label>
+<div class="col-md-8">
+<input type="text" name="translated[tr][name]" class="form-control" placeholder="Name" value="" />
+</div>
+</div>
+<div class="row form-group">
+<label class="col-md-3 control-label text-left"> Name in <img src="https://www.phptravels.net/uploads/images/language/fr.png" height="20" alt="" /> French</label>
+<div class="col-md-8">
+<input type="text" name="translated[fr][name]" class="form-control" placeholder="Name" value="" />
+</div>
+</div>
+<div class="row form-group">
+<label class="col-md-3 control-label text-left"> Name in <img src="https://www.phptravels.net/uploads/images/language/es.png" height="20" alt="" /> Spanish</label>
+<div class="col-md-8">
+<input type="text" name="translated[es][name]" class="form-control" placeholder="Name" value="" />
+</div>
+</div>
+<div class="row form-group">
+<label class="col-md-3 control-label text-left"> Name in <img src="https://www.phptravels.net/uploads/images/language/ru.png" height="20" alt="" /> Russian</label>
+<div class="col-md-8">
+<input type="text" name="translated[ru][name]" class="form-control" placeholder="Name" value="" />
+</div>
+</div>
+
+      </div>
+      <div class="modal-footer">
+      <input type="hidden" name="updatecat" value="1" />
+      <input type="hidden" name="categoryid" value="16" />
+      <input type="hidden" name="slug" value="Adventure" />
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary">Update</button>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="cat15" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+    <form action="" method="POST">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span></button>
+        <h4 class="modal-title">Update</h4>
+      </div>
+      <div class="modal-body form-horizontal">
+
+      <div class="row form-group">
+<label class="col-md-3 control-label text-left">Category Name</label>
+<div class="col-md-8">
+<input type="text" name="name" class="form-control" placeholder="Name" value="Travel and Foods" required="" />
+</div>
+</div>
+
+<div class="row form-group">
+<label class="col-md-3 control-label text-left">Status</label>
+<div class="col-md-8">
+<select name="status" class="form-control" id="">
+<option value="Yes" selected="">Enabled</option>
+<option value="No">Disable</option>
+</select></div>
+</div>
+
+<div class="row form-group">
+<label class="col-md-3 control-label text-left"> Name in <img src="https://www.phptravels.net/uploads/images/language/ar.png" height="20" alt="" /> Arabic</label>
+<div class="col-md-8">
+<input type="text" name="translated[ar][name]" class="form-control" placeholder="Name" value="" />
+</div>
+</div>
+<div class="row form-group">
+<label class="col-md-3 control-label text-left"> Name in <img src="https://www.phptravels.net/uploads/images/language/tr.png" height="20" alt="" /> Turkish</label>
+<div class="col-md-8">
+<input type="text" name="translated[tr][name]" class="form-control" placeholder="Name" value="" />
+</div>
+</div>
+<div class="row form-group">
+<label class="col-md-3 control-label text-left"> Name in <img src="https://www.phptravels.net/uploads/images/language/fr.png" height="20" alt="" /> French</label>
+<div class="col-md-8">
+<input type="text" name="translated[fr][name]" class="form-control" placeholder="Name" value="" />
+</div>
+</div>
+<div class="row form-group">
+<label class="col-md-3 control-label text-left"> Name in <img src="https://www.phptravels.net/uploads/images/language/es.png" height="20" alt="" /> Spanish</label>
+<div class="col-md-8">
+<input type="text" name="translated[es][name]" class="form-control" placeholder="Name" value="" />
+</div>
+</div>
+<div class="row form-group">
+<label class="col-md-3 control-label text-left"> Name in <img src="https://www.phptravels.net/uploads/images/language/ru.png" height="20" alt="" /> Russian</label>
+<div class="col-md-8">
+<input type="text" name="translated[ru][name]" class="form-control" placeholder="Name" value="" />
+</div>
+</div>
+
+      </div>
+      <div class="modal-footer">
+      <input type="hidden" name="updatecat" value="1" />
+      <input type="hidden" name="categoryid" value="15" />
+      <input type="hidden" name="slug" value="Travel-and-Foods" />
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary">Update</button>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
+<!----edit modal---></div>
+</div>
+</div>
+
+<script src="https://www.phptravels.net/assets/js/sidebar.js"></script>
+
+<!-- icheck -->
+<script src="https://www.phptravels.net/assets/include/icheck/icheck.min.js"></script>
+<link href="https://www.phptravels.net/assets/include/icheck/square/grey.css" rel="stylesheet" />
+<script>
+var cb, optionSet1;
+
+$(function () {
+    var checkAll = $('input.all');
+    var checkboxes = $('input.checkboxcls');
+
+    $('input').iCheck({
+      checkboxClass: "icheckbox_square-grey",
+    });
+
+    checkAll.on('ifChecked ifUnchecked', function(event) {
+        if (event.type == 'ifChecked') {
+            checkboxes.iCheck('check');
+        } else {
+            checkboxes.iCheck('uncheck');
+        }
+    });
+
+    checkboxes.on('ifChanged', function(event){
+        if(checkboxes.filter(':checked').length == checkboxes.length) {
+            checkAll.prop('checked', 'checked');
+        } else {
+            checkAll.removeProp('checked');
+        }
+        checkAll.iCheck('update');
+    });
+});
+
+$(".radio").iCheck({
+checkboxClass: "icheckbox_square-grey",
+radioClass: "iradio_square-grey"
+});
+</script>
+
+<!-- datepicker -->
+<script src="https://www.phptravels.net/assets/include/datepicker/datepicker.js"></script>
+<link rel="stylesheet" href="https://www.phptravels.net/assets/include/datepicker/datepicker.css" />
+
+
+
+<script>
+    var fmt = "dd/mm/yyyy";
+    if (top.location != location) { top.location.href = document.location.href ; }
+    $(function(){ window.prettyPrint &amp;&amp; prettyPrint(); $('.dob').datepicker({format: fmt,autoclose: true}).on('changeDate', function (ev) {
+        $(this).datepicker('hide'); });
+        $('#dp1').datepicker();
+        $('#dp2').datepicker();
+        $('#dp3').datepicker();
+        $('#dp5').datepicker();
+
+
+
+// disabling dates
+        var nowTemp = new Date();
+        var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
+
+        var date = $('.dpd3').datepicker({
+            format: fmt,
+            onRender: function(date) {
+                return date.valueOf() &lt; now.valueOf() ? 'disabled' : '';
+            }
+        })
+            .on('changeDate', function(ev) {
+                date.hide();
+            })
+            .data('datepicker');
+
+        var date12 = $('.dpd5').datepicker({
+            format: fmt,
+            onRender: function(date) {
+                return date.valueOf() &lt; now.valueOf() ? 'disabled' : '';
+            }
+        })
+            .on('changeDate', function(ev) {
+                date12.hide();
+            })
+            .data('datepicker');
+        var date13 = $('.dpd6').datepicker({
+            format: fmt,
+            onRender: function(date) {
+                return date.valueOf() &lt; now.valueOf() ? 'disabled' : '';
+            }
+        })
+            .on('changeDate', function(ev) {
+                date13.hide();
+            })
+            .data('datepicker');
+
+        var checkin = $('.dpd1').datepicker({
+            format: fmt,
+            onRender: function(date) {
+                return date.valueOf() &lt; now.valueOf() ? 'disabled' : '';
+            }
+        })
+            .on('changeDate', function(ev) {
+                if (ev.date.valueOf() &gt; checkout.date.valueOf()) {
+                    var newDate = new Date(ev.date)
+                    newDate.setDate(newDate.getDate() + 1); checkout.setValue(newDate);
+                }
+                checkin.hide();
+                $('.dpd2')[0].focus();
+            })
+            .data('datepicker');
+        var checkout = $('.dpd2').datepicker({
+            format: fmt,
+            onRender: function(date) {
+                return date.valueOf() &lt;= checkin.date.valueOf() ? 'disabled' : '';
+            }
+        })
+            .on('changeDate', function(ev) {
+                checkout.hide();
+            })
+            .data('datepicker');
+
+    });
+</script>
+<!-- timepicker -->
+<script src="https://www.phptravels.net/assets/include/timepicker/timepicker.js"></script>
+<link rel="stylesheet" href="https://www.phptravels.net/assets/include/timepicker/timepicker.css" />
+<script>
+$(function(){
+$('.timepicker').clockface(); });
+</script>
+
+<!-- dronzone -->
+<link href="https://www.phptravels.net/assets/include/dropzone/dropzone.css" type="text/css" rel="stylesheet" />
+<script src="https://www.phptravels.net/assets/include/dropzone/dropzone.min.js"></script>
+
+<!----Custom functions file---->
+<script src="https://www.phptravels.net/assets/js/funcs.js"></script>
+<!----Custom functions file---->
+
+<!-- pnotify -->
+<script src="https://www.phptravels.net/assets/include/pnotify/pnotify.custom.min.js"></script>
+<link href="https://www.phptravels.net/assets/include/pnotify/pnotify.custom.css" rel="stylesheet" />
+
+
+<script>
+$(function() {
+$(document).ready(function() {
+    $('.chosen-select').select2( { width:'100%', maximumSelectionSize: 1 } );
+    $(".chosen-multi-select").select2( { width:'100%', } ); }); }); function slideout(){ setTimeout(function(){
+    $(".alert-success").fadeOut("slow", function () { });
+    $(".alert-danger").fadeOut("slow", function () { }); }, 4000);}
+</script>
+
+<script>
+window.jQuery.ui || document.write('&lt;script src="https://www.phptravels.net/assets/js/jquery.slimscroll.min.js"&gt;&lt;\/script&gt;')
+</script>
+<script src="https://www.phptravels.net/assets/js/wow.min.js"></script>
+<script>
+/*&lt;![CDATA[*/
+$(function() {
+$('.main').panels();
+});
+/*]]&gt;*/
+
+    $("#btnSendSms").click(function() {
+        var payload = {
+            recepient: $('[name=recepient]').val(),
+            message: $('[name=message]').val()
+        };
+        $.post('https://www.phptravels.net/admin/templates/sms_test', payload, function(response) {
+            console.log(response);
+            if(response.status == 'success') {
+                $('#testSmsModalBox #alertBox').html('&lt;div class="alert alert-success"&gt;'+response.message+'&lt;/div&gt;');
+                setTimeout(function() {
+                    $('#testSmsModalBox').modal('hide');
+                }, 1000);
+            } else {
+                $('#testSmsModalBox #alertBox').html('&lt;div class="alert alert-danger"&gt;'+response.message+'&lt;/div&gt;');
+            }
+        });
+    });
+
+    var currentObjElement;
+    function editModelBtn(elem) {
+        currentObjElement = elem;
+        var templateObj = $(elem).data('content');
+        $('#modelEdit #modalTitle').text(templateObj.name);
+        $('#modelEdit #modalShortCode').text(templateObj.shortcode);
+        $('#modelEdit #modalBody').val(templateObj.body);
+        $('#modelEdit [name="objectId"]').val(templateObj.id);
+
+        $('#modelEdit #alertBox').empty();
+        $('#modelEdit').modal('show');
+    }
+
+    function testModelBtn(elem) {
+        currentObjElement = elem;
+        var templateObj = $(elem).data('content');
+        $('#modelTest #modalTitle').text(templateObj.name);
+        $('#modelTest #modalBody').val(templateObj.body);
+
+        $('#modelTest #alertBox').empty();
+        $('#modelTest').modal('show');
+    }
+
+    $('#modelEdit #btnSave').click(function() {
+        $.post('https://www.phptravels.net/admin/templates/updateSmsTemplate', {
+            id: $('#modelEdit [name="objectId"]').val(),
+            name: $('#modelEdit #modalTitle').text(),
+            shortcode: $('#modelEdit #modalShortCode').text(),
+            body: $('#modelEdit #modalBody').val()
+        }, function(response) {
+            if(response.status == 'success') {
+                $(currentObjElement).data('content', response.updatedObject);
+                $('#modelEdit #alertBox').html('&lt;div class="alert alert-success"&gt;Document updated&lt;/div&gt;');
+                setTimeout(function() {
+                    $('#modelEdit').modal('hide');
+                }, 1000);
+            } else {
+                $('#modelEdit #alertBox').html('&lt;div class="alert alert-danger"&gt;Unable to update document&lt;/div&gt;');
+            }
+        });
+    });
+
+    $('#modelTest #btnSend').click(function() {
+        $.post('https://www.phptravels.net/admin/templates/sms_test', {
+            recepient: $('#modelTest [name="recepient"]').val(),
+            message: $('#modelTest #modalBody').val()
+        }, function(response) {
+            if(response.status == 'success') {
+                $('#modelTest #alertBox').html('&lt;div class="alert alert-success"&gt;'+response.message+'&lt;/div&gt;');
+                setTimeout(function() {
+                    $('#modelTest').modal('hide');
+                }, 1000);
+            } else {
+                $('#modelTest #alertBox').html('&lt;div class="alert alert-danger"&gt;'+response.message+'&lt;/div&gt;');
+            }
+        });
+    });
+</script>
+
+<!--Start of Tawk.to Script-->
+<script type="text/javascript">
+var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+(function(){
+var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+s1.async=true;
+s1.src='https://embed.tawk.to/545f95214ed4e910560000f4/default';
+s1.charset='UTF-8';
+s1.setAttribute('crossorigin','*');
+s0.parentNode.insertBefore(s1,s0);
+})();
+</script>
+<!--End of Tawk.to Script-->
+
+
+<div id="zAIORiQ-1533869386400" class="" style="outline: none !important; visibility: visible !important; resize: none !important; box-shadow: none !important; overflow: visible !important; background: none transparent !important; opacity: 1 !important; top: auto !important; position: fixed !important; border: 0px !important; min-height: 0px !important; min-width: 0px !important; max-height: none !important; max-width: none !important; padding: 0px !important; margin: 0px !important; transition-property: none !important; transform: none !important; width: auto !important; height: auto !important; z-index: 2000000000 !important; cursor: auto !important; float: none !important; bottom: 0px !important; right: 0px !important; left: auto !important; display: block;"><iframe id="PGmUT6F-1533869386401" src="about:blank" frameborder="0" scrolling="no" title="chat widget" class="" style="outline: none !important; visibility: visible !important; resize: none !important; box-shadow: none !important; overflow: visible !important; background: none transparent !important; opacity: 1 !important; top: auto !important; right: auto !important; bottom: auto !important; left: auto !important; position: static !important; border: 0px !important; min-height: auto !important; min-width: auto !important; max-height: none !important; max-width: none !important; padding: 0px !important; margin: 0px !important; transition-property: none !important; transform: none !important; width: 320px !important; height: 400px !important; z-index: 999999 !important; cursor: auto !important; float: none !important; display: none !important;"></iframe><iframe id="qfetyut-1533869386401" src="about:blank" frameborder="0" scrolling="no" title="chat widget" class="" style="outline: none !important; visibility: visible !important; resize: none !important; box-shadow: none !important; overflow: visible !important; background: none transparent !important; opacity: 1 !important; position: fixed !important; border: 0px !important; padding: 0px !important; transition-property: none !important; z-index: 1000001 !important; cursor: auto !important; float: none !important; height: 40px !important; min-height: 40px !important; max-height: 40px !important; width: 320px !important; min-width: 320px !important; max-width: 320px !important; transform: rotate(0deg) translateZ(0px) !important; transform-origin: 0px center 0px !important; margin: 0px !important; top: auto !important; bottom: 0px !important; right: 10px !important; left: auto !important; display: block !important;"></iframe><iframe id="qpNEvwL-1533869386401" src="about:blank" frameborder="0" scrolling="no" title="chat widget" class="" style="outline: none !important; visibility: visible !important; resize: none !important; box-shadow: none !important; overflow: visible !important; background: none transparent !important; opacity: 1 !important; position: fixed !important; border: 0px !important; padding: 0px !important; margin: 0px !important; transition-property: none !important; transform: none !important; display: none !important; z-index: 1000003 !important; cursor: auto !important; float: none !important; top: auto !important; bottom: 40px !important; right: 10px !important; left: auto !important; width: 320px !important; max-width: 320px !important; min-width: 320px !important; height: 37px !important; max-height: 37px !important; min-height: 37px !important;"></iframe><div id="Ojr7bhR-1533869386400" class="" style="outline: none !important; visibility: visible !important; resize: none !important; box-shadow: none !important; overflow: visible !important; background: none rgb(255, 255, 255) !important; opacity: 0 !important; top: 1px !important; bottom: auto !important; position: absolute !important; border: 0px !important; min-height: auto !important; min-width: auto !important; max-height: none !important; max-width: none !important; padding: 0px !important; margin: 0px !important; transition-property: none !important; transform: none !important; width: auto !important; height: 45px !important; display: block !important; z-index: 999997 !important; cursor: move !important; float: none !important; left: 0px !important; right: 96px !important;"></div><div id="nyqvY1S-1533869386400" class="" style="outline: none !important; visibility: visible !important; resize: none !important; box-shadow: none !important; overflow: visible !important; background: none transparent !important; opacity: 1 !important; top: 0px !important; right: 96px !important; bottom: auto !important; left: 0px !important; position: absolute !important; border: 0px !important; min-height: auto !important; min-width: auto !important; max-height: none !important; max-width: none !important; padding: 0px !important; margin: 0px !important; transition-property: none !important; transform: none !important; width: 6px !important; height: 100% !important; display: block !important; z-index: 999998 !important; cursor: w-resize !important; float: none !important;"></div><div id="XiYltQ3-1533869386400" class="" style="outline: none !important; visibility: visible !important; resize: none !important; box-shadow: none !important; overflow: visible !important; background: none transparent !important; opacity: 1 !important; top: 0px !important; right: 0px !important; bottom: auto !important; left: auto !important; position: absolute !important; border: 0px !important; min-height: auto !important; min-width: auto !important; max-height: none !important; max-width: none !important; padding: 0px !important; margin: 0px !important; transition-property: none !important; transform: none !important; width: 6px !important; height: 100% !important; display: block !important; z-index: 999998 !important; cursor: e-resize !important; float: none !important;"></div><div id="FwMnw9J-1533869386401" class="" style="outline: none !important; visibility: visible !important; resize: none !important; box-shadow: none !important; overflow: visible !important; background: none transparent !important; opacity: 1 !important; top: 0px !important; right: 0px !important; bottom: auto !important; left: auto !important; position: absolute !important; border: 0px !important; min-height: auto !important; min-width: auto !important; max-height: none !important; max-width: none !important; padding: 0px !important; margin: 0px !important; transition-property: none !important; transform: none !important; width: 100% !important; height: 6px !important; display: block !important; z-index: 999998 !important; cursor: n-resize !important; float: none !important;"></div><div id="fbfa0DF-1533869386401" class="" style="outline: none !important; visibility: visible !important; resize: none !important; box-shadow: none !important; overflow: visible !important; background: none transparent !important; opacity: 1 !important; top: auto !important; right: 0px !important; bottom: 0px !important; left: auto !important; position: absolute !important; border: 0px !important; min-height: auto !important; min-width: auto !important; max-height: none !important; max-width: none !important; padding: 0px !important; margin: 0px !important; transition-property: none !important; transform: none !important; width: 100% !important; height: 6px !important; display: block !important; z-index: 999998 !important; cursor: s-resize !important; float: none !important;"></div><div id="BLhgxHC-1533869386401" class="" style="outline: none !important; visibility: visible !important; resize: none !important; box-shadow: none !important; overflow: visible !important; background: none transparent !important; opacity: 1 !important; top: 0px !important; right: auto !important; bottom: auto !important; left: 0px !important; position: absolute !important; border: 0px !important; min-height: auto !important; min-width: auto !important; max-height: none !important; max-width: none !important; padding: 0px !important; margin: 0px !important; transition-property: none !important; transform: none !important; width: 12px !important; height: 12px !important; display: block !important; z-index: 999998 !important; cursor: nw-resize !important; float: none !important;"></div><div id="Pvpoatx-1533869386401" class="" style="outline: none !important; visibility: visible !important; resize: none !important; box-shadow: none !important; overflow: visible !important; background: none transparent !important; opacity: 1 !important; top: 0px !important; right: 0px !important; bottom: auto !important; left: auto !important; position: absolute !important; border: 0px !important; min-height: auto !important; min-width: auto !important; max-height: none !important; max-width: none !important; padding: 0px !important; margin: 0px !important; transition-property: none !important; transform: none !important; width: 12px !important; height: 12px !important; display: block !important; z-index: 999998 !important; cursor: ne-resize !important; float: none !important;"></div><div id="uiKU26p-1533869386401" class="" style="outline: none !important; visibility: visible !important; resize: none !important; box-shadow: none !important; overflow: visible !important; background: none transparent !important; opacity: 1 !important; top: auto !important; right: auto !important; bottom: 0px !important; left: 0px !important; position: absolute !important; border: 0px !important; min-height: auto !important; min-width: auto !important; max-height: none !important; max-width: none !important; padding: 0px !important; margin: 0px !important; transition-property: none !important; transform: none !important; width: 12px !important; height: 12px !important; display: block !important; z-index: 999998 !important; cursor: sw-resize !important; float: none !important;"></div><div id="xKccksE-1533869386401" class="" style="outline: none !important; visibility: visible !important; resize: none !important; box-shadow: none !important; overflow: visible !important; background: none transparent !important; opacity: 1 !important; top: auto !important; right: 0px !important; bottom: 0px !important; left: auto !important; position: absolute !important; border: 0px !important; min-height: auto !important; min-width: auto !important; max-height: none !important; max-width: none !important; padding: 0px !important; margin: 0px !important; transition-property: none !important; transform: none !important; width: 12px !important; height: 12px !important; display: block !important; z-index: 999999 !important; cursor: se-resize !important; float: none !important;"></div><div class="" style="outline: none !important; visibility: visible !important; resize: none !important; box-shadow: none !important; overflow: visible !important; background: none transparent !important; opacity: 1 !important; top: 0px !important; right: auto !important; bottom: auto !important; left: 0px !important; position: absolute !important; border: 0px !important; min-height: auto !important; min-width: auto !important; max-height: none !important; max-width: none !important; padding: 0px !important; margin: 0px !important; transition-property: none !important; transform: none !important; width: 100% !important; height: 100% !important; display: none !important; z-index: 1000001 !important; cursor: move !important; float: left !important;"></div></div><iframe src="about:blank" title="chat widget logging" style="display: none !important;"></iframe></body></html>

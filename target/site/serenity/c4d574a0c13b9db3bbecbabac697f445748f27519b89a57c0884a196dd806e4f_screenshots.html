@@ -1,0 +1,209 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>Screenshots</title>
+
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+<link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
+<link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+<meta name="theme-color" content="#ffffff">
+<link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
+<!--[if IE 7]>
+<link rel="stylesheet" href="font-awesome/css/font-awesome-ie7.min.css">
+<![endif]--><!-- JQuery -->
+<script type="text/javascript" src="scripts/jquery-1.11.1.min.js"></script><!-- Bootstrap -->
+<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<script src="bootstrap/js/bootstrap.min.js"></script><link rel="stylesheet" href="css/core.css"/>
+<link rel="stylesheet" href="css/link.css"/>
+<link type="text/css" media="screen" href="css/screen.css" rel="Stylesheet"/><!-- Nivo Slider -->
+<link rel="stylesheet" href="nivo-slider/3.2/nivo-slider.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="nivo-slider/3.2/themes/default/default.css" type="text/css" media="screen" />
+<script src="nivo-slider/3.2/jquery.nivo.slider.pack.js" type="text/javascript"></script>
+
+    <script type="text/javascript">
+
+        function getUrlVars() {
+            var vars = {};
+            var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function (m, key, value) {
+                vars[key] = value;
+            });
+            return vars;
+        }
+
+        var screenshotIndex = getUrlVars()["screenshot"];
+
+        $(window).load(function () {
+            $('#slider').nivoSlider({
+                startSlide: screenshotIndex,
+                effect: 'fade',
+                animSpeed: 200,
+                manualAdvance: true
+            });
+        });
+
+        $(window).keydown(function(e) {
+            switch(e.which) {
+                case 37:
+                    $('a.nivo-prevNav').click();
+                    break;
+                case 39:
+                    $('a.nivo-nextNav').click();
+                    break;
+            }
+        });
+    </script>
+
+</head>
+
+<body>
+<div id="topheader">
+    <div id="topbanner">
+        <div id="logo"><a href="index.html"><img src="images/serenity-logo.png" border="0"/></a></div>
+        <div id="projectname-banner" style="float:right">
+            <span class="projectname"></span>
+        </div>
+    </div>
+</div>
+
+<div class="middlecontent">
+    <div id="contenttop">
+        <div class="middlebg">
+            <span class="breadcrumbs">
+                <a href="index.html">Home</a>
+                > <span class="truncate-40"><a
+                    href="ce300311e0943dc4d06751f5a3f9ae04692468405ae8949554824416c14e54fc.html">Agregar Categoria</a></span>
+                > <span class="truncate-60"><a
+                    href="c4d574a0c13b9db3bbecbabac697f445748f27519b89a57c0884a196dd806e4f.html">Diana quiere agregar una categoria en el modulo del blog </a></span>
+                > Screenshots
+            </span>
+        </div>
+        <div class="rightbg"></div>
+    </div>
+
+    <div class="clr"></div>
+
+    <!--/* starts second table*/-->
+<div>
+    <ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#"><i class="fa fa-check-square-o"></i> Overall Test Results</a>
+        </li>
+        <li >
+            <a href="capabilities.html"><i class="fa fa-book"></i> Requirements</a>
+        </li>
+        <li >
+            <a href="576946480b52ad056d6f5bddf874399c83582ecf90963cc074a14c70580e7d9f.html"><i class="fa fa-comments-o"></i> Features</a>
+        </li>
+    </ul>
+    <span class="date-and-time"><a href="build-info.html"><i class="fa fa-info-circle"></i></a> Report generated 10-08-2018 07:52</span>
+    <br style="clear:left"/>
+</div>
+
+    <div class="clr"></div>
+
+
+    <div id="contentbody">
+        <div class="titlebar">
+            <div class="story-title">
+                <table class="outcome-header">
+                    <tr>
+                        <td>
+                            <div>
+                                <h3 class="discreet-story-header">
+                                    <i class="fa fa-2x fa-comments-o"></i>
+                                    <span class="story-header-title">Agregar Categoria </span>
+                                    <span class="badge tag-badge" style="">Feature</span>
+                                </h3>
+
+                                <div class="discreet-requirement-narrative-title">
+                                Yo como usuario administrador quiero agregar una categoria en el modulo del blog
+para visualizarla en la tabla de la categoría y luego borrarla de la tabla
+                                </div>
+                            </div>
+
+                        </td>
+                        <td valign="top" align="right">
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="story-title">
+                <table class="outcome-header">
+                    <tr>
+                        <td colspan="2" class="test-title-bar">
+                            <span class="outcome-icon"><i class='fa fa-check-square-o success-icon fa-2x' title='SUCCESS'></i></span>
+                            <span class="test-case-title">
+                                <span class="success-color">Diana quiere agregar una categoria en el modulo del blog
+                                    <span class="related-issue-title"></span>
+                                </span>
+                            </span>
+
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="clr"></div>
+
+    <div class="story-title">
+        <h3>Scenario:</h3>
+        <div class="scenario">Dado que Diana quiere agregar una categoria y borrarla<br>Cuando ella agrega una &lt;categoria&gt; en el modulo del blog<br>Entonces se debe visualizar la &lt;categoria&gt; en la tabla de categoria</div>
+    </div>
+
+    <div id="beforetable"></div>
+    <div id="contenttilttle">
+        <div class="slider-wrapper theme-default">
+            <div id="slider">
+                <img src="01a06ff8c42b6f1d074b7113b26f1b34a8f4624b7ffb31e5390301a02dc41a01.png" title="Diana quiere agregar una categoria en el modulo del blog #1: {categoria=Sport Deanne}" width="1366"/>
+                <img src="21760e98a903ed0666b4eae48a1fa28385437e1daa2770fcc264be2a11b53b06.png" title="Dado que Diana quiere agregar una categoria y borrarla" width="1366"/>
+                <img src="e6827dcafa872dc9cb2c7ef85234ba8cd04f30ba7345c4ef5da6303176d604de.png" title="Diana opens the Home php travels page" width="1034"/>
+                <img src="1562b4e30c31aab96cca81ecec63f3aa085aaf76ae6a65ee833b4fa23fba40d4.png" title="Diana enters 'admin@phptravels.com' into email" width="1034"/>
+                <img src="403b6aa0e2d525f4368e26970c05a2b8de873c377139da7b310197b004c3f34c.png" title="Diana enters 'admin@phptravels.com' into email" width="1034"/>
+                <img src="4869f3e550944d26e06a631d6e45c388de1cdee504ff27966a260426d71c5d59.png" title="Diana enters 'demoadmin' into password" width="1034"/>
+                <img src="7b2af55fac8a3548661074f1d7742db2bd87341f196da7d4e460f973ee73f45f.png" title="Diana enters 'demoadmin' into password" width="1034"/>
+                <img src="2cf5db9a8632f5ba05b8e13596700d526d57e86ec99872aa499a10dff69280b2.png" title="Diana clicks on boton login" width="1034"/>
+                <img src="61fe843f27ef834f31536a34a9e91762648fd6869d95caf131b62efb9ecff14e.png" title="Diana clicks on boton login" width="1366"/>
+                <img src="1c7995e8cbdbaa544e95dd03d4a324f6d622577511bd9dbadba6174851f8b63c.png" title="Cuando ella agrega una Sport Deanne en el modulo del blog" width="1366"/>
+                <img src="01a06ff8c42b6f1d074b7113b26f1b34a8f4624b7ffb31e5390301a02dc41a01.png" title="Cuando ella agrega una Sport Deanne en el modulo del blog" width="1366"/>
+                <img src="be8ff7e3690d2844bccf2b800fddbdb32dbccb1faa12de061d1376c1a1d7a5ce.png" title="Diana clicks on blog" width="1366"/>
+                <img src="0c39ab3a5f64e8cb5ffeaf748df1f6069e5fbc278196e45761b5feb2a5b0d5e6.png" title="Diana clicks on blog" width="1366"/>
+                <img src="37cddf2b6aa74d70229a5249818b08ef6dbd91e6e4d2aed6e2d8505835f212e1.png" title="Diana clicks on blog categories" width="1366"/>
+                <img src="ece7290fb93b05d5aeb153aec7d6af687e7342fd729b5ecae725f53975f52fc9.png" title="Diana clicks on blog categories" width="1366"/>
+                <img src="ece7290fb93b05d5aeb153aec7d6af687e7342fd729b5ecae725f53975f52fc9.png" title="Diana clicks on boton add" width="1366"/>
+                <img src="916b6ae12aa22d8193b4c0efb2e4bea2a7d3eeffa1e91c6103acf840461a76c2.png" title="Diana clicks on boton add" width="1366"/>
+                <img src="ed183fdb138838362286ea31576dab6873f7848ba164c71bb96c1e9fa8b11df9.png" title="Diana enters 'Sport Deanne' into category name" width="1366"/>
+                <img src="bc5fa2ecff6ea046e9b7c6f1effc023f5392db2d51da7ac92308f31a5ca2ee0f.png" title="Diana enters 'Sport Deanne' into category name" width="1366"/>
+                <img src="bc5fa2ecff6ea046e9b7c6f1effc023f5392db2d51da7ac92308f31a5ca2ee0f.png" title="Diana clicks on boton submit" width="1366"/>
+                <img src="0a8d17a5ebd21113cd6acd94f2b9000a76f469b4267ffde923e38c0bbf873279.png" title="Diana clicks on boton submit" width="1366"/>
+                <img src="01a06ff8c42b6f1d074b7113b26f1b34a8f4624b7ffb31e5390301a02dc41a01.png" title="Entonces se debe visualizar la Sport Deanne en la tabla de categoria" width="1366"/>
+                <img src="01a06ff8c42b6f1d074b7113b26f1b34a8f4624b7ffb31e5390301a02dc41a01.png" title="Then la categoria adicionada es should be 'Sport Deanne': <span class='success-color'>SUCCESS</span>" width="1366"/>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+<div id="beforefooter"></div>
+<div id="bottomfooter">
+    <span class="version">Serenity BDD version 1.9.9</span>
+</div>
+</body>
+</html>
