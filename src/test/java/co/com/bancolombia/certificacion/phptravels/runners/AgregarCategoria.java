@@ -10,6 +10,7 @@ import net.serenitybdd.cucumber.CucumberWithSerenity;
 @CucumberOptions(
 		features= {"src/test/resources/features/agregar_categoria.feature"},
 		glue= {"co.com.bancolombia.certificacion.phptravels.stepdefinitions"},
+		tags= {"@eliminar"},
 		snippets = SnippetType.CAMELCASE
 		)
 

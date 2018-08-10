@@ -10,5 +10,7 @@ public class BlogCategoryPage extends PageObject {
 	public static final Target CATEGORY_NAME = Target.the("category name").located(By.xpath("//*[@id=\"ADD_BLOG_CAT\"]/div[2]/div/form/div[2]/div[1]/div/input"));
 	public static final Target BOTON_SUBMIT = Target.the("boton submit").located(By.xpath("//*[@id=\"ADD_BLOG_CAT\"]/div[2]/div/form/div[3]/button[2]"));
 	public static final Target CATEGORY_ADD = Target.the("category add").located(By.xpath("//*[@id=\"content\"]/div[1]/div[2]/div[2]/div/div[1]/div[2]/table/tbody/tr[1]/td[3]"));
-			//("//*[@id=\"content\"]/div[1]/div[2]/div[2]/div/div[1]/div[2]/table/tbody/tr[1]/td[contains(text(),'Sport Deanne')]"));						
+	public static final Target BOTON_DELETE_SELECTED = Target.the("boton delete selected").located(By.xpath("//*[@id=\"content\"]/div[1]/div[2]/div[2]/div/div[1]/div[1]/a"));
+	public static final Target CHECK_CATEGORY = Target.the("category add").located(By.xpath("//*[@id=\"content\"]/div[1]/div[2]/div[2]/div/div[1]/div[2]/table/tbody/tr[1]/td[1]/div/ins"));
+	//("//*[@id=\"content\"]/div[1]/div[2]/div[2]/div/div[1]/div[2]/table/tbody/tr[1]/td[contains(text(),'Sport Deanne')]"));						
 }

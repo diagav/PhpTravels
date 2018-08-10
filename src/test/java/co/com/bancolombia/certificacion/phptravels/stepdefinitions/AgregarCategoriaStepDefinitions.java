@@ -4,8 +4,10 @@ import static net.serenitybdd.screenplay.GivenWhenThen.seeThat;
 import static net.serenitybdd.screenplay.actors.OnStage.theActorCalled;
 import static net.serenitybdd.screenplay.actors.OnStage.theActorInTheSpotlight;
 import static org.hamcrest.core.Is.is;
+import static org.hamcrest.Matchers.not;
 
 import co.com.bancolombia.certificacion.phptravels.tasks.AdicionarCategoria;
+import co.com.bancolombia.certificacion.phptravels.tasks.EliminarCategoria;
 import co.com.bancolombia.certificacion.phptravels.tasks.LoguearPagina;
 import co.com.bancolombia.certificacion.phptravels.userinterfaces.HomePhpTravelsPage;
 import co.com.bancolombia.certificacion.phptravels.questions.Categoria;
@@ -36,10 +38,23 @@ public class AgregarCategoriaStepDefinitions {
 	public void ellaAgregaUnaMagicEnElModuloDelBlog(String categoria) {
 		theActorInTheSpotlight().attemptsTo(AdicionarCategoria.conElNombre(categoria));		
 	}
-
+	
 	@Entonces("^se debe visualizar la (.*) en la tabla de categoria$")
 	public void seDebeVisualizarLaMagicEnLaTablaDeCategoria(String categoriaConsulta) {
 		theActorInTheSpotlight().should(seeThat(Categoria.name(), is(categoriaConsulta)));
 	}
+	
+	@Cuando("^elimina la categoria$")
+	public void eliminaLaSportDeanne() {
+		theActorInTheSpotlight().attemptsTo(EliminarCategoria.seleccionada());	
+	}
+	
+	@Entonces("^se debe eliminar la (.*) de la tabla de categoria$")
+	public void seDebeEliminarLaSportDeanneDeLaTablaDeCategoria(String categoriaEliminar) throws InterruptedException {
+		Thread.sleep(5000);
+		theActorInTheSpotlight().should(seeThat(Categoria.name(), not(categoriaEliminar)));
+	}
+	
+	
 
 }
