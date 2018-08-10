@@ -111,7 +111,7 @@
             <a href="576946480b52ad056d6f5bddf874399c83582ecf90963cc074a14c70580e7d9f.html"><i class="fa fa-comments-o"></i> Features</a>
         </li>
     </ul>
-    <span class="date-and-time"><a href="build-info.html"><i class="fa fa-info-circle"></i></a> Report generated 10-08-2018 15:19</span>
+    <span class="date-and-time"><a href="build-info.html"><i class="fa fa-info-circle"></i></a> Report generated 10-08-2018 17:10</span>
     <br style="clear:left"/>
 </div>
 
@@ -159,9 +159,9 @@ para visualizarla en la tabla de la categoría y luego borrarla de la tabla
                 <table class="outcome-header">
                     <tr>
                         <td colspan="2" class="test-title-bar">
-                            <span class="outcome-icon"><i class='fa fa-check-square-o success-icon fa-2x' title='SUCCESS'></i></span>
+                            <span class="outcome-icon"><i class='fa fa-exclamation-triangle error-icon fa-2x' title='ERROR'></i></span>
                             <span class="test-case-title">
-                                <span class="success-color">Diana quiere agregar una categoria en el modulo del blog
+                                <span class="error-color">Diana quiere agregar una categoria en el modulo del blog
                                     <span class="related-issue-title"></span>
                                 </span>
                             </span>
@@ -182,36 +182,77 @@ para visualizarla en la tabla de la categoría y luego borrarla de la tabla
 
     <div id="beforetable"></div>
     <div id="contenttilttle">
+            <div class="screenshotFailure panel panel-danger">
+
+                        <div class="panel-heading title="Null pointer exception">
+                            Null pointer exception
+                        </div>
+                <div><!-- Stack trace -->
+                    <button type="button" class="btn btn-danger" data-toggle="modal"
+                            data-target="#stacktraceModal-overall">
+                        View details
+                    </button>
+                </div>
+                <!-- Modal -->
+                <div class="modal fade" id="stacktraceModal-overall" tabindex="-1" role="dialog"
+                     aria-labelledby="stacktraceModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal"
+                                        aria-label="Close"><span aria-hidden="true">&times;</span>
+                                </button>
+                                <h4 class="modal-title" id="stacktraceModalLabel">
+                                    java.lang.NullPointerException
+                                </h4>
+                            </div>
+                            <div class="modal-body">
+                                    co.com.bancolombia.certificacion.phptravels.stepdefinitions.AgregarCategoriaStepDefinitions.eliminaLaSportDeanne(AgregarCategoriaStepDefinitions.java
+                                    :63) <br>
+                                    ✽.elimina la categoria(src/test/resources/features/agregar_categoria.feature
+                                    :25) <br>
+                            </div>
+
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">
+                                    Close
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="panel-body">
+                    <a href="#" target="_blank" class="btn btn-info">HTML Source</a>
+                </div>
+            </div>
         <div class="slider-wrapper theme-default">
             <div id="slider">
-                <img src="b2b674c16c7208c6f270c10390dbd39688d96fb83eef2eb01894d2626573967b.png" title="Diana quiere agregar una categoria en el modulo del blog #1: {categoria=Sport Deanne}" width="1366"/>
-                <img src="4ef78a52e32fc0c3e0b1826bcf42434a8bd102bf451a3aadc7835f4ede730d40.png" title="Dado que Diana quiere agregar una categoria y borrarla" width="1366"/>
-                <img src="ec48987ae3edc6bdcaf21072c1383348d4c2ee27dfa70893da2b86c13aabb8ed.png" title="Diana opens the Home php travels page" width="1366"/>
-                <img src="2ba0edd1e1beff6e2d3882f68ebb7d4ccb4af6280d6752b1b354241f22a3a074.png" title="Diana enters 'admin@phptravels.com' into email" width="1366"/>
-                <img src="7919688392df8f78eadc5766ecbf3b355d53eb2815313f406f7d55b6195107fe.png" title="Diana enters 'admin@phptravels.com' into email" width="1366"/>
-                <img src="f58505a1c2861d9e3e3fb2ace4620802f2aabb6dab70ec5126a0055a1fa2721f.png" title="Diana enters 'demoadmin' into password" width="1366"/>
-                <img src="9f7072e15c26b368b44f8b3eaa2de91a42541eeb524b9750c3cec3797bb6f14b.png" title="Diana enters 'demoadmin' into password" width="1366"/>
-                <img src="e485c2525b7d5f8ae333096037b997f2a14824991918652edc8f958991b65090.png" title="Diana clicks on boton login" width="1366"/>
-                <img src="c428fee714cd0c4b49b0a90d08ed0289456c49544ca6b56e92af2128f59ba01c.png" title="Diana clicks on boton login" width="1366"/>
-                <img src="baf53346435d61c2593b1b8e63fc488b703b768a8e85787a22469b6cecfd43f1.png" title="Cuando ella agrega una Sport Deanne en el modulo del blog" width="1366"/>
-                <img src="f44121ba80c61f9c96b29e0168483fe3586022f9f5ef801b8640e6bd7fd9a73d.png" title="Cuando ella agrega una Sport Deanne en el modulo del blog" width="1366"/>
-                <img src="666ca7eb5365ef97d443f25a2834351d6da5d175b1ec0f9d6c7a722391c28e8b.png" title="Diana clicks on blog" width="1366"/>
-                <img src="9863d092e0671984bf0a51df56ce0381d219424f2e4c7ef606a549bf83ebbe1d.png" title="Diana clicks on blog" width="1366"/>
-                <img src="f5ff222eb7aa7212271bcd2fc00a5518040167aa4b39919d67803b65e4ce20a2.png" title="Diana clicks on blog categories" width="1366"/>
-                <img src="7df664419478e0598adf1f97bec38708d304a80d613c3bb7c6474d4bcde33df8.png" title="Diana clicks on blog categories" width="1366"/>
-                <img src="01828be6825c0650520a9d27d162ecd1db08de7d75bbaa825a6763d34ec5f26f.png" title="Diana clicks on boton add" width="1366"/>
-                <img src="7f2edc30e70ae50c4dbb7ca1a0130520e5593f2ef21eb56c70cacf65342e70fd.png" title="Diana clicks on boton add" width="1366"/>
-                <img src="dec86ba9f21862d2ec34e72e657df4f115ab164573390910a7376506d121d268.png" title="Diana enters 'Sport Deanne' into category name" width="1366"/>
-                <img src="7c19e4a03fe9e374db22a4f1c5a4235cdd0cf42ecfb733c61a411c293bcee56b.png" title="Diana enters 'Sport Deanne' into category name" width="1366"/>
-                <img src="7c19e4a03fe9e374db22a4f1c5a4235cdd0cf42ecfb733c61a411c293bcee56b.png" title="Diana clicks on boton submit" width="1366"/>
-                <img src="b8746772cb4e9d04b5e9521fadd59118e8a0fda10fcdccda5625f7c86467508b.png" title="Diana clicks on boton submit" width="1366"/>
-                <img src="f44121ba80c61f9c96b29e0168483fe3586022f9f5ef801b8640e6bd7fd9a73d.png" title="Y elimina la categoria" width="1366"/>
-                <img src="f44121ba80c61f9c96b29e0168483fe3586022f9f5ef801b8640e6bd7fd9a73d.png" title="Diana clicks on category add" width="1366"/>
-                <img src="e4d30ed7a8d05b89d84a8e625dbb82923a13bf00e9152a6dffa6d74c3787286d.png" title="Diana clicks on category add" width="1366"/>
-                <img src="104fc7ae1af28e85d6275d0470c9429f056521fd931d50ff169c01fdee961c1b.png" title="Diana clicks on boton delete selected" width="1366"/>
-                <img src="b2b674c16c7208c6f270c10390dbd39688d96fb83eef2eb01894d2626573967b.png" title="Entonces se debe eliminar la Sport Deanne de la tabla de categoria" width="1366"/>
-                <img src="fe6a318d28caf419adc8444c4cb1a9d08005c754d2b0be0b604faa4baf634c8d.png" title="Then la categoria adicionada es should be not 'Sport Deanne'" width="1366"/>
-                <img src="b2b674c16c7208c6f270c10390dbd39688d96fb83eef2eb01894d2626573967b.png" title="Then la categoria adicionada es should be not 'Sport Deanne': <span class='success-color'>SUCCESS</span>" width="1366"/>
+                <img src="462b8ff0b3998f470dffb02c77e9643fc3b882a6f380f193df7d35f1b7028f5e.png" title="Dado que Diana quiere agregar una categoria y borrarla" width="1366"/>
+                <img src="be1f53a6018cae29f5326c5db3b148dd40c066e2b846e242ee1419ac1e27d542.png" title="Diana opens the Home php travels page" width="1366"/>
+                <img src="34c9b9660a32346f3ed2cfefe0d7f2baa1ae8beebfbef3ee229aa550bac8234a.png" title="Diana enters 'admin@phptravels.com' into email" width="1366"/>
+                <img src="6e33e16d0ef8b99d380745e8813dee69f31837c68b71ddf454fde0b34e8ef887.png" title="Diana enters 'admin@phptravels.com' into email" width="1366"/>
+                <img src="d696f6fde3b8e224e0bbdfc867bc1cab8441261f42bc463622079d52ec79310b.png" title="Diana enters 'demoadmin' into password" width="1366"/>
+                <img src="caae23ee80c8446fc55333156cfe4d007708a1c620326a38af001cf4a186330e.png" title="Diana enters 'demoadmin' into password" width="1366"/>
+                <img src="d0d5d2ac8ade0027b33c911dd3de96f527c4e11ff535e6fa36f15b0a7ba6c3d8.png" title="Diana clicks on boton login" width="1366"/>
+                <img src="8030de07683e329ed376e66dde03537eda7ec9a4b9fdbb155447f773d1e3198f.png" title="Diana clicks on boton login" width="1366"/>
+                <img src="7b1eb761a76b5c6f219ec5859a116fe5d85830aff30ed380b89cd9b36373c404.png" title="Cuando ella agrega una Sport Deanne en el modulo del blog" width="1366"/>
+                <img src="905c6dd0398b62985b9af54d47cbf705c4631b2950a7c40fc0d4c04dd51514be.png" title="Cuando ella agrega una Sport Deanne en el modulo del blog" width="1366"/>
+                <img src="d8a5c312f776b18c7b728f40f25515099fd2de2f91de7fab900c70d77b60bd4a.png" title="Diana clicks on blog" width="1366"/>
+                <img src="783d242055473fae4ee34eb9a3b7221af5a39025ff99c8873cc9b3de13b49dfc.png" title="Diana clicks on blog" width="1366"/>
+                <img src="1986b0fb362fb7872763926e17cc7240dfd3d3b3227fb5d5674a752c717ce80d.png" title="Diana clicks on blog categories" width="1366"/>
+                <img src="f48bb25bd9641dbc8cdcd29388edde1bdfc99c24ee317aba71c161e02c1e64b9.png" title="Diana clicks on blog categories" width="1366"/>
+                <img src="a3cd5fb985b6df51c8e94bd01881c28ac7342a3f04f337705a26b17a22563e82.png" title="Diana clicks on boton add" width="1366"/>
+                <img src="9ac5a14ceb4cb6e8a2745fd129a1797472f0f1045aa4f3715e4839635ed38080.png" title="Diana clicks on boton add" width="1366"/>
+                <img src="25d3cfd694046f277dfaa15c96224378055f5704764ffd4043e499f222e6099d.png" title="Diana enters 'Sport Deanne' into category name" width="1366"/>
+                <img src="2ef38841bb68b900ead0d312901dbbdebb87785cc0b31a4aefc0ac0bc65926c6.png" title="Diana enters 'Sport Deanne' into category name" width="1366"/>
+                <img src="2ef38841bb68b900ead0d312901dbbdebb87785cc0b31a4aefc0ac0bc65926c6.png" title="Diana clicks on boton submit" width="1366"/>
+                <img src="279245d7e841eacc75affc8362c06fcab31172f60735ee31dbedbdf005d47728.png" title="Diana clicks on boton submit" width="1366"/>
+                <img src="905c6dd0398b62985b9af54d47cbf705c4631b2950a7c40fc0d4c04dd51514be.png" title="Y elimina la categoria" width="1366"/>
+                <img src="905c6dd0398b62985b9af54d47cbf705c4631b2950a7c40fc0d4c04dd51514be.png" title="Diana clicks on category add" width="1366"/>
+                <img src="7142827c67f48ef27737e49da753b9f5a081593f3f5802f0767d760451826b20.png" title="Diana clicks on category add" width="1366"/>
+                <img src="28a93223b49dcd506ac64a1df0c70a2386326838eef1f483cdce4b661a6d0e69.png" title="Diana clicks on boton delete selected: <span class='error-color'>ERROR</span>" width="1366"/>
             </div>
         </div>
 

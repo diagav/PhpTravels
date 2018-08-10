@@ -1,1 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><testsuite errors="0" failures="0" name="Agregar categoria" skipped="0" tests="1" time="43.73" timestamp="2018-08-10 03:19:48"><testcase name="Diana quiere agregar una categoria en el modulo del blog"/></testsuite>
+<?xml version="1.0" encoding="UTF-8"?><testsuite errors="1" failures="0" name="Agregar categoria" skipped="0" tests="1" time="37.26" timestamp="2018-08-10 05:10:31"><testcase name="Diana quiere agregar una categoria en el modulo del blog"><error type="java.lang.NullPointerException"/><system-err>null&#13;
+co.com.bancolombia.certificacion.phptravels.stepdefinitions.AgregarCategoriaStepDefinitions.eliminaLaSportDeanne(AgregarCategoriaStepDefinitions.java:63)&#13;
+✽.elimina la categoria(src/test/resources/features/agregar_categoria.feature:25)&#13;
+</system-err></testcase></testsuite>

@@ -5,7 +5,7 @@ import net.serenitybdd.core.pages.PageObject;
 import net.serenitybdd.screenplay.targets.Target;
 import net.thucydides.core.annotations.DefaultUrl;
 
-@DefaultUrl("http://phptravels.net/admin/")
+//@DefaultUrl("http://phptravels.net/admin/")
 public class HomePhpTravelsPage extends PageObject {
 
 	public static final Target EMAIL = Target.the("email").located(By.name("email"));
