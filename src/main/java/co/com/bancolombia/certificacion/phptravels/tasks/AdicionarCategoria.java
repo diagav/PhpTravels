@@ -2,8 +2,8 @@ package co.com.bancolombia.certificacion.phptravels.tasks;
 
 import static net.serenitybdd.screenplay.Tasks.instrumented;
 
-import co.com.bancolombia.certificacion.phptravels.userinterfaces.BlogCategoryPage;
-import co.com.bancolombia.certificacion.phptravels.userinterfaces.HomePhpTravelsPage;
+import static co.com.bancolombia.certificacion.phptravels.userinterfaces.BlogCategoryPage.*;
+import static co.com.bancolombia.certificacion.phptravels.userinterfaces.HomePhpTravelsPage.*;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.Task;
 import net.serenitybdd.screenplay.actions.Click;
@@ -21,10 +21,9 @@ public class AdicionarCategoria implements Task {
 
 	@Override
 	public <T extends Actor> void performAs(T actor) {
-		actor.attemptsTo(Click.on(HomePhpTravelsPage.BLOG), Click.on(HomePhpTravelsPage.BLOG_CATEGORIES),
-				Click.on(BlogCategoryPage.BOTON_ADD),
-				Enter.theValue(categoriaParaAgregar).into(BlogCategoryPage.CATEGORY_NAME),
-				Click.on(BlogCategoryPage.BOTON_SUBMIT));
+		actor.attemptsTo(Click.on(BLOG), Click.on(BLOG_CATEGORIES),
+				Click.on(BOTON_ADD), Enter.theValue(categoriaParaAgregar).into(CATEGORY_NAME),
+				Click.on(BOTON_SUBMIT));
 	}
 
 	// metodo que nos devuelve la instancia de ella misma sin necesidad de hacer el
